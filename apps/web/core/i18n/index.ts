@@ -72,7 +72,7 @@ export function createI18nInstance(lng: string): I18nInstance {
     interpolation: { escapeValue: false },
     load: 'languageOnly',
     // Synchronous init: the instance is usable in the same render pass (SSR)
-    initImmediate: false,
+    initAsync: false,
   });
 
   if (typeof window !== 'undefined') {
