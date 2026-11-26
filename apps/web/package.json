@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit --incremental false",
     "test": "node ../../scripts/test-web.mjs",
     "prebuild": "node ../../scripts/prepare-pdf-worker.mjs",
+    "postbuild": "node ../../scripts/check-browser-build.mjs .next/static public",
     "predev": "node ../../scripts/prepare-pdf-worker.mjs"
   },
   "dependencies": {

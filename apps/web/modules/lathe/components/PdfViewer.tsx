@@ -2,6 +2,7 @@
 
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import pdfjsPackage from 'pdfjs-dist/package.json';
 import { ChevronLeft, ChevronRight, TriangleAlert, Minus, Plus } from 'lucide-react';
 import { useForm } from './FormContext';
 import { buildZp1aOperations } from '../engine/mapping';
@@ -75,7 +76,7 @@ const PdfViewer: React.FC<{ followPage?: number | null; followKey?: string }> = 
     (async () => {
       try {
         const [lib, bytes] = await Promise.all([
-          import('pdfjs-dist'),
+          import(/* webpackIgnore: true */ `/pdfjs/${pdfjsPackage.version}/pdf.min.mjs`) as Promise<PdfJs>,
           fetch(PDF_URL, { signal: abort.signal }).then((r) => {
             if (!r.ok) throw new Error(`PDF_FETCH_${r.status}`);
             return r.arrayBuffer();
