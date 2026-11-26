@@ -1475,10 +1475,10 @@ export interface KerfDecision {
   juris: string;
   /** German headline */
   title: string;
-  summary: { de: string; en?: string; ru?: string; ua?: string };
+  summary?: { de?: string; en?: string; ru?: string; ua?: string } | null;
   outcome: string | null;
-  effects: KerfDecisionEffect[];
-  related: KerfDecisionRelated[];
+  effects?: KerfDecisionEffect[] | null;
+  related?: KerfDecisionRelated[] | null;
   quote: string | null;
   url: string | null;
   source: string;

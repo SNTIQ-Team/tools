@@ -70,9 +70,8 @@ export async function generateMetadata({ params }: {
   const d = await getDecision(id);
   if (!d) return { title: 'Entscheidung nicht gefunden', robots: { index: false, follow: false } };
   const title = `${d.az}, ${d.court_short}: ${d.title}`;
-  const description = d.summary.de.length > 155
-    ? `${d.summary.de.slice(0, 152).trimEnd()}…`
-    : d.summary.de;
+  const summary = d.summary?.de || d.title;
+  const description = summary.length > 155 ? `${summary.slice(0, 152).trimEnd()}…` : summary;
   return {
     title,
     description,
@@ -87,6 +86,10 @@ export default async function DecisionPage({ params }: {
   const { id } = await params;
   const d = await getDecision(id);
   if (!d) notFound();
+
+  const summaries = d.summary ?? {};
+  const effects = d.effects ?? [];
+  const related = d.related ?? [];
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -139,15 +142,15 @@ export default async function DecisionPage({ params }: {
 
         {/* A summary that merely repeats the headline is not shown twice. */}
         {SUMMARY_LANGS.map(({ key, lang, label }) =>
-          d.summary[key] && !sameText(d.summary[key], d.title) ? (
+          summaries[key] && !sameText(summaries[key], d.title) ? (
             <section key={key} lang={lang} className={doc.summary}>
               <h2 className={doc.label}>{label}</h2>
-              <p>{d.summary[key]}</p>
+              <p>{summaries[key]}</p>
             </section>
           ) : null,
         )}
 
-        {d.effects.length > 0 && (
+        {effects.length > 0 && (
           <section className={doc.section}>
             {/* 'Betroffene Normen' overstated plain citations: the norms are
                 grouped by relation, and a citation is labelled a mention. */}
@@ -156,7 +159,7 @@ export default async function DecisionPage({ params }: {
                 ? 'Zitierte Normen (Erwähnungen)' : 'Normbezüge'}
             </h2>
             <div className={doc.effects}>
-              {groupEffectsByKind(d.effects).map((group) => (
+              {groupEffectsByKind(effects).map((group) => (
                 <div key={group.kind} className={doc.effectGroup}>
                   <h3 data-tone={effectTone(group.kind)}>{effectLabel(group.kind)}</h3>
                   <ul>
@@ -173,11 +176,11 @@ export default async function DecisionPage({ params }: {
           </section>
         )}
 
-        {d.related.length > 0 && (
+        {related.length > 0 && (
           <section className={doc.section}>
             <h2>Verknüpfte Entscheidungen</h2>
             <ul className={doc.related}>
-              {d.related.map((r, i) => (
+              {related.map((r, i) => (
                 <li key={`${r.ref}-${i}`}>
                   <span>{REL_LABEL[r.rel] ?? r.rel}</span>
                   <Link href={`/dt/kerf/entscheidungen/${r.ref}`}>{r.label}</Link>

@@ -121,9 +121,9 @@ function IndexedDecision({ decisionId, acts, onReference, onOpenLaw, onOpenDecis
       </li>)}</ul>
     </section>}
 
-    {current.related?.length > 0 && <section id={sectionLink('related')} className={styles.section}>
+    {Boolean(current.related?.length) && <section id={sectionLink('related')} className={styles.section}>
       <h3>{copy.related}</h3>
-      <ul className={styles.related}>{current.related.map((related, index) => <li key={`${related.ref}:${index}`}>
+      <ul className={styles.related}>{current.related?.map((related, index) => <li key={`${related.ref}:${index}`}>
         <a href={`/dt/kerf/entscheidungen/${encodeURIComponent(related.ref)}`} onClick={event => {
           if (onOpenDecision) navigate(event, () => onOpenDecision(related.ref));
         }}>{related.label || related.ref}</a>

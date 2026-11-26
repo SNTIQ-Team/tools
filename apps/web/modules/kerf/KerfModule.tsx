@@ -4352,7 +4352,7 @@ const DecisionCard: React.FC<{
   d: KerfDecision; lang: DecLang; onOpenAct: (id: string) => void; onOpenDecision: (id: string) => void;
 }> = ({ d, lang, onOpenAct, onOpenDecision }) => {
   const { t } = useTranslation('kerf');
-  const summary = d.summary[lang] || d.summary.de;
+  const summary = d.summary?.[lang] || d.summary?.de;
   return (
     <div
       id={`dec-${d.id}`}
@@ -4374,7 +4374,7 @@ const DecisionCard: React.FC<{
       {/* Grouped by relation: a mere citation is a mention, not an effect on
           the norm — it must not read like a finding about that norm. */}
       <div className="space-y-2">
-        {groupEffectsByKind(d.effects).map((group) => (
+        {groupEffectsByKind(d.effects ?? []).map((group) => (
           <div key={group.kind} className="space-y-1">
             <Chip className={effectChip(group.kind)}>
               {t(`dec.group.${group.kind}`, {
@@ -4409,9 +4409,9 @@ const DecisionCard: React.FC<{
         ))}
       </div>
 
-      {d.related.length > 0 && (
+      {Boolean(d.related?.length) && (
         <div className="mt-2 space-y-0.5">
-          {d.related.map((r, i) => (
+          {d.related?.map((r, i) => (
             <button
               key={`${r.ref}-${i}`}
               onClick={() =>
@@ -4479,8 +4479,8 @@ const DecisionsTab: React.FC<{
     const needle = query.trim().toLowerCase();
     if (!needle) return sorted;
     return sorted.filter((d) =>
-      [d.az, d.court, d.court_short, d.title, d.summary[lang] || d.summary.de, d.text ?? '',
-       ...d.effects.map((e) => e.jurabk)]
+      [d.az, d.court, d.court_short, d.title, d.summary?.[lang] || d.summary?.de, d.text ?? '',
+       ...(d.effects ?? []).map((e) => e.jurabk)]
         .join(' ').toLowerCase().includes(needle));
   }, [decisions, query, lang]);
 
@@ -4503,7 +4503,7 @@ const DecisionsTab: React.FC<{
       {needle && <FederalDecisionResults key={needle} query={needle} onOpen={onOpenDecision} />}
       {error ? <LoadError /> : !decisions ? <Spinner /> : <>
       <p className={`${workbench.tag} mt-4 pb-2.5`}>
-        {needle ? t('dec.linkedCount', { count: filtered.length }) : t('dec.count', { count: filtered.length })}
+        {t('dec.count', { count: filtered.length })}
       </p>
 
       {!needle && filtered.length === 0 && (
