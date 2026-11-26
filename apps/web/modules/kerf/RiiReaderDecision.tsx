@@ -15,6 +15,13 @@ const sectionNames: Record<string, string> = {
   tenor: 'Tenor', tatbestand: 'Tatbestand', entscheidungsgruende: 'Entscheidungsgründe',
   gruende: 'Gründe', abweichende_meinung: 'Abweichende Meinung', sonstiger_langtext: 'Sonstiger Langtext',
 };
+// RII stores a stable lower-case key for the issuing court.
+const courtNames: Record<string, string> = {
+  bag: 'BAG', bfh: 'BFH', bgh: 'BGH', bpatg: 'BPatG', bsg: 'BSG',
+  bverfg: 'BVerfG', bverwg: 'BVerwG', gmsogb: 'GmS-OGB',
+};
+const courtLabel = (code: string) => courtNames[code] ?? code;
+
 interface DocumentPage {
   metadata: RiiDecisionMetadata;
   revision: string;
@@ -62,7 +69,7 @@ export default function RiiReaderDecision({ documentId, onLoaded }: {
     if (!page) return;
     const text = page.passages.length === page.total
       ? page.passages.map(p => p.printed_number ? `Rn. ${p.printed_number}  ${p.text}` : p.text).join('\n\n') : null;
-    report.current?.({ id: `rii:${documentId}`, court: page.metadata.court.toUpperCase(), az: page.metadata.docket, text });
+    report.current?.({ id: `rii:${documentId}`, court: courtLabel(page.metadata.court), az: page.metadata.docket || page.metadata.ecli || page.metadata.document, text });
   }, [page, documentId]);
 
   const source = safeDecisionSource(page?.metadata.source_page);
@@ -70,7 +77,7 @@ export default function RiiReaderDecision({ documentId, onLoaded }: {
     {page && <>
       <header className={styles.header} lang="de">
         <p className={styles.citation}>{[page.metadata.form, page.metadata.date?.replace(/^(\d{4})-(\d{2})-(\d{2})$/, '$3.$2.$1')].filter(Boolean).join(' · ')}</p>
-        <h2>{page.metadata.court.toUpperCase()} · {page.metadata.docket || page.metadata.document}</h2>
+        <h2>{courtLabel(page.metadata.court)} · {page.metadata.docket || page.metadata.document}</h2>
         {page.metadata.ecli && <p className={styles.citation}>{page.metadata.ecli}</p>}
         {source && <a href={source} className={styles.source} target="_blank" rel="noopener noreferrer">
           Rechtsprechung im Internet <ExternalLink aria-hidden="true" className="sntiq-inline-icon" />
