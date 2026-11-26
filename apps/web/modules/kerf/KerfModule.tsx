@@ -44,6 +44,7 @@ import {
 } from './client';
 import { DiffLimitError, wordDiff, wordDiffSplit } from './diff';
 import KerfReader from './KerfReader';
+import FederalDecisionResults from './FederalDecisionResults';
 import { toKerfRequestError, type KerfRequestError } from './kerfRequest';
 import { readerCopy } from './readerI18n';
 import workbench from './workbench.module.css';
@@ -4483,27 +4484,29 @@ const DecisionsTab: React.FC<{
         .join(' ').toLowerCase().includes(needle));
   }, [decisions, query, lang]);
 
-  if (error) return <LoadError />;
-  if (!decisions) return <Spinner />;
+  const needle = query.trim();
 
   return (
     <div>
       <header className={workbench.viewHead}><p>{t('dec.intro')}</p></header>
 
-      <div className={`sntiq-search ${workbench.field} mb-2`}>
+      <search className={`sntiq-search ${workbench.field} mb-2`}>
         <Search aria-hidden="true" />
         <input className="sntiq-field"
-          type="text"
+          type="search"
+          aria-label={t('searchDecisionsTitle')}
           value={query}
           placeholder={t('dec.searchPlaceholder')}
           onChange={(e) => onQuery(e.target.value)}
         />
-      </div>
+      </search>
+      {needle && <FederalDecisionResults key={needle} query={needle} onOpen={onOpenDecision} />}
+      {error ? <LoadError /> : !decisions ? <Spinner /> : <>
       <p className={`${workbench.tag} mt-4 pb-2.5`}>
-        {t('dec.count', { count: filtered.length })}
+        {needle ? t('dec.linkedCount', { count: filtered.length }) : t('dec.count', { count: filtered.length })}
       </p>
 
-      {filtered.length === 0 && (
+      {!needle && filtered.length === 0 && (
         <p className="text-sm text-muted p-4">{t('dec.noResults')}</p>
       )}
       <div className={workbench.ruled}>
@@ -4511,6 +4514,7 @@ const DecisionsTab: React.FC<{
           <DecisionCard key={d.id} d={d} lang={lang} onOpenAct={onOpenAct} onOpenDecision={onOpenDecision} />
         ))}
       </div>
+      </>}
     </div>
   );
 };

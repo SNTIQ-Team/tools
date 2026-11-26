@@ -5,7 +5,7 @@ import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useSta
 import { useTranslation } from 'react-i18next';
 import { AArrowDown, AArrowUp, ArrowLeft, ArrowRight, BookOpen, BookText, Bookmark, ChevronLeft, ChevronRight, ChevronsDownUp, ChevronsUpDown, Columns2, Copy, CopyX, Download, ExternalLink, GitCompareArrows, History, Library, Link2, Loader2, Maximize2, Minimize2, MoreHorizontal, PanelLeftClose, PanelLeftOpen, Pin, Plus, RotateCcw, Search, SquareSplitHorizontal, SquareSplitVertical, X } from 'lucide-react';
 import { storageGet, storageSet } from '@/core/safeStorage';
-import { kerfActMarkdownUrl, kerfCitations, kerfEuIndex, kerfSearch, type KerfAct, type KerfActDetail, type KerfActNorm, type KerfCitations, type KerfDecision, type KerfEuIndex, type KerfSearch, type KerfStatutoryCitation } from './client';
+import { kerfActMarkdownUrl, kerfCitations, kerfEuIndex, kerfSearch, type KerfAct, type KerfActDetail, type KerfActNorm, type KerfCitations, type KerfEuIndex, type KerfSearch, type KerfStatutoryCitation } from './client';
 import { readerCopy, type ReaderCopy } from './readerI18n';
 import { createWorkspace, decodeWorkspace, encodeWorkspace, workspaceReducer, readerDocKey, validReaderDate, type ReaderAction, type ReaderPane, type ReaderTab, type ReaderWorkspace, type ReaderView } from './readerWorkspace';
 import { useReaderAct, useReaderReferences, useReaderArchive, useReaderEdition } from './readerResources';
@@ -15,7 +15,7 @@ import { archiveNorms, archiveTitle, sourceParagraphs } from './readerArchiveStr
 import StructuredReaderText from './StructuredReaderText';
 import ReaderSourceAnnotations from './ReaderSourceAnnotations';
 import ReaderText, { readerDocumentHref, type ReaderReference } from './ReaderText';
-import ReaderDecision from './ReaderDecision';
+import ReaderDecision, { type LoadedDecision } from './ReaderDecision';
 import ReaderArchivedText from './ReaderArchivedText';
 import { readerEditionCopy, readerEditionDate, readerSourceUrl } from './readerEditions';
 import ReaderEditionPicker from './ReaderEditionPicker';
@@ -686,7 +686,7 @@ function ReaderPaneView({ pane, paneIndex, workspace, tab, acts, t, active, appl
   const [versionsMode, setVersionsMode] = useState<{ tabId: string; mode: NormHistoryMode } | null>(null);
   const setView = (view: ReaderView) => { if (tab) apply({ type: 'set-view', paneId: pane.id, tabId: tab.id, view }); };
   const showHistory = (id?: string) => { if (tab) setSelectedEvent(previous => ({ tabId: tab.id, id, request: (previous?.request ?? 0) + 1 })); setView('history'); };
-  const [decision, setDecision] = useState<KerfDecision | null>(null);
+  const [decision, setDecision] = useState<LoadedDecision | null>(null);
   const decisionViewport = useRef<HTMLDivElement>(null);
   const decisionScrollKey = tab ? `${tab.id}:${savedKey(tab)}` : '';
   useLayoutEffect(() => { if (decisionViewport.current && decision?.id === tab?.actId) decisionViewport.current.scrollTop = scrollPositions.current.get(decisionScrollKey)?.top ?? 0; }, [decisionScrollKey, decision, tab?.actId, scrollPositions]);

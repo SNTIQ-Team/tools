@@ -8,8 +8,11 @@ import ReaderText, { readerDocumentHref, type ReaderReference } from './ReaderTe
 import { readerCopy, type ReaderCopy } from './readerI18n';
 import { decisionCopy, decisionSections, decisionLawReferences, getReaderDecisionTitle, safeDecisionSource } from './readerDecision';
 import styles from './readerDecision.module.css';
+import RiiReaderDecision from './RiiReaderDecision';
 
 export { getReaderDecisionTitle } from './readerDecision';
+
+export type LoadedDecision = Pick<KerfDecision, 'id' | 'az' | 'court' | 'text'>;
 
 export interface ReaderDecisionProps {
   decisionId: string;
@@ -17,11 +20,17 @@ export interface ReaderDecisionProps {
   onReference: (reference: ReaderReference) => void;
   onOpenLaw?: (actId: string, norm: string | null) => void;
   onOpenDecision?: (decisionId: string) => void;
-  onLoaded?: (decision: KerfDecision) => void;
+  onLoaded?: (decision: LoadedDecision) => void;
   t?: ReaderCopy;
 }
 
-export default function ReaderDecision({ decisionId, acts, onReference, onOpenLaw, onOpenDecision, onLoaded, t }: ReaderDecisionProps) {
+export default function ReaderDecision(props: ReaderDecisionProps) {
+  const match = /^rii:(jb-[A-Z0-9]{1,64})$/.exec(props.decisionId);
+  if (match) return <RiiReaderDecision key={match[1]} documentId={match[1]} onLoaded={props.onLoaded} />;
+  return <IndexedDecision {...props} />;
+}
+
+function IndexedDecision({ decisionId, acts, onReference, onOpenLaw, onOpenDecision, onLoaded, t }: ReaderDecisionProps) {
   const { i18n } = useTranslation();
   const common = t ?? readerCopy(i18n.language);
   const copy = decisionCopy(i18n.language);

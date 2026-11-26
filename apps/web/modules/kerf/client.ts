@@ -1519,6 +1519,56 @@ export const kerfDecisions = (
   return get<KerfDecisions>(`/decisions${qs ? `?${qs}` : ''}`, signal);
 };
 
+export interface FederalDecisionHit {
+  id: string;
+  document: string;
+  ecli: string;
+  court: string;
+  decision_date: string;
+  docket: string;
+  source_url: string;
+}
+
+export interface FederalDecisionMatches {
+  revision: string;
+  items: FederalDecisionHit[];
+  next: string | null;
+}
+
+export function kerfFederalDecisionSearch(query: string, after: string | null, signal: AbortSignal) {
+  const params = new URLSearchParams({ q: query, limit: '20' });
+  if (after) params.set('after', after);
+  return get<FederalDecisionMatches>(`/courts/decisions/search?${params}`, signal);
+}
+
+export interface RiiDecisionMetadata {
+  document: string;
+  court: string;
+  date: string;
+  docket: string;
+  ecli: string;
+  form: string;
+  source_page: string;
+}
+
+export interface RiiPassage {
+  anchor: string;
+  section: string;
+  printed_number: string | null;
+  text: string;
+}
+
+export function kerfRiiMetadata(document: string, signal: AbortSignal) {
+  return get<{ revision: string; metadata: RiiDecisionMetadata }>(
+    `/rii/decisions/${encodeURIComponent(document)}`, signal);
+}
+
+export function kerfRiiPassages(document: string, offset: number, signal: AbortSignal) {
+  const params = new URLSearchParams({ offset: String(offset), limit: '100' });
+  return get<{ revision: string; document: string; offset: number; total: number; passages: RiiPassage[] }>(
+    `/rii/decisions/${encodeURIComponent(document)}/passages?${params}`, signal);
+}
+
 /** One decision by id. */
 export const kerfDecision = (id: string, signal?: AbortSignal) =>
   get<KerfDecision>(`/decisions/${encodeURIComponent(id)}`, signal);
