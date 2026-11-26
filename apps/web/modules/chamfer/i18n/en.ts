@@ -500,7 +500,7 @@ export const en = {
 
   consent: {
     title: 'Before you start',
-    intro: 'Chamfer is a non-commercial self-help generator.',
+    intro: 'Chamfer is a free tool for preparing your own letters and court filings.',
     p1:
       'General information, not legal advice: your individual case is not reviewed.',
     p2:

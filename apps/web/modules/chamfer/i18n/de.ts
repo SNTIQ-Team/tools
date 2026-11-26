@@ -500,7 +500,7 @@ export const de = {
 
   consent: {
     title: 'Bevor Sie beginnen',
-    intro: 'Chamfer ist ein nichtkommerzieller Selbsthilfe-Generator.',
+    intro: 'Mit Chamfer können Sie Schreiben an Behörden und Gerichte kostenlos selbst erstellen.',
     p1:
       'Allgemeine Information, keine Rechtsberatung: Ihr Einzelfall wird nicht geprüft.',
     p2:
