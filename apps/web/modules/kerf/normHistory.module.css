@@ -47,7 +47,8 @@
 /* Comparison and attribution */
 .diff,.blame { font-size:.9375rem; line-height:1.75; }
 .pickers { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px; }
-.pickers label { flex:1 1 180px; min-width:0; font-size:.75rem; font-weight:600; color:var(--reader-muted); }
+.picker { display:grid; gap:4px; flex:1 1 180px; min-width:0; font-size:.75rem; font-weight:600; color:var(--reader-muted); }
+.picker label { display:block; }
 .change { border-top:1px solid var(--reader-line); padding:10px 0 14px; }
 .change h4 { font-size:.8125rem; font-weight:600; color:var(--reader-muted); margin-bottom:4px; }
 /* Added = underlined, removed = struck through; the wash is a second cue. */
@@ -138,6 +139,7 @@
 
 /* Where a version comes from */
 .provenanceLine { display:flex; flex-wrap:wrap; align-items:baseline; gap:2px 12px; margin:4px 0; font-size:.8125rem; }
+.provenanceLine a { color:var(--c-link); text-decoration:underline; text-underline-offset:.2em; }
 .provenanceLine small { color:var(--reader-muted); font-size:.8125rem; }
 .roleBadge { font-size:.8125rem; font-weight:600; color:var(--reader-muted); }
 .roleBadge[data-role=reconstruction] { color:var(--reader-pending); }
@@ -178,4 +180,14 @@
   .affected { gap:0 16px; }
   .affected button { min-height:36px; }
   .swap { width:40px; height:40px; }
+}
+
+@container (max-width:520px) {
+  .heading code { display:none; }
+  .diff .pickers { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:4px 8px; }
+  .diff .picker { grid-column:1; display:grid; grid-template-columns:4.8em minmax(0,1fr); align-items:center; gap:8px; }
+  .diff .swap { grid-area:1 / 2 / span 2; align-self:center; }
+  .sides { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+  .sides .provenanceLine { display:block; }
+  .sides .provenanceLine > * { display:block; }
 }

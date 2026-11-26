@@ -86,7 +86,7 @@ export interface KerfNormVersion {
   version_id: string;
   pinpoint: { label: string; title: string; unit: string; number: string; sub_unit?: string; sub_unit_label?: string };
   content_hash: { algorithm: string; value: string; text_sha256: string };
-  source: { url: string | null; norm_url: string | null; norm_url_status: string; act_url: string | null; role: string; observed_at: string | null; archive_url?: string | null; capture?: unknown };
+  source: { url: string | null; norm_url: string | null; norm_url_status: string; norm_url_basis?: string | null; act_url: string | null; role: string; observed_at: string | null; archive_url?: string | null; capture?: unknown };
   quality: { source_exact: boolean; complete: boolean; reconstruction_status: string; text_history_complete?: boolean | null };
   temporal: KerfNormTemporal;
   amendment: KerfNormAmendment | null;
@@ -297,11 +297,12 @@ export const kerfActVersions = (actId: string, page?: { limit?: number; offset?:
 export const versionSelector = (version: KerfNormVersion) => version.version_id;
 
 /** Legal-date wording: a verified start, an archived official start, or none. */
-export type ValidityKind = 'verified' | 'commencement' | 'archived' | 'unresolved';
+export type ValidityKind = 'verified' | 'commencement' | 'archived' | 'dated' | 'unresolved';
 export const validityKind = (temporal: KerfNormTemporal): ValidityKind =>
   !temporal.valid_from || temporal.valid_from_status === 'unresolved' || temporal.valid_from_status === 'unknown' ? 'unresolved'
     : temporal.valid_from_status === 'official_verified' ? 'verified'
-    : /commencement/u.test(temporal.valid_from_status) ? 'commencement' : 'archived';
+    : /commencement/u.test(temporal.valid_from_status) ? 'commencement'
+    : temporal.valid_from_status === 'official_archived_version_date' ? 'archived' : 'dated';
 
 export const isFutureDate = (value: string | null | undefined, today = new Date().toISOString().slice(0, 10)) =>
   Boolean(value && value.slice(0, 10) > today);

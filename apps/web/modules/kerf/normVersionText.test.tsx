@@ -48,13 +48,18 @@ test('invalid or missing structure falls back to the full plain text, never a tr
 });
 
 test('version helpers: the current version is never a future one; date fallback never invents a legal date', async () => {
-  const { currentVersion, versionDate, versionOptionLabel, isFutureVersion } = await import('./NormHistory');
+  const { currentVersion, previousVersion, versionDate, versionOptionLabel, isFutureVersion } = await import('./NormHistory');
   const log = fixture<{ evidence: KerfNormVersion[] }>('core-norm-log-sgb2-7.json').evidence;
   const future = { ...log[0], version_id: 'future', future: true, temporal: { ...log[0].temporal, valid_from: '2027-01-01', valid_from_status: 'official_commencement_clause' } } as KerfNormVersion;
+  const undated = { ...log[1], temporal: { ...log[1].temporal, known_at: null, observed_from: null }, source: { ...log[1].source, observed_at: null }, attestations: [] };
+  assert.equal(previousVersion([log[0], undated], 0), undefined);
+  assert.equal(previousVersion([log[0], undated, log[1]], 0), log[1]);
   assert.equal(isFutureVersion(future, '2026-09-28'), true);
   assert.equal(currentVersion([future, ...log], '2026-09-28')?.version_id, log[0].version_id);
+  assert.equal(currentVersion([log[1], log[2]], '2026-09-28'), null, 'archive observations cannot establish legal currency');
+  assert.equal(currentVersion([{ ...log[0], temporal: { ...log[0].temporal, valid_until_exclusive: '2026-09-28' } }], '2026-09-28'), null, 'the exclusive end is the first day outside the version');
   assert.equal(versionDate(log[0]), '2024-06-01', 'a verified legal start');
   assert.equal(versionDate(log[1]), '2024-01-12', 'an archived capture is selected by its capture day');
-  assert.match(versionOptionLabel(log[1], log[0], 'de'), /^12\.01\.2024 · Archivkopie · #c4904070/);
+  assert.equal(versionOptionLabel(log[1], log[0], 'de'), 'Gespeichert am 12.01.2024');
   assert.match(versionOptionLabel(log[0], log[0], 'de'), /· aktuell$/);
 });

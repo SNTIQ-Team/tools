@@ -42,3 +42,11 @@ test('an unavailable explicitly requested edition is shown without silently comp
   assert.ok(selected);
   assert.match(selected, /disabled=""/);
 });
+
+test('the default archive comparison starts with the nearest preceding edition', async () => {
+  const { default: ReaderComparison } = await import('./ReaderComparison');
+  const html = renderToStaticMarkup(<ReaderComparison actId="law" norm={null} archive={archive} language="en" onChange={() => {}} />);
+  const selects = [...html.matchAll(/<select\b[^>]*>(.*?)<\/select>/g)].map(match => match[1]);
+  assert.match(selects[0], /<option[^>]*value="2026-08-01"[^>]*selected=""/);
+  assert.match(selects[1], /<option[^>]*value="HEAD"[^>]*selected=""/);
+});

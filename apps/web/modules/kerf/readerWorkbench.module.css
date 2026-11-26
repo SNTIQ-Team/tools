@@ -8,7 +8,13 @@
 .viewModes button[aria-pressed=true]:hover,.compareModes button[aria-pressed=true]:hover { background:var(--reader-active); color:var(--c-link); }
 .viewModes button:disabled,.compareModes button:disabled { opacity:.4; }
 .viewModes button { min-width:32px; }
-@container (max-width:640px) { .viewModes button span { display:none; } .viewModes button { padding:5px; } }
+.modeShort { display:none; }
+@container (max-width:640px) {
+  .editionModes .modeFull { display:none; }
+  .editionModes .modeShort { display:inline; }
+  .editionModes { flex:1 0 100%; flex-wrap:wrap; border-left:0; padding-left:0; }
+  .editionModes button { min-height:36px; padding-inline:8px; }
+}
 .paneSwitcher { display:flex; align-items:center; gap:3px; min-width:0; overflow:auto; margin-left:auto; }
 
 /* Change history of an act */
@@ -43,6 +49,7 @@
 .inlineDiff,.splitDiff { white-space:pre-wrap; overflow-wrap:anywhere; font-size:.9375rem; line-height:1.8; }
 .splitDiff { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
 .splitDiff > div { min-width:0; }
+.splitDiff small { display:block; font-size:.75rem; font-weight:600; color:var(--reader-muted); }
 /* Added = underlined on a green wash, removed = struck through on a red wash:
    the mark is carried by the decoration as well as by the colour. */
 .comparison ins { background:color-mix(in srgb,var(--reader-added) 15%,transparent); color:var(--reader-ink); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:.22em; text-decoration-color:var(--reader-added); border-radius:var(--r-control); }

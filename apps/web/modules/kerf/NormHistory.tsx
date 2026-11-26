@@ -1,9 +1,9 @@
 'use client';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useId, useMemo, useState } from 'react';
 import { AlertTriangle, ArrowLeftRight, BookOpenText, ExternalLink, GitCommitHorizontal, GitCompareArrows } from 'lucide-react';
 import {
   kerfNormAt, kerfNormBlame, kerfNormChanges, kerfNormDiff, kerfNormLog, kerfNormMaterials, kerfResolveNorm, validityKind, versionSelector,
-  type KerfChanges, type KerfEnvelope, type KerfMaterialFragment, type KerfNormAt, type KerfNormBlame, type KerfNormDiff, type KerfNormLog, type KerfNormMaterials, type KerfNormVersion,
+  type KerfChanges, type KerfEnvelope, type KerfMaterialFragment, type KerfNormAt, type KerfNormBlame, type KerfNormDiff, type KerfNormLog, type KerfNormMaterials, type KerfNormVersion, type KerfSentenceOp,
 } from './normHistoryClient';
 import { amendmentLine, diffSummary, legalDate, normHistoryCopy, statusIsFailure, validityLine } from './normHistoryFormat';
 import { actChangeSummaryFrom, attestationSummary, legacyNormChanges, normChangeSummary, normalizeChangeRecord, versionRole, type SourceRole } from './changeHistory';
@@ -12,6 +12,10 @@ import { ActChangeHistory, ActVersionList, ChangeBrief, ChangeSummaryBlock, Norm
 import NormVersionText from './NormVersionText';
 import { berlinToday } from './kerfLabels';
 import { useReaderAct } from './readerResources';
+import { readerEditionCopy } from './readerEditions';
+import { readerWorkbenchCopy } from './readerWorkbenchCopy';
+import type { ReaderComparisonState } from './readerWorkspace';
+import desk from './readerWorkbench.module.css';
 import { readerLawLabel } from './readerLabels';
 import styles from './normHistory.module.css';
 import LoadStatus from './LoadStatus';
@@ -27,19 +31,19 @@ const safeUrl = (value?: string | null) => {
 };
 
 function useEnvelope<T>(key: string | null, load: (signal: AbortSignal) => Promise<T>, attempt: number): Load<T> {
-  const [state, setState] = useState<Load<T>>({ data: null, error: null, loading: Boolean(key) });
+  const [state, setState] = useState<{ key: string; attempt: number; data: T | null; error: KerfRequestError | null } | null>(null);
   useEffect(() => {
-    if (!key) { setState({ data: null, error: null, loading: false }); return; }
+    if (!key) return;
     const controller = new AbortController();
-    setState({ data: null, error: null, loading: true });
     load(controller.signal)
-      .then(data => { if (!controller.signal.aborted) setState({ data, error: null, loading: false }); })
-      .catch(error => { if (!controller.signal.aborted) setState({ data: null, error: toKerfRequestError(error), loading: false }); });
+      .then(data => { if (!controller.signal.aborted) setState({ key, attempt, data, error: null }); })
+      .catch(error => { if (!controller.signal.aborted) setState({ key, attempt, data: null, error: toKerfRequestError(error) }); });
     return () => controller.abort();
     // `load` is recreated per render; the key captures its inputs.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key, attempt]);
-  return state;
+  const current = state?.key === key && state.attempt === attempt ? state : null;
+  return { data: current?.data ?? null, error: current?.error ?? null, loading: Boolean(key && !current) };
 }
 
 function Notice({ envelope, language, localWarning }: { envelope: KerfEnvelope; language: string; localWarning?: string }) {
@@ -66,8 +70,9 @@ export const isFutureVersion = (version: KerfNormVersion, today = berlinToday())
   || Boolean(version.temporal.valid_from && validityKind(version.temporal) !== 'unresolved' && version.temporal.valid_from > today);
 
 export function currentVersion(newestFirst: readonly KerfNormVersion[], today = berlinToday()): KerfNormVersion | null {
-  // A future (not yet in force) version is never the current one.
-  return newestFirst.find(version => !isFutureVersion(version, today)) ?? null;
+  return newestFirst.find(version => !isFutureVersion(version, today)
+    && validityKind(version.temporal) !== 'unresolved'
+    && (!version.temporal.valid_until_exclusive || today < version.temporal.valid_until_exclusive)) ?? null;
 }
 
 /** Date selector for `/at` when the API cannot select by version id. */
@@ -79,6 +84,18 @@ export function versionDate(version: KerfNormVersion, today = berlinToday()): st
 
 const knownAt = (version: KerfNormVersion) => version.temporal.known_at
   ?? version.attestations?.map(attestationSummary).find(row => row.from)?.from ?? version.temporal.observed_from ?? version.source.observed_at ?? null;
+/** An undated reconstruction is available for manual comparison but cannot
+ * establish which wording immediately preceded or followed another text. */
+export function previousVersion(newestFirst: readonly KerfNormVersion[], index: number) {
+  const date = (version: KerfNormVersion) => (validityKind(version.temporal) === 'unresolved'
+    ? knownAt(version) : version.temporal.valid_from)?.slice(0, 10);
+  const anchor = date(newestFirst[index]);
+  return anchor ? newestFirst.slice(index + 1).find(version => {
+    const earlier = date(version);
+    return earlier && earlier < anchor;
+  }) : undefined;
+}
+
 const completenessOf = (version: KerfNormVersion) => version.completeness?.status ?? (version.quality.complete === false ? 'partial' : null);
 
 /** Role, completeness and verification of a version — reconstruction and
@@ -88,9 +105,11 @@ function VersionProvenance({ version, language }: { version: KerfNormVersion; la
   const role = versionRole(version);
   const complete = completenessOf(version);
   const cross = version.verification?.cross_source;
+  const reviewedUrl = version.source.norm_url_status === 'reviewed_norm_edition' && safeUrl(version.source.norm_url);
   return <div className={styles.provenanceLine} data-role={role}>
     <span className={styles.roleBadge} data-role={role}>{roleLine(role, language, role === 'archived_capture' ? knownAt(version) : null)}</span>
     {complete && complete !== 'complete' && <span className={styles.completeBadge} data-status={complete}>{completenessLabel(complete, language)}{version.completeness?.reason ? ` — ${version.completeness.reason}` : ''}</span>}
+    {reviewedUrl && version.source.norm_url_basis && <a href={reviewedUrl} target="_blank" rel="noopener noreferrer">{version.source.norm_url_basis} <ExternalLink aria-hidden="true" className="sntiq-inline-icon" /></a>}
     {cross && <small>{ch.crossSource[cross] ?? cross}</small>}
     {version.temporal.attribution?.status && <small data-attribution={version.temporal.attribution.status}>{ch.attribution[version.temporal.attribution.status] ?? version.temporal.attribution.status}</small>}
   </div>;
@@ -136,7 +155,7 @@ function VersionCard({ version, previous, isCurrent, language, onShowText, onCom
     </details>}
     <footer>
       <code title={version.version_id}>#{version.content_hash.value.slice(0, 12)}</code>
-      {normUrl && <a href={normUrl} target="_blank" rel="noopener noreferrer">{c.officialNorm} <ExternalLink size={11} /></a>}
+      {normUrl && !(version.source.norm_url_status === 'reviewed_norm_edition' && version.source.norm_url_basis) && <a href={normUrl} target="_blank" rel="noopener noreferrer">{c.officialNorm} <ExternalLink size={11} /></a>}
       {safeUrl(version.source.archive_url) && <a href={safeUrl(version.source.archive_url)} target="_blank" rel="noopener noreferrer">{ch.rolesShort.archived_capture} <ExternalLink size={11} /></a>}
       <button type="button" onClick={onShowText} data-version-action="text"><BookOpenText size={13} />{ch.showText}</button>
       {previous && <button type="button" onClick={onComparePrevious} data-version-action="previous"><GitCompareArrows size={13} />{ch.compareBefore}</button>}
@@ -146,19 +165,26 @@ function VersionCard({ version, previous, isCurrent, language, onShowText, onCom
 }
 
 export const versionOptionLabel = (version: KerfNormVersion, current: KerfNormVersion | null, language: string) => {
-  const ch = changeHistoryCopy(language);
-  const role = versionRole(version);
-  const date = validityKind(version.temporal) === 'unresolved'
-    ? legalDate(knownAt(version), language)
-    : validityLine(version.temporal, language).label;
-  return `${date} · ${ch.rolesShort[role]} · #${version.content_hash.value.slice(0, 8)}${version.version_id === current?.version_id ? ` · ${ch.current}` : ''}`;
+  const captured = knownAt(version);
+  const validity = validityLine(version.temporal, language);
+  const date = validityKind(version.temporal) === 'unresolved' && captured
+    ? `${readerEditionCopy(language).captured} ${legalDate(captured, language)}` : validity.label;
+  return version.version_id === current?.version_id ? `${date} · ${changeHistoryCopy(language).current}` : date;
 };
 
 function VersionPicker({ label, value, versions, current, language, onChange }: { label: string; value: string; versions: KerfNormVersion[]; current: KerfNormVersion | null; language: string; onChange: (value: string) => void }) {
-  return <label>{label}<select className="sntiq-field sntiq-field-sm mt-1" value={value} onChange={event => onChange(event.target.value)}>
-    {versions.map(version => <option key={version.version_id} value={versionSelector(version)}>{versionOptionLabel(version, current, language)}</option>)}
-    {!versions.some(version => versionSelector(version) === value) && <option value={value}>{value}</option>}
-  </select></label>;
+  const id = useId();
+  const labels = versions.map(version => versionOptionLabel(version, current, language));
+  const counts = new Map<string, number>();
+  for (const text of labels) counts.set(text, (counts.get(text) ?? 0) + 1);
+  return <div className={styles.picker}><label htmlFor={id}>{label}</label>
+    <select id={id} className="sntiq-field sntiq-field-sm" value={value} onChange={event => onChange(event.target.value)}>
+      {versions.map((version, index) => <option key={version.version_id} value={versionSelector(version)}>
+        {labels[index]}{counts.get(labels[index])! > 1 ? ` · #${version.content_hash.value.slice(0, 8)}` : ''}
+      </option>)}
+      {!versions.some(version => versionSelector(version) === value) && <option value={value}>{value}</option>}
+    </select>
+  </div>;
 }
 
 function TextView({ canonicalId, versions, current, selected, onSelect, language, attempt, onRetry, bavarian }: {
@@ -196,12 +222,36 @@ function TextView({ canonicalId, versions, current, selected, onSelect, language
   </div>;
 }
 
-function DiffView({ canonicalId, versions, current, pair, setPair, language, attempt, onRetry }: {
+type DiffWords = NonNullable<KerfSentenceOp['words']>;
+
+function DiffWording({ words, split, language }: { words: DiffWords; split: boolean; language: string }) {
+  const c = normHistoryCopy(language);
+  const marked = (parts: DiffWords) => parts.map((word, index) => {
+    const Tag = word.op === 'equal' ? 'span' : word.op === 'insert' ? 'ins' : 'del';
+    return <React.Fragment key={index}>{index > 0 && ' '}<Tag>{word.text}</Tag></React.Fragment>;
+  });
+  if (!split) return <p>{marked(words)}</p>;
+  return <div className={desk.splitDiff}>
+    <div><small>{c.from}</small><p>{marked(words.filter(word => word.op !== 'insert'))}</p></div>
+    <div><small>{c.to}</small><p>{marked(words.filter(word => word.op !== 'delete'))}</p></div>
+  </div>;
+}
+
+function changedWords(op: KerfSentenceOp): DiffWords {
+  if (op.words?.length) return op.words;
+  const words: DiffWords = [];
+  if (op.old_text) words.push({ op: 'delete', text: op.old_text });
+  if (op.new_text) words.push({ op: 'insert', text: op.new_text });
+  return words;
+}
+
+function DiffView({ canonicalId, versions, current, pair, setPair, split, setSplit, language, attempt, onRetry }: {
   canonicalId: string; versions: KerfNormVersion[]; current: KerfNormVersion | null; pair: Pair; setPair: (pair: Pair) => void;
-  language: string; attempt: number; onRetry: () => void;
+  split: boolean; setSplit: (split: boolean) => void; language: string; attempt: number; onRetry: () => void;
 }) {
   const c = normHistoryCopy(language);
   const ch = changeHistoryCopy(language);
+  const w = readerWorkbenchCopy(language);
   const same = pair.from === pair.to;
   const diff = useEnvelope<KerfNormDiff>(same ? null : `${canonicalId}|${pair.from}|${pair.to}`, signal => kerfNormDiff(canonicalId, pair.from, pair.to, signal), attempt);
   const summary = useMemo(() => diffSummary(diff.data?.changes ?? []), [diff.data]);
@@ -213,29 +263,30 @@ function DiffView({ canonicalId, versions, current, pair, setPair, language, att
       <button type="button" className={styles.swap} title={ch.swap} aria-label={ch.swap} onClick={() => setPair({ from: pair.to, to: pair.from })}><ArrowLeftRight size={14} /></button>
       <VersionPicker label={c.to} value={pair.to} versions={versions} current={current} language={language} onChange={value => setPair({ ...pair, to: value })} />
     </div>
-    {current && pair.to !== versionSelector(current) && <button type="button" className={styles.more} onClick={() => setPair({ ...pair, to: versionSelector(current) })}>{ch.compareCurrent}</button>}
     <div className={styles.sides}>
       {from && <div><small>{c.from}</small><VersionProvenance version={from} language={language} /></div>}
       {to && <div><small>{c.to}</small><VersionProvenance version={to} language={language} /></div>}
     </div>
     {[from, to].some(version => version && versionRole(version) === 'reconstruction') && <p className={styles.notice} data-status="temporally_unresolved" role="note"><AlertTriangle size={14} /><span>{ch.reconstructionWarning}</span></p>}
     {[from, to].some(version => version && completenessOf(version) === 'partial') && <p className={styles.notice} data-status="temporally_unresolved" role="note"><AlertTriangle size={14} /><span>{ch.partialWarning}</span></p>}
-    {same && <p className={styles.muted}>{ch.sameVersion}</p>}
+    {!same && <div className={styles.modes} role="group" aria-label={ch.compare}>
+      <button type="button" aria-pressed={!split} onClick={() => setSplit(false)}>{w.inline}</button>
+      <button type="button" aria-pressed={split} onClick={() => setSplit(true)}>{w.sideBySide}</button>
+    </div>}
+    {same && <p role="status" className={styles.muted}>{ch.sameVersion}</p>}
     <LoadStatus compact loading={diff.loading} error={diff.error} language={language} title={c.statuses.unavailable} onRetry={onRetry} resetKey={`${pair.from}|${pair.to}`} />
     {diff.data && <>
       <Notice envelope={diff.data} language={language} />
       {diff.data.identical && <p>{c.identical}</p>}
-      {diff.data.title_change && <div className={styles.change}><h4>—</h4><p><del>{diff.data.title_change.old}</del> <ins>{diff.data.title_change.new}</ins></p></div>}
+      {diff.data.title_change && <div className={styles.change}><h4>{to?.pinpoint.label ?? from?.pinpoint.label}</h4>
+        <DiffWording words={[{ op: 'delete', text: diff.data.title_change.old }, { op: 'insert', text: diff.data.title_change.new }]} split={split} language={language} /></div>}
       {summary.changes.map((op, index) => <div key={index} className={styles.change} data-op={op.op}>
         <h4>{op.op === 'insert' ? `+ ${op.new?.label}` : op.op === 'delete' ? `− ${op.old?.label}` : op.old?.label === op.new?.label ? op.new?.label : `${op.old?.label} → ${op.new?.label}`}</h4>
-        {op.op === 'replace' && <p>{op.words?.length ? op.words.map((word, wordIndex) => word.op === 'equal' ? <span key={wordIndex}>{word.text} </span> : word.op === 'insert' ? <ins key={wordIndex}>{word.text} </ins> : <del key={wordIndex}>{word.text} </del>)
-          : <><del>{op.old_text}</del> <ins>{op.new_text}</ins></>}</p>}
-        {op.op === 'insert' && <p><ins>{op.new_text}</ins></p>}
-        {op.op === 'delete' && <p><del>{op.old_text}</del></p>}
-        {op.op === 'moved' && <p><small>{c.moved}</small> {op.text}</p>}
+        {op.op === 'moved' ? <p><small>{c.moved}</small> {op.text}</p> : <DiffWording words={changedWords(op)} split={split} language={language} />}
       </div>)}
       {summary.unchanged > 0 && <p className={styles.muted}>{summary.unchanged} {c.unchanged}</p>}
     </>}
+    {current && pair.to !== versionSelector(current) && <button type="button" className={styles.more} onClick={() => setPair({ ...pair, to: versionSelector(current) })}>{ch.compareCurrent}</button>}
   </div>;
 }
 
@@ -317,12 +368,15 @@ function ChangesView({ canonicalId, log, versionsOldestFirst, language, attempt,
   </>;
 }
 
-function NormVersions({ actId, norm, language, initialMode }: { actId: string; norm: string; language: string; initialMode?: Mode }) {
+type CompareControls = { value?: ReaderComparisonState; onChange: (pair: ReaderComparisonState) => void; onArchive: () => void };
+
+function NormVersions({ actId, norm, language, initialMode, comparison, onCompare }: { actId: string; norm: string; language: string; initialMode?: Mode; comparison?: CompareControls; onCompare?: (value: ReaderComparisonState) => void }) {
   const c = normHistoryCopy(language);
   const ch = changeHistoryCopy(language);
   const [mode, setMode] = useState<Mode>(initialMode ?? 'log');
   const [attempt, setAttempt] = useState(0);
   const [pair, setPair] = useState<Pair | null>(null);
+  const [localSplit, setLocalSplit] = useState(false);
   const [textVersion, setTextVersion] = useState<string | null>(null);
   const retry = () => setAttempt(value => value + 1);
   const resolved = useEnvelope(`${actId}|${norm}`, signal => kerfResolveNorm(actId, norm, signal), attempt);
@@ -331,17 +385,31 @@ function NormVersions({ actId, norm, language, initialMode }: { actId: string; n
   const newestFirst = useMemo(() => log.data?.evidence ?? [], [log.data]);
   const oldestFirst = useMemo(() => [...newestFirst].reverse(), [newestFirst]);
   const today = berlinToday();
-  const current = useMemo(() => currentVersion(newestFirst, today), [newestFirst, today]);
+  const current = useMemo(() => log.data?.norm?.present_in_latest_state === false ? null : currentVersion(newestFirst, today), [log.data, newestFirst, today]);
   const summary = useMemo(() => log.data ? normChangeSummary(log.data, today) : null, [log.data, today]);
   const defaultPair = useMemo<Pair | null>(() => {
     const anchor = current ?? newestFirst[0];
     if (!anchor) return null;
     const index = newestFirst.indexOf(anchor);
-    const previous = newestFirst[index + 1] ?? newestFirst.find(version => version !== anchor);
-    return { from: versionSelector(previous ?? anchor), to: versionSelector(anchor) };
+    const previous = previousVersion(newestFirst, index);
+    if (previous) return { from: versionSelector(previous), to: versionSelector(anchor) };
+    const other = newestFirst.find(version => version !== anchor);
+    return { from: versionSelector(anchor), to: versionSelector(other ?? anchor) };
   }, [current, newestFirst]);
-  const activePair = pair ?? defaultPair;
-  const compare = (from: KerfNormVersion, to: KerfNormVersion) => { setPair({ from: versionSelector(from), to: versionSelector(to) }); setMode('diff'); };
+  const activePair = comparison?.value ?? pair ?? defaultPair;
+  const split = comparison?.value?.split ?? localSplit;
+  const updatePair = (next: Pair) => {
+    if (comparison) comparison.onChange({ ...next, kind: 'norm', split });
+    else setPair(next);
+  };
+  const updateSplit = (next: boolean) => {
+    if (comparison && activePair) comparison.onChange({ ...activePair, kind: 'norm', split: next });
+    else setLocalSplit(next);
+  };
+  const openComparison = (next: Pair) => {
+    if (onCompare) onCompare({ ...next, split, kind: 'norm' });
+    else { setPair(next); setMode('diff'); }
+  };
   const modes: { id: Mode; label: string; disabled?: boolean }[] = [
     { id: 'log', label: ch.versions },
     { id: 'text', label: ch.text, disabled: !newestFirst.length },
@@ -351,43 +419,46 @@ function NormVersions({ actId, norm, language, initialMode }: { actId: string; n
   ];
   return <div className={styles.root} data-norm-history={canonicalId ?? ''} data-mode={mode}>
     <div className={styles.heading}>
-      <h2>{c.title} · {log.data?.norm?.label ?? norm}{log.data?.norm?.act?.jurabk ? ` ${readerLawLabel({ id: log.data.norm.act.id ?? actId, jurabk: log.data.norm.act.jurabk })}` : ''}</h2>
+      <h2>{comparison ? ch.compare : c.title} · {log.data?.norm?.label ?? norm}{log.data?.norm?.act?.jurabk ? ` ${readerLawLabel({ id: log.data.norm.act.id ?? actId, jurabk: log.data.norm.act.jurabk })}` : ''}</h2>
       {canonicalId && <code>{canonicalId}</code>}
     </div>
     <LoadStatus compact loading={resolved.loading || log.loading} error={resolved.error ?? log.error} language={language} title={c.statuses.unavailable} onRetry={retry} resetKey={`${actId}|${norm}`} />
     {resolved.data && resolved.data.status !== 'ok' && <Notice envelope={resolved.data} language={language} />}
-    {summary && <ChangeSummaryBlock summary={summary} language={language} onOpenChanges={mode === 'changes' ? undefined : () => setMode('changes')} />}
-    <div className={styles.modes} role="group" aria-label={c.title}>
-      {modes.map(item => <button key={item.id} type="button" aria-pressed={mode === item.id} disabled={item.disabled} onClick={() => setMode(item.id)} data-norm-mode={item.id}>{item.label}</button>)}
-    </div>
+    {!comparison && summary && <ChangeSummaryBlock summary={summary} language={language} onOpenChanges={mode === 'changes' ? undefined : () => setMode('changes')} />}
+    {!comparison && <div className={styles.modes} role="group" aria-label={c.title}>
+      {modes.map(item => <button key={item.id} type="button" aria-pressed={mode === item.id} disabled={item.disabled} onClick={() => item.id === 'diff' && activePair && newestFirst.length > 1 ? openComparison(activePair) : setMode(item.id)} data-norm-mode={item.id}>{item.label}</button>)}
+    </div>}
     {log.data && mode === 'log' && <>
       <Notice envelope={log.data} language={language} />
       {log.data.history && <p className={styles.muted}>{c.historyStart} {legalDate(log.data.history.text_history_start, language)} · {log.data.history.verified_legal_starts}/{log.data.history.consolidated_versions} {c.verifiedStarts}.</p>}
       {!newestFirst.length && <p>{c.noVersions}</p>}
       {newestFirst.map((version, index) => {
-        const previous = newestFirst[index + 1];
+        const previous = previousVersion(newestFirst, index);
         const isCurrent = version.version_id === current?.version_id;
         return <VersionCard key={version.version_id} version={version} previous={previous} isCurrent={isCurrent} language={language}
           onShowText={() => { setTextVersion(version.version_id); setMode('text'); }}
-          onComparePrevious={() => { if (previous) compare(previous, version); }}
-          onCompareCurrent={!isCurrent && current ? () => compare(version, current) : undefined} />;
+          onComparePrevious={() => { if (previous) openComparison({ from: versionSelector(previous), to: versionSelector(version) }); }}
+          onCompareCurrent={!isCurrent && current ? () => openComparison({ from: versionSelector(version), to: versionSelector(current) }) : undefined} />;
       })}
       {canonicalId && <MaterialsSection canonicalId={canonicalId} language={language} attempt={attempt} />}
     </>}
     {canonicalId && mode === 'text' && <TextView canonicalId={canonicalId} versions={newestFirst} current={current} selected={textVersion} onSelect={value => setTextVersion(newestFirst.find(version => versionSelector(version) === value)?.version_id ?? value)}
       language={language} attempt={attempt} onRetry={retry} bavarian={actId.startsWith('by_')} />}
-    {canonicalId && mode === 'diff' && activePair && <DiffView canonicalId={canonicalId} versions={newestFirst} current={current} pair={activePair} setPair={setPair} language={language} attempt={attempt} onRetry={retry} />}
+    {log.data && mode === 'diff' && <Notice envelope={log.data} language={language} />}
+    {log.data?.status === 'ok' && mode === 'diff' && newestFirst.length < 2 && <p role="status" className={styles.muted}>{newestFirst.length ? readerWorkbenchCopy(language).onlyVersion : c.noVersions}</p>}
+    {canonicalId && mode === 'diff' && activePair && (newestFirst.length >= 2 || comparison?.value) && <DiffView canonicalId={canonicalId} versions={newestFirst} current={current} pair={activePair} setPair={updatePair} split={split} setSplit={updateSplit} language={language} attempt={attempt} onRetry={retry} />}
+    {comparison && <button type="button" className={styles.more} onClick={comparison.onArchive}>{readerWorkbenchCopy(language).compareArchive}</button>}
     {canonicalId && log.data && mode === 'changes' && <ChangesView canonicalId={canonicalId} log={log.data} versionsOldestFirst={oldestFirst} language={language} attempt={attempt} onRetry={retry}
-      onShowDiff={next => { setPair(next); setMode('diff'); }} />}
+      onShowDiff={openComparison} />}
     {canonicalId && mode === 'blame' && <BlameView canonicalId={canonicalId} language={language} attempt={attempt} onRetry={retry} />}
   </div>;
 }
 
 /** Act level (no single provision open): change summary and the act's change history. */
-function ActVersions({ actId, language, onOpenNorm }: { actId: string; language: string; onOpenNorm?: (norm: string) => void }) {
+function ActVersions({ actId, language, onOpenNorm, initialMode }: { actId: string; language: string; onOpenNorm?: (norm: string) => void; initialMode?: Mode }) {
   const ch = changeHistoryCopy(language);
   const act = useReaderAct(actId);
-  const [mode, setMode] = useState<'changes' | 'versions'>('changes');
+  const [mode, setMode] = useState<'changes' | 'versions'>(initialMode === 'changes' ? 'changes' : 'versions');
   const fallback = useMemo(() => act.data ? actChangeSummaryFrom(act.data, berlinToday()) : null, [act.data]);
   return <div className={styles.root} data-norm-history="" data-act-versions={actId}>
     <div className={styles.heading}><h2>{ch.actHistory}{act.data ? ` · ${readerLawLabel(act.data)}` : ''}</h2></div>
@@ -399,8 +470,8 @@ function ActVersions({ actId, language, onOpenNorm }: { actId: string; language:
   </div>;
 }
 
-export default function NormHistory({ actId, norm, language, onOpenNorm, initialMode }: {
-  actId: string; norm: string | null; language: string; onOpenNorm?: (norm: string) => void; initialMode?: Mode;
+export default function NormHistory({ actId, norm, language, onOpenNorm, initialMode, comparison, onCompare }: {
+  actId: string; norm: string | null; language: string; onOpenNorm?: (norm: string) => void; initialMode?: Mode; comparison?: CompareControls; onCompare?: (value: ReaderComparisonState) => void;
 }) {
-  return norm ? <NormVersions actId={actId} norm={norm} language={language} initialMode={initialMode} /> : <ActVersions actId={actId} language={language} onOpenNorm={onOpenNorm} />;
+  return norm ? <NormVersions actId={actId} norm={norm} language={language} initialMode={comparison ? 'diff' : initialMode} comparison={comparison} onCompare={onCompare} /> : <ActVersions actId={actId} language={language} onOpenNorm={onOpenNorm} initialMode={initialMode} />;
 }

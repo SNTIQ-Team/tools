@@ -10,7 +10,7 @@ export type ReaderView = 'read' | 'history' | 'diff' | 'versions';
 export type ReaderTile = { paneId: string } | {
   axis: 'columns' | 'rows'; ratio: number; first: ReaderTile; second: ReaderTile;
 };
-export interface ReaderComparisonState { from: string; to: string; split: boolean }
+export interface ReaderComparisonState { from: string; to: string; split: boolean; kind?: 'norm' }
 
 export interface ReaderTab {
   id: string;
@@ -70,6 +70,9 @@ export function validReaderDate(value: unknown): value is string {
 }
 
 function validComparison(value: unknown): value is ReaderComparisonState {
+  if (exactObject(value, ['kind', 'from', 'to', 'split']) && value.kind === 'norm') {
+    return typeof value.split === 'boolean' && validText(value.from, 512) && validText(value.to, 512);
+  }
   return exactObject(value, ['from', 'to', 'split']) && typeof value.split === 'boolean'
     && (value.from === 'HEAD' || validReaderDate(value.from))
     && (value.to === 'HEAD' || validReaderDate(value.to));
@@ -200,7 +203,7 @@ export function workspaceReducer(state: ReaderWorkspace, action: ReaderWorkspace
         return replacePane(state, {
           ...pane,
           tabs: action.mode === 'replace'
-            ? pane.tabs.map((tab) => tab.id === existing.id ? { id: tab.id, actId, norm, ...typed, ...dated, ...(tab.pinned ? { pinned: true as const } : {}), ...(tab.actId === actId && tab.documentType !== 'decision' && documentType === 'law' ? { ...(tab.view ? { view: tab.view } : {}), ...(tab.comparison ? { comparison: tab.comparison } : {}) } : {}) } : tab)
+            ? pane.tabs.map((tab) => tab.id === existing.id ? { id: tab.id, actId, norm, ...typed, ...dated, ...(tab.pinned ? { pinned: true as const } : {}), ...(tab.actId === actId && tab.documentType !== 'decision' && documentType === 'law' ? { ...(tab.view ? { view: tab.view } : {}), ...(tab.comparison && (tab.comparison.kind !== 'norm' || tab.norm === norm && tab.at === at) ? { comparison: tab.comparison } : {}) } : {}) } : tab)
             : pane.tabs,
           activeTabId: existing.id,
         }, true);
@@ -214,7 +217,8 @@ export function workspaceReducer(state: ReaderWorkspace, action: ReaderWorkspace
       const tab = pane?.tabs.find(item => item.id === action.tabId);
       if (!pane || !tab || tab.documentType === 'decision' || (action.at !== 'HEAD' && !validReaderDate(action.at))) return state;
       if ((tab.at ?? 'HEAD') === action.at) return state;
-      const { at: previousDate, ...current } = tab;
+      const { at: previousDate, comparison, ...rest } = tab;
+      const current = comparison && comparison.kind !== 'norm' ? { ...rest, comparison } : rest;
       const changed = action.at === 'HEAD' ? current : { ...current, at: action.at };
       return replacePane(state, { ...pane, tabs: pane.tabs.map(item => item.id === tab.id ? changed : item) });
     }
@@ -228,9 +232,10 @@ export function workspaceReducer(state: ReaderWorkspace, action: ReaderWorkspace
     case 'set-comparison': {
       const pane = state.panes.find(item => item.id === action.paneId);
       const tab = pane?.tabs.find(item => item.id === action.tabId);
-      if (!pane || !tab || tab.documentType === 'decision' || !validComparison(action.comparison)) return state;
+      if (!pane || !tab || tab.documentType === 'decision' || !validComparison(action.comparison)
+        || (action.comparison.kind === 'norm' && !tab.norm)) return state;
       if (tab.comparison?.from === action.comparison.from && tab.comparison?.to === action.comparison.to
-        && tab.comparison?.split === action.comparison.split) return state;
+        && tab.comparison?.split === action.comparison.split && tab.comparison?.kind === action.comparison.kind) return state;
       return replacePane(state, { ...pane, tabs: pane.tabs.map(item => item.id === tab.id ? { ...item, comparison: { ...action.comparison } } : item) });
     }
     case 'set-view':
@@ -382,7 +387,7 @@ function parseWorkspace(value: unknown): ReaderWorkspace | null {
         || (Object.hasOwn(tab, 'at') && !validReaderDate(tab.at))
         || (Object.hasOwn(tab, 'view') && tab.view !== 'history' && tab.view !== 'diff' && tab.view !== 'versions')
         || (Object.hasOwn(tab, 'pinned') && tab.pinned !== true)
-        || (Object.hasOwn(tab, 'comparison') && !validComparison(tab.comparison))
+        || (Object.hasOwn(tab, 'comparison') && (!validComparison(tab.comparison) || tab.comparison.kind === 'norm' && !tab.norm))
         || (tab.documentType === 'decision' && (tab.norm !== null || Object.hasOwn(tab, 'at') || Object.hasOwn(tab, 'view') || Object.hasOwn(tab, 'comparison')))) return null;
       tabIds.add(tab.id);
       if (tabIds.size > MAX_READER_TABS) return null;

@@ -60,3 +60,18 @@ test('comparison dates and mode survive sharing, splitting and navigating within
   raw.panes[0].tabs[0].comparison = invalid;
   assert.equal(workspace.decodeWorkspace('#reader=' + encodeURIComponent(JSON.stringify(raw))), null);
 });
+
+test('provision comparison shares exact version IDs and does not follow a different provision or checkout', () => {
+  const tab = { paneId: 'p1', tabId: 't1' };
+  const open = (norm: string | null) => ({ type: 'open' as const, actId: 'fed_sgb_8', norm, mode: 'replace' as const });
+  const selected = workspace.workspaceReducer(workspace.createWorkspace(), open('§ 42'));
+  const comparison = { kind: 'norm' as const, from: 'de/bund/sgb_8/para/42@1991-01-01#6aa5ace13986', to: 'de/bund/sgb_8/para/42@1993-04-01#d3c3d367d24d', split: true };
+  const state = workspace.workspaceReducer(selected, { type: 'set-comparison', ...tab, comparison });
+  assert.deepEqual(workspace.decodeWorkspace(workspace.encodeWorkspace(state))?.panes[0].tabs[0].comparison, comparison);
+  assert.equal(workspace.workspaceReducer(state, open('§ 41')).panes[0].tabs[0].comparison, undefined);
+  assert.equal(workspace.workspaceReducer(state, open(null)).panes[0].tabs[0].comparison, undefined);
+  const dated = workspace.workspaceReducer(state, { type: 'set-version', ...tab, at: '1991-01-01' });
+  assert.equal(dated.panes[0].tabs[0].comparison, undefined);
+  const whole = workspace.workspaceReducer(state, open(null));
+  assert.equal(workspace.workspaceReducer(whole, { type: 'set-comparison', ...tab, comparison }), whole);
+});

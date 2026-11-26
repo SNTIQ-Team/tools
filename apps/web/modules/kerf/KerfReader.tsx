@@ -27,6 +27,7 @@ import NormHistory from './NormHistory';
 import ReaderEditionProvenance from './ReaderEditionProvenance';
 import ReaderComparison from './ReaderComparison';
 import ReaderOverview from './ReaderOverview';
+import { changeHistoryCopy } from './changeHistoryFormat';
 import { ChangeSummaryBlock } from './ChangeHistoryViews';
 import { useReaderChangeSummary } from './readerChangeSummary';
 import type { NormHistoryMode } from './NormHistory';
@@ -676,6 +677,11 @@ function ReaderPaneView({ pane, paneIndex, workspace, tab, acts, t, active, appl
   const { i18n } = useTranslation();
   const w = readerWorkbenchCopy(i18n.language);
   const view = tab?.view ?? 'read';
+  const historyCopy = changeHistoryCopy(i18n.language);
+  const versionsLabel = tab?.norm ? w.normVersions : historyCopy.actVersions;
+  // A saved date pair (and a dated checkout) belongs to the document archive.
+  // With a provision open, the normal comparison uses its own wording history.
+  const provisionDiff = view === 'diff' && tab?.norm && (tab.comparison?.kind === 'norm' || !tab.at && !tab.comparison);
   const [selectedEvent, setSelectedEvent] = useState<{ tabId: string; id?: string; request: number } | null>(null);
   const [versionsMode, setVersionsMode] = useState<{ tabId: string; mode: NormHistoryMode } | null>(null);
   const setView = (view: ReaderView) => { if (tab) apply({ type: 'set-view', paneId: pane.id, tabId: tab.id, view }); };
@@ -739,21 +745,25 @@ function ReaderPaneView({ pane, paneIndex, workspace, tab, acts, t, active, appl
     {tab && !isDecision && <div className={styles.editionBar}>
       <ReaderEditionPicker key={tab.id} archive={archive.data} value={tab.at ?? 'HEAD'} language={i18n.language} label={t.edition} onChange={at => { apply({ type: 'set-version', paneId: pane.id, tabId: tab.id, at }); setView('read'); }} onHistory={showHistory} />
       {archive.error && <IconButton title={t.retry} onClick={archive.retry}><RotateCcw size={13} /></IconButton>}
-      <div className={desk.viewModes} role="group" aria-label={w.read}>
+      <div className={`${desk.viewModes} ${desk.editionModes}`} role="group" aria-label={w.read}>
         <button aria-label={w.read} aria-pressed={view === 'read'} title={`${w.read} (Alt+Shift+R)`} onClick={() => setView('read')}><span>{w.read}</span></button>
-        <button aria-label={w.history} aria-pressed={view === 'history'} title={`${w.history} (Alt+Shift+H)`} onClick={() => showHistory()}><span>{w.history}</span></button>
+        <button aria-label={w.actHistory} aria-pressed={view === 'history'} title={`${w.actHistory} (Alt+Shift+H)`} onClick={() => showHistory()}><span className={desk.modeFull}>{w.actHistory}</span><span className={desk.modeShort}>{w.history}</span></button>
         <button aria-label={w.diff} aria-pressed={view === 'diff'} title={`${w.diff} (Alt+Shift+D)`} onClick={() => setView('diff')}><span>{w.diff}</span></button>
-        <button aria-label={w.versions} aria-pressed={view === 'versions'} title={`${w.versions} (Alt+Shift+V)`} onClick={() => { setVersionsMode(null); setView('versions'); }}><span>{w.versions}</span></button>
+        <button aria-label={versionsLabel} aria-pressed={view === 'versions'} title={`${versionsLabel} (Alt+Shift+V)`} onClick={() => { setVersionsMode(null); setView('versions'); }}><span className={desk.modeFull}>{versionsLabel}</span><span className={desk.modeShort}>{historyCopy.versions}</span></button>
       </div>
     </div>}
     <div id={`reader-content-${pane.id}`} role="tabpanel" style={{ display: 'flex', flex: 1, minHeight: 0, flexDirection: 'column' }}>
       {tab ? isDecision ? <div key={decisionScrollKey} ref={decisionViewport} className={styles.viewport} data-reader-scroll={tab.id} onScroll={event => { if (decision?.id === tab.actId) scrollPositions.current.set(decisionScrollKey, { top: event.currentTarget.scrollTop }); }}><div className={styles.document} style={{ '--reader-font': `${fontSize}px` } as React.CSSProperties}><ReaderDecision decisionId={tab.actId} acts={acts} t={t} onReference={onReference} onOpenLaw={onOpen} onOpenDecision={onOpenDecision} onLoaded={value => { setDecision(value); onDecisionTitle(value.id, value.az || value.id); }} /></div></div>
+        : provisionDiff ? <NormHistory key={`compare:${tab.id}:${tab.actId}:${tab.norm}`} actId={tab.actId} norm={tab.norm} language={i18n.language}
+          comparison={{ value: tab.comparison, onChange: comparison => apply({ type: 'set-comparison', paneId: pane.id, tabId: tab.id, comparison }),
+            onArchive: () => onOpen(tab.actId, null, 'replace') }} />
         : view === 'versions' ? <NormHistory key={`${tab.id}:${tab.actId}:${tab.norm}:${versionsMode?.tabId === tab.id ? versionsMode.mode : ''}`} actId={tab.actId} norm={tab.norm} language={i18n.language}
-          initialMode={versionsMode?.tabId === tab.id ? versionsMode.mode : undefined} onOpenNorm={norm => onOpen(tab.actId, norm, 'replace')} />
+          initialMode={versionsMode?.tabId === tab.id ? versionsMode.mode : undefined}
+          onCompare={comparison => { apply({ type: 'set-comparison', paneId: pane.id, tabId: tab.id, comparison }); setView('diff'); }} onOpenNorm={norm => onOpen(tab.actId, norm, 'replace')} />
         : view !== 'read' ? law.error || archive.error || !archive.data ? <LoadStatus loading={law.loading || archive.loading} error={law.error ?? archive.error} language={i18n.language} title={t.failed} onRetry={law.error ? law.retry : archive.retry} onCancel={law.error ? undefined : law.loading ? law.cancel : archive.cancel} resetKey={`${tab.actId}:${view}`} />
           : view === 'history' ? <ReaderHistory key={tab.id} archive={archive.data} language={i18n.language} selectedId={selectedEvent?.tabId === tab.id ? selectedEvent.id : undefined} selectionRequest={selectedEvent?.tabId === tab.id ? selectedEvent.request : undefined} />
           : <ReaderComparison key={`${tab.id}:${tab.actId}:${tab.norm}`} actId={tab.actId} norm={tab.norm} at={tab.at} archive={archive.data} language={i18n.language} value={tab.comparison} onChange={comparison => apply({ type: 'set-comparison', paneId: pane.id, tabId: tab.id, comparison })} />
-        : <DocumentView key={tab.id} tab={tab} acts={acts} t={t} fontSize={fontSize} query={query} showReferences={showReferences} onReference={onReference} onOpen={onOpen} onHistory={(id, norm) => { onOpen(id, norm ?? null, 'replace'); if (norm) setView('versions'); else showHistory(); }}
+        : <DocumentView key={tab.id} tab={tab} acts={acts} t={t} fontSize={fontSize} query={query} showReferences={showReferences} onReference={onReference} onOpen={onOpen} onHistory={(id, norm) => { onOpen(id, norm ?? null, 'replace'); if (norm) { setVersionsMode(null); setView('versions'); } else showHistory(); }}
           onChanges={() => { setVersionsMode({ tabId: tab.id, mode: 'changes' }); setView('versions'); }} scrollPositions={scrollPositions} />
         : <div className={styles.empty}><Library size={28} /><p>{t.noDocuments}</p><div className={styles.welcomeLaws}>{acts.filter(act => ['fed_asylvfg_1992', 'fed_aufenthg_2004', 'fed_sgb_12', 'fed_sgb_2', 'fed_bgb', 'fed_gg'].includes(act.id)).map(act => <button key={act.id} className={styles.lawRow} onClick={() => onOpen(act.id, null)}><strong>{readerLawLabel(act)}</strong><small>{act.title}</small></button>)}</div><button className={styles.textButton} onClick={onSearch}><Search size={15} />{t.search}</button></div>}
     </div>

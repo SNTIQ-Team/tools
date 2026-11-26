@@ -157,7 +157,7 @@ export function validityLine(temporal: KerfNormTemporal, language: string, today
   const future = Boolean(temporal.valid_from && temporal.valid_from > today);
   return {
     label: `${future ? c.future : kind === 'archived' ? c.archived : c.verified} ${legalDate(temporal.valid_from, language)}`,
-    basis: kind === 'verified' ? c.verifiedBasis : kind === 'commencement' ? c.commencementBasis : c.archivedBasis,
+    basis: kind === 'verified' ? c.verifiedBasis : kind === 'commencement' ? c.commencementBasis : kind === 'archived' ? c.archivedBasis : '',
     future,
   };
 }

@@ -1,10 +1,12 @@
 'use client';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowDown, ArrowLeftRight, ArrowUp, Loader2, RotateCcw } from 'lucide-react';
+import { ArrowDown, ArrowLeftRight, ArrowUp } from 'lucide-react';
 import { kerfActMarkdown, type KerfActArchive } from './client';
 import { readerEditionChoices, readerEditionCopy, readerEditionDate } from './readerEditions';
 import { readerWorkbenchCopy } from './readerWorkbenchCopy';
-import { readerCopy } from './readerI18n';
+import { changeHistoryCopy } from './changeHistoryFormat';
+import LoadStatus from './LoadStatus';
+import { toKerfRequestError, type KerfRequestError } from './kerfRequest';
 import { validReaderDate, type ReaderComparisonState } from './readerWorkspace';
 import { comparisonChanges, comparisonReady, type ReaderChange } from './readerComparison';
 import styles from './readerWorkbench.module.css';
@@ -14,7 +16,6 @@ export default function ReaderComparison({ actId, norm, at, archive, language, v
   value?: ReaderComparisonState; onChange: (value: ReaderComparisonState) => void;
 }) {
   const t = readerWorkbenchCopy(language);
-  const reader = readerCopy(language);
   const baseChoices = useMemo(() => readerEditionChoices(archive, language).filter(item => item.available), [archive, language]);
   const choices = useMemo(() => {
     const choices = [...baseChoices];
@@ -27,32 +28,43 @@ export default function ReaderComparison({ actId, norm, at, archive, language, v
     }
     return choices;
   }, [baseChoices, value?.from, value?.to, at, archive.head_date, language]);
-  const options = choices.map(item => <option key={item.value} value={item.value} disabled={!item.available} title={item.detail}>{item.value === 'HEAD' ? readerEditionCopy(language).latestShort : readerEditionDate(item.value, language)}</option>);
+  const copy = readerEditionCopy(language);
+  const options = (['latest', 'legal', 'observed'] as const).map(group => {
+    const items = choices.filter(item => item.group === group);
+    if (!items.length) return null;
+    return <optgroup key={group} label={copy[group]}>{items.map(item =>
+      <option key={item.value} value={item.value} disabled={!item.available} title={item.detail}>{item.value === 'HEAD' ? copy.latestShort : readerEditionDate(item.value, language)}</option>)}</optgroup>;
+  });
   const dates = baseChoices.filter(item => item.value !== 'HEAD').map(item => item.value).sort();
-  const from = choices.some(item => item.value === value?.from) ? value!.from : dates[0] ?? 'HEAD';
   const to = choices.some(item => item.value === (value?.to ?? at)) ? (value?.to ?? at)! : 'HEAD';
+  const anchor = to === 'HEAD' ? archive.head_date : to;
+  const previous = dates.filter(date => !anchor || date < anchor).at(-1);
+  const from = value?.from ?? previous ?? (to === 'HEAD' ? dates.at(-1) ?? 'HEAD' : 'HEAD');
   const split = value?.split ?? false;
   const available = Boolean(choices.find(item => item.value === from)?.available && choices.find(item => item.value === to)?.available);
   const change = (patch: Partial<ReaderComparisonState>) => onChange({ from, to, split, ...patch });
-  const [result, setResult] = useState<ReaderChange[] | null>(null);
-  const [error, setError] = useState(false);
+  const [response, setResponse] = useState<{ key: string; changes?: ReaderChange[]; error?: KerfRequestError; incomplete?: boolean } | null>(null);
   const [attempt, setAttempt] = useState(0);
   const [active, setActive] = useState(0);
   const [limit, setLimit] = useState(24);
   const viewport = useRef<HTMLDivElement>(null);
+  const key = JSON.stringify([actId, norm, from, to, attempt]);
+  const current = response?.key === key ? response : null;
+  const result = current?.changes;
+  const same = from === to;
   useEffect(() => {
     const controller = new AbortController();
-    setResult(null); setError(false); setActive(0); setLimit(24);
-    if (!available) { setError(true); return () => controller.abort(); }
+    setActive(0); setLimit(24);
+    if (!available || same) return;
     const load = async () => {
-      const before = await kerfActMarkdown(actId, { at: from, norm: norm ?? undefined }, controller.signal);
-      const after = from === to ? before : await kerfActMarkdown(actId, { at: to, norm: norm ?? undefined }, controller.signal);
-      if (!comparisonReady(before) || !comparisonReady(after)) throw new Error('Incomplete edition');
-      if (!controller.signal.aborted) setResult(comparisonChanges(before.markdown, after.markdown));
+      const [before, after] = await Promise.all([from, to].map(at => kerfActMarkdown(actId, { at, norm: norm ?? undefined }, controller.signal)));
+      if (controller.signal.aborted) return;
+      setResponse(comparisonReady(before) && comparisonReady(after)
+        ? { key, changes: comparisonChanges(before.markdown, after.markdown) } : { key, incomplete: true });
     };
-    void load().catch(() => { if (!controller.signal.aborted) setError(true); });
+    void load().catch(error => { if (!controller.signal.aborted) setResponse({ key, error: toKerfRequestError(error) }); });
     return () => controller.abort();
-  }, [actId, norm, from, to, attempt, available]);
+  }, [actId, norm, from, to, key, available, same]);
   useEffect(() => { viewport.current?.querySelectorAll('[data-reader-change]')[active]?.scrollIntoView({ block: 'start' }); }, [active]);
   const move = (step: number) => { if (result?.length) { const next = (active + step + result.length) % result.length; setLimit(value => Math.max(value, next + 1)); setActive(next); } };
   return <div className={styles.comparison} data-reader-comparison>
@@ -69,14 +81,15 @@ export default function ReaderComparison({ actId, norm, at, archive, language, v
       <button aria-label={t.nextChange} title={t.nextChange} disabled={!result?.length} onClick={() => move(1)}><ArrowDown size={16} /></button>
     </div>
     <div className={styles.compareScroll} ref={viewport}>
-      {error ? <div role="alert"><p>{t.unavailable}</p><button className={styles.command} aria-label={reader.retry} onClick={() => setAttempt(value => value + 1)}><RotateCcw size={16} /></button></div>
-        : !result ? <Loader2 className="animate-spin" role="status" aria-label={reader.loading} size={20} />
-        : result.length === 0 ? <p>{t.noChanges}</p>
+      {!available || current?.incomplete ? <p role="status">{t.unavailable}</p>
+        : same ? <p role="status">{choices.length > 1 ? changeHistoryCopy(language).sameVersion : t.unavailable}</p>
+        : !result ? <LoadStatus compact loading={!current} error={current?.error} language={language} resetKey={key} onRetry={() => setAttempt(value => value + 1)} />
+        : result.length === 0 ? <p role="status">{t.noChanges}</p>
         : result.slice(0, limit).map((change, index) => <section key={change.id} className={styles.change} data-reader-change data-selected={active === index}>
           <h3>{change.label}</h3>
           {split ? <div className={styles.splitDiff}>
-            <div aria-label={t.from}>{change.parts.filter(part => !part.added).map((part, i) => part.removed ? <del key={i}>{part.value}</del> : <span key={i}>{part.value}</span>)}</div>
-            <div aria-label={t.to}>{change.parts.filter(part => !part.removed).map((part, i) => part.added ? <ins key={i}>{part.value}</ins> : <span key={i}>{part.value}</span>)}</div>
+            <div><small>{t.from}</small>{change.parts.filter(part => !part.added).map((part, i) => part.removed ? <del key={i}>{part.value}</del> : <span key={i}>{part.value}</span>)}</div>
+            <div><small>{t.to}</small>{change.parts.filter(part => !part.removed).map((part, i) => part.added ? <ins key={i}>{part.value}</ins> : <span key={i}>{part.value}</span>)}</div>
           </div> : <div className={styles.inlineDiff}>{change.parts.map((part, i) => part.added ? <ins key={i}>{part.value}</ins> : part.removed ? <del key={i}>{part.value}</del> : <span key={i}>{part.value}</span>)}</div>}
         </section>)}
       {result && result.length > limit && <button className={styles.command} onClick={() => setLimit(value => value + 24)}>{t.more}</button>}

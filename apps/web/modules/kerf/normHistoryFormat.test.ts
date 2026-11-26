@@ -29,6 +29,14 @@ test('verified, archived and future starts are distinguished', () => {
   assert.equal(validityKind({ valid_from: '2022-01-01', valid_from_status: 'official_archived_version_date', valid_until_exclusive: null, observed_from: null, observed_until: null }), 'archived');
 });
 
+test('federal reviewed editions and European consolidations retain their date without a Bavarian source attribution', () => {
+  for (const status of ['reviewed_norm_edition', 'official_eu_consolidation']) {
+    const line = validityLine({ valid_from: '1991-01-01', valid_from_status: status, valid_until_exclusive: null, observed_from: null, observed_until: null }, 'de');
+    assert.equal(line.label, 'Gültig ab 01.01.1991');
+    assert.equal(line.basis, '');
+  }
+});
+
 test('GII stand notes are labelled as unverified commencement', () => {
   const line = amendmentLine({ act: 'Art. 1 G v. 23.4.2026 I Nr. 111', reference: 'Art. 1 G v. 23.4.2026 I Nr. 111', basis: 'gii_stand_note' }, 'de');
   assert.equal(line?.text, 'Art. 1 G v. 23.4.2026 I Nr. 111');
