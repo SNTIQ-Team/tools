@@ -1,0 +1,9 @@
+.coverage { margin-bottom:8px; padding:0 0 16px; border-bottom:1px solid var(--c-text-main); color:var(--c-text-main); }
+.coverage dl { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 24px; }
+.coverage dt { display:flex; align-items:center; flex-wrap:wrap; gap:6px; font-size:.8125rem; font-weight:600; color:var(--c-text-muted); }
+.coverage dt span { font-variant-numeric:tabular-nums; font-weight:600; color:var(--c-text-main); }
+.coverage svg { flex-shrink:0; }
+.coverage dd { margin:4px 0 0; font-size:.9375rem; font-weight:600; overflow-wrap:anywhere; }
+.coverage p { display:flex; align-items:flex-start; gap:7px; margin:12px 0 0; color:var(--c-text-muted); font-size:.8125rem; line-height:1.5; }
+.coverage p svg { margin-top:3px; }
+@media (max-width:360px) { .coverage dl { grid-template-columns:minmax(0,1fr); gap:12px; } }

@@ -1,0 +1,34 @@
+/* A court decision opened in a reader pane. */
+.decision { --border: var(--reader-line, var(--panel-border)); min-width: 0; color: inherit; }
+.decision a { color: var(--c-link); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .2em; text-decoration-color: color-mix(in srgb, currentColor 35%, transparent); }
+.decision a:hover { text-decoration-color: currentColor; }
+.decision a:focus-visible { outline: 2px solid var(--c-link); outline-offset: 3px; }
+.header { padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+.decision .header h2 { margin: 6px 0 20px; font-size: 1.5rem; font-weight: 350; line-height: 1.25; letter-spacing: -.022em; overflow-wrap: anywhere; }
+.citation { margin: 0; font-size: .8125rem; font-weight: 600; color: var(--c-text-muted); overflow-wrap: anywhere; }
+.metadata { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 14px 20px; margin: 0 0 16px; font-size: .875rem; }
+.metadata div { min-width: 0; }
+.metadata dt { margin-bottom: 2px; color: var(--c-text-muted); font-size: .8125rem; font-weight: 600; }
+.metadata dd { margin: 0; overflow-wrap: anywhere; }
+.source { display: inline-flex; align-items: center; gap: 6px; font-size: .875rem; font-weight: 600; }
+.source svg { flex: 0 0 auto; }
+.contents { display: flex; flex-wrap: wrap; gap: 6px 20px; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: .875rem; }
+.contents a { display: inline-flex; align-items: center; min-height: 28px; overflow-wrap: anywhere; }
+.section { margin: 28px 0 0; scroll-margin-top: 18px; }
+.section h3 { margin: 0 0 12px; font-size: .8125rem; line-height: 1.4; font-weight: 600; color: var(--c-text-muted); }
+.text { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; font-size: var(--reader-font, 16px); line-height: 1.75; }
+/* A quotation from the decision: the rule marks quoted speech. */
+blockquote.text { padding-left: 16px; border-left: 2px solid var(--reader-control-line, var(--border)); }
+.references { display: flex; flex-wrap: wrap; gap: 8px 20px; padding: 0; margin: 0; list-style: none; font-size: .9375rem; }
+.references li { min-width: 0; overflow-wrap: anywhere; }
+.related { margin: 0; padding-left: 20px; font-size: .9375rem; line-height: 1.6; overflow-wrap: anywhere; }
+.related li + li { margin-top: 6px; }
+.missing { padding-top: 20px; margin: 24px 0 0; border-top: 1px solid var(--border); color: var(--c-text-muted); font-size: .875rem; line-height: 1.6; }
+.state { padding: 30px 0; font-size: .9375rem; }
+.state button { display: inline-flex; align-items: center; gap: 7px; min-height: 36px; margin-top: 12px; padding: 7px 12px; background: transparent; border: 1px solid var(--reader-control-line, var(--panel-border)); border-radius: var(--r-control); color: inherit; font-size: .8125rem; font-weight: 600; cursor: pointer; }
+.state button:hover { border-color: var(--c-text-main); }
+@media (max-width: 600px) {
+  .decision .header h2 { font-size: 1.3125rem; }
+  .metadata { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .contents a, .state button { min-height: 40px; }
+}

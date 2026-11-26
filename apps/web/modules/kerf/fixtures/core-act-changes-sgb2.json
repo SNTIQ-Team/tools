@@ -1,0 +1,1184 @@
+{
+ "schema": "kerf-evidence-envelope/1",
+ "status": "ok",
+ "operation": "law_act_changes",
+ "request_scope": {
+  "norm": "fed_sgb_2",
+  "limit": "3"
+ },
+ "applied_constraints": {
+  "act_id": "fed_sgb_2",
+  "evaluated_on": "2026-09-28",
+  "grouping": "amending act and article",
+  "state": "all",
+  "norm": null,
+  "order": "newest_first"
+ },
+ "ignored_arguments": [],
+ "snapshot_id": null,
+ "evidence": [
+  {
+   "amending_act": {
+    "citation": "Art. 1a Nr. 1 G v. 16.4.2026 (BGBl. 2026 I Nr. 107)",
+    "document_id": "bgbl-1-2026-107",
+    "title": "Dreizehntes Gesetz zur Änderung des Zweiten Buches Sozialgesetzbuch und anderer Gesetze",
+    "gazette": {
+     "name": "BGBl.",
+     "number": 107,
+     "page": null,
+     "part": "I",
+     "reference": "BGBl. 2026 I Nr. 107",
+     "year": 2026
+    },
+    "article": "1a",
+    "items": [
+     "1"
+    ],
+    "url": "https://www.recht.bund.de/bgbl/1/2026/107/VO.html",
+    "procedure_id": "329524"
+   },
+   "dates": {
+    "adopted": {
+     "basis": "recht.bund.de document metadata 'Ausfertigungsdatum' of the promulgated document",
+     "date": "2026-04-16",
+     "evidence": [
+      {
+       "field": "Ausfertigungsdatum",
+       "source": "recht.bund.de",
+       "url": "https://www.recht.bund.de/bgbl/1/2026/107/VO.html",
+       "value": "16.04.2026"
+      }
+     ],
+     "status": "official"
+    },
+    "applies_from": {
+     "date": null,
+     "status": "not_stated"
+    },
+    "in_force": {
+     "basis": "commencement clause of the amending act, resolved for the whole amending article (official_dip_article_commencement_clause)",
+     "clause": "Artikel 12 Inkrafttreten (1) Dieses Gesetz tritt vorbehaltlich der Absätze 2 bis 4 am 1. Juli 2026 in Kraft. (2) Artikel 1 Nummer 26 Buchstabe d und Nummer 27 Buchstabe b und Artikel 3 Nummer 2 treten am Tag nach der Verkündung in Kraft. (3) Artikel 1 Nummer 14 Buchstabe a, Artikel 2 Nummer 1 Buchstabe c und d, Nummer 3, 5 und 7 und Artikel 7 treten am 1. August 2027 in Kraft. (4) Artikel 1a tritt am 1. Januar 2029 in Kraft.",
+     "date": "2029-01-01",
+     "evidence": [
+      {
+       "document": "bgbl-1-2026-107",
+       "sha256": "1d9bc5b1d6074084c868591cfe429f3517417056a281350dc238878d48bcdcdf",
+       "source": "BGBl",
+       "url": "https://www.recht.bund.de/bgbl/1/2026/107/regelungstext.pdf?__blob=publicationFile&v=1"
+      },
+      {
+       "procedure": "329524",
+       "source": "DIP",
+       "url": "https://dip.bundestag.de/vorgang/329524"
+      }
+     ],
+     "status": "official_commencement_clause"
+    },
+    "promulgated": {
+     "basis": "recht.bund.de document metadata 'Veröffentlichungsdatum' (Verkündung)",
+     "date": "2026-04-22",
+     "evidence": [
+      {
+       "field": "Veröffentlichungsdatum",
+       "source": "recht.bund.de",
+       "url": "https://www.recht.bund.de/bgbl/1/2026/107/VO.html",
+       "value": "22.04.2026"
+      }
+     ],
+     "status": "official"
+    }
+   },
+   "state": "pending",
+   "pending": true,
+   "norms": [
+    {
+     "change_id": "chg:fb4283c78615e61f20813c70",
+     "norm_id": "de/bund/sgb_2/para/16",
+     "norm_label": "§ 16",
+     "change_type": "geändert",
+     "dates": {
+      "adopted": {
+       "basis": "recht.bund.de document metadata 'Ausfertigungsdatum' of the promulgated document",
+       "date": "2026-04-16",
+       "evidence": [
+        {
+         "field": "Ausfertigungsdatum",
+         "source": "recht.bund.de",
+         "url": "https://www.recht.bund.de/bgbl/1/2026/107/VO.html",
+         "value": "16.04.2026"
+        }
+       ],
+       "status": "official"
+      },
+      "applies_from": {
+       "date": null,
+       "status": "not_stated"
+      },
+      "in_force": {
+       "basis": "commencement clause of the amending act, resolved for the whole amending article (official_dip_article_commencement_clause)",
+       "clause": "Artikel 12 Inkrafttreten (1) Dieses Gesetz tritt vorbehaltlich der Absätze 2 bis 4 am 1. Juli 2026 in Kraft. (2) Artikel 1 Nummer 26 Buchstabe d und Nummer 27 Buchstabe b und Artikel 3 Nummer 2 treten am Tag nach der Verkündung in Kraft. (3) Artikel 1 Nummer 14 Buchstabe a, Artikel 2 Nummer 1 Buchstabe c und d, Nummer 3, 5 und 7 und Artikel 7 treten am 1. August 2027 in Kraft. (4) Artikel 1a tritt am 1. Januar 2029 in Kraft.",
+       "date": "2029-01-01",
+       "evidence": [
+        {
+         "document": "bgbl-1-2026-107",
+         "sha256": "1d9bc5b1d6074084c868591cfe429f3517417056a281350dc238878d48bcdcdf",
+         "source": "BGBl",
+         "url": "https://www.recht.bund.de/bgbl/1/2026/107/regelungstext.pdf?__blob=publicationFile&v=1"
+        },
+        {
+         "procedure": "329524",
+         "source": "DIP",
+         "url": "https://dip.bundestag.de/vorgang/329524"
+        }
+       ],
+       "status": "official_commencement_clause"
+      },
+      "promulgated": {
+       "basis": "recht.bund.de document metadata 'Veröffentlichungsdatum' (Verkündung)",
+       "date": "2026-04-22",
+       "evidence": [
+        {
+         "field": "Veröffentlichungsdatum",
+         "source": "recht.bund.de",
+         "url": "https://www.recht.bund.de/bgbl/1/2026/107/VO.html",
+         "value": "22.04.2026"
+        }
+       ],
+       "status": "official"
+      }
+     },
+     "state": "pending",
+     "text_effect": null
+    }
+   ]
+  },
+  {
+   "amending_act": {
+    "citation": "Art. 59 Nr. 2 G v. 23.10.2024 (BGBl. 2024 I Nr. 323)",
+    "document_id": "bgbl-1-2024-323",
+    "title": "Viertes Gesetz zur Entlastung der Bürgerinnen und Bürger, der Wirtschaft sowie der Verwaltung von Bürokratie (Viertes Bürokratieentlastungsgesetz)",
+    "gazette": {
+     "name": "BGBl.",
+     "number": 323,
+     "page": null,
+     "part": "I",
+     "reference": "BGBl. 2024 I Nr. 323",
+     "year": 2024
+    },
+    "article": "59",
+    "items": [
+     "2.a,2.b,2.c"
+    ],
+    "url": "https://www.recht.bund.de/bgbl/1/2024/323/VO.html",
+    "procedure_id": "309845"
+   },
+   "dates": {
+    "adopted": {
+     "basis": "recht.bund.de document metadata 'Ausfertigungsdatum' of the promulgated document",
+     "date": "2024-10-23",
+     "evidence": [
+      {
+       "field": "Ausfertigungsdatum",
+       "source": "recht.bund.de",
+       "url": "https://www.recht.bund.de/bgbl/1/2024/323/VO.html",
+       "value": "23.10.2024"
+      }
+     ],
+     "status": "official"
+    },
+    "applies_from": {
+     "date": null,
+     "status": "not_stated"
+    },
+    "in_force": {
+     "basis": "commencement clause of the amending act, resolved for the whole amending article (official_dip_article_commencement_clause)",
+     "clause": "Artikel 74 Inkrafttreten (1) Dieses Gesetz tritt vorbehaltlich der Absätze 2 bis 13 am ersten Tag des auf die Verkündung folgenden Quartals in Kraft. (2) Artikel 65 Nummer 3 tritt mit Wirkung vom 1. Januar 2024 in Kraft. (3) Artikel 3 Nummer 2 und 5, Artikel 4 Nummer 3, die Artikel 8, 10 Nummer 2, Artikel 33 Nummer 1 bis 3, 5 und 6, Artikel 39 Nummer 2 und Artikel 66 Nummer 2 treten am Tag nach der Verkündung in Kraft. (4) Artikel 18 Nummer 3 und 4 und Artikel 19 treten am 1. November 2024 in Kraft. (5) Artikel 57 Nummer 14 und 16 Buchstabe b tritt am 1. November 2024 in Kraft. (6) Artikel 5 Nummer 2 und 3 sowie die Artikel 6 und 7 treten am 1. Januar 2025 in Kraft. (7) Artikel 70 tritt am 15. April 2025 in Kraft. (8) Artikel 57 Nummer 1 bis 13, 15 und 16 Buchstabe a und Artikel 58 treten am 1. Mai 2025 in Kraft. (9) Artikel 36 Nummer 1 und 2 tritt am 1. November 2025 in Kraft. (10) Artikel 3 Nummer 3 und 6, Artikel 4 Nummer 2 und Artikel 66 Nummer 1 treten am 1. Januar 2026 in Kraft. (11) Die Artikel 59 und 61 Nummer 1 Buchstabe b, Nummer 2 und 4 treten am 1. Januar 2027 in Kraft. (12) Am 1. Januar 2028 treten in Kraft: 1. Artikel 32 Nummer 4 und 5, 2. Artikel 61 Nummer 1 Buchstabe a und Nummer 3, Seite 34 von 35 Bundesgesetzblatt Jahrgang 2024 Teil I Nr. 323, ausgegeben zu Bonn am 29. Oktober 2024 3. Artikel 66 Nummer 3 Buchstabe c und Nummer 4 sowie 4. Artikel 67. (13) Artikel 62 tritt am 1. Januar 2030 in Kraft.",
+     "date": "2027-01-01",
+     "evidence": [
+      {
+       "document": "bgbl-1-2024-323",
+       "sha256": "dbfcf74401b5009b4346362971985eded52cfcab21ab04bdec2485e626aaa55a",
+       "source": "BGBl",
+       "url": "https://www.recht.bund.de/bgbl/1/2024/323/regelungstext.pdf?__blob=publicationFile&v=1"
+      },
+      {
+       "procedure": "309845",
+       "source": "DIP",
+       "url": "https://dip.bundestag.de/vorgang/309845"
+      }
+     ],
+     "status": "official_commencement_clause"
+    },
+    "promulgated": {
+     "basis": "recht.bund.de document metadata 'Veröffentlichungsdatum' (Verkündung)",
+     "date": "2024-10-29",
+     "evidence": [
+      {
+       "field": "Veröffentlichungsdatum",
+       "source": "recht.bund.de",
+       "url": "https://www.recht.bund.de/bgbl/1/2024/323/VO.html",
+       "value": "29.10.2024"
+      }
+     ],
+     "status": "official"
+    }
+   },
+   "state": "pending",
+   "pending": true,
+   "norms": [
+    {
+     "change_id": "chg:7a172da4adbf33401ae3b707",
+     "norm_id": "de/bund/sgb_2/para/56",
+     "norm_label": "§ 56",
+     "change_type": "geändert",
+     "dates": {
+      "adopted": {
+       "basis": "recht.bund.de document metadata 'Ausfertigungsdatum' of the promulgated document",
+       "date": "2024-10-23",
+       "evidence": [
+        {
+         "field": "Ausfertigungsdatum",
+         "source": "recht.bund.de",
+         "url": "https://www.recht.bund.de/bgbl/1/2024/323/VO.html",
+         "value": "23.10.2024"
+        }
+       ],
+       "status": "official"
+      },
+      "applies_from": {
+       "date": null,
+       "status": "not_stated"
+      },
+      "in_force": {
+       "basis": "commencement clause of the amending act, resolved for the whole amending article (official_dip_article_commencement_clause)",
+       "clause": "Artikel 74 Inkrafttreten (1) Dieses Gesetz tritt vorbehaltlich der Absätze 2 bis 13 am ersten Tag des auf die Verkündung folgenden Quartals in Kraft. (2) Artikel 65 Nummer 3 tritt mit Wirkung vom 1. Januar 2024 in Kraft. (3) Artikel 3 Nummer 2 und 5, Artikel 4 Nummer 3, die Artikel 8, 10 Nummer 2, Artikel 33 Nummer 1 bis 3, 5 und 6, Artikel 39 Nummer 2 und Artikel 66 Nummer 2 treten am Tag nach der Verkündung in Kraft. (4) Artikel 18 Nummer 3 und 4 und Artikel 19 treten am 1. November 2024 in Kraft. (5) Artikel 57 Nummer 14 und 16 Buchstabe b tritt am 1. November 2024 in Kraft. (6) Artikel 5 Nummer 2 und 3 sowie die Artikel 6 und 7 treten am 1. Januar 2025 in Kraft. (7) Artikel 70 tritt am 15. April 2025 in Kraft. (8) Artikel 57 Nummer 1 bis 13, 15 und 16 Buchstabe a und Artikel 58 treten am 1. Mai 2025 in Kraft. (9) Artikel 36 Nummer 1 und 2 tritt am 1. November 2025 in Kraft. (10) Artikel 3 Nummer 3 und 6, Artikel 4 Nummer 2 und Artikel 66 Nummer 1 treten am 1. Januar 2026 in Kraft. (11) Die Artikel 59 und 61 Nummer 1 Buchstabe b, Nummer 2 und 4 treten am 1. Januar 2027 in Kraft. (12) Am 1. Januar 2028 treten in Kraft: 1. Artikel 32 Nummer 4 und 5, 2. Artikel 61 Nummer 1 Buchstabe a und Nummer 3, Seite 34 von 35 Bundesgesetzblatt Jahrgang 2024 Teil I Nr. 323, ausgegeben zu Bonn am 29. Oktober 2024 3. Artikel 66 Nummer 3 Buchstabe c und Nummer 4 sowie 4. Artikel 67. (13) Artikel 62 tritt am 1. Januar 2030 in Kraft.",
+       "date": "2027-01-01",
+       "evidence": [
+        {
+         "document": "bgbl-1-2024-323",
+         "sha256": "dbfcf74401b5009b4346362971985eded52cfcab21ab04bdec2485e626aaa55a",
+         "source": "BGBl",
+         "url": "https://www.recht.bund.de/bgbl/1/2024/323/regelungstext.pdf?__blob=publicationFile&v=1"
+        },
+        {
+         "procedure": "309845",
+         "source": "DIP",
+         "url": "https://dip.bundestag.de/vorgang/309845"
+        }
+       ],
+       "status": "official_commencement_clause"
+      },
+      "promulgated": {
+       "basis": "recht.bund.de document metadata 'Veröffentlichungsdatum' (Verkündung)",
+       "date": "2024-10-29",
+       "evidence": [
+        {
+         "field": "Veröffentlichungsdatum",
+         "source": "recht.bund.de",
+         "url": "https://www.recht.bund.de/bgbl/1/2024/323/VO.html",
+         "value": "29.10.2024"
+        }
+       ],
+       "status": "official"
+      }
+     },
+     "state": "pending",
+     "text_effect": null
+    },
+    {
+     "change_id": "chg:125a538ae04afc90c79b5c25",
+     "norm_id": "de/bund/sgb_2/para/6b",
+     "norm_label": "§ 6b",
+     "change_type": "geändert",
+     "dates": {
+      "adopted": {
+       "basis": "recht.bund.de document metadata 'Ausfertigungsdatum' of the promulgated document",
+       "date": "2024-10-23",
+       "evidence": [
+        {
+         "field": "Ausfertigungsdatum",
+         "source": "recht.bund.de",
+         "url": "https://www.recht.bund.de/bgbl/1/2024/323/VO.html",
+         "value": "23.10.2024"
+        }
+       ],
+       "status": "official"
+      },
+      "applies_from": {
+       "date": null,
+       "status": "not_stated"
+      },
+      "in_force": {
+       "basis": "commencement clause of the amending act, resolved for the whole amending article (official_dip_article_commencement_clause)",
+       "clause": "Artikel 74 Inkrafttreten (1) Dieses Gesetz tritt vorbehaltlich der Absätze 2 bis 13 am ersten Tag des auf die Verkündung folgenden Quartals in Kraft. (2) Artikel 65 Nummer 3 tritt mit Wirkung vom 1. Januar 2024 in Kraft. (3) Artikel 3 Nummer 2 und 5, Artikel 4 Nummer 3, die Artikel 8, 10 Nummer 2, Artikel 33 Nummer 1 bis 3, 5 und 6, Artikel 39 Nummer 2 und Artikel 66 Nummer 2 treten am Tag nach der Verkündung in Kraft. (4) Artikel 18 Nummer 3 und 4 und Artikel 19 treten am 1. November 2024 in Kraft. (5) Artikel 57 Nummer 14 und 16 Buchstabe b tritt am 1. November 2024 in Kraft. (6) Artikel 5 Nummer 2 und 3 sowie die Artikel 6 und 7 treten am 1. Januar 2025 in Kraft. (7) Artikel 70 tritt am 15. April 2025 in Kraft. (8) Artikel 57 Nummer 1 bis 13, 15 und 16 Buchstabe a und Artikel 58 treten am 1. Mai 2025 in Kraft. (9) Artikel 36 Nummer 1 und 2 tritt am 1. November 2025 in Kraft. (10) Artikel 3 Nummer 3 und 6, Artikel 4 Nummer 2 und Artikel 66 Nummer 1 treten am 1. Januar 2026 in Kraft. (11) Die Artikel 59 und 61 Nummer 1 Buchstabe b, Nummer 2 und 4 treten am 1. Januar 2027 in Kraft. (12) Am 1. Januar 2028 treten in Kraft: 1. Artikel 32 Nummer 4 und 5, 2. Artikel 61 Nummer 1 Buchstabe a und Nummer 3, Seite 34 von 35 Bundesgesetzblatt Jahrgang 2024 Teil I Nr. 323, ausgegeben zu Bonn am 29. Oktober 2024 3. Artikel 66 Nummer 3 Buchstabe c und Nummer 4 sowie 4. Artikel 67. (13) Artikel 62 tritt am 1. Januar 2030 in Kraft.",
+       "date": "2027-01-01",
+       "evidence": [
+        {
+         "document": "bgbl-1-2024-323",
+         "sha256": "dbfcf74401b5009b4346362971985eded52cfcab21ab04bdec2485e626aaa55a",
+         "source": "BGBl",
+         "url": "https://www.recht.bund.de/bgbl/1/2024/323/regelungstext.pdf?__blob=publicationFile&v=1"
+        },
+        {
+         "procedure": "309845",
+         "source": "DIP",
+         "url": "https://dip.bundestag.de/vorgang/309845"
+        }
+       ],
+       "status": "official_commencement_clause"
+      },
+      "promulgated": {
+       "basis": "recht.bund.de document metadata 'Veröffentlichungsdatum' (Verkündung)",
+       "date": "2024-10-29",
+       "evidence": [
+        {
+         "field": "Veröffentlichungsdatum",
+         "source": "recht.bund.de",
+         "url": "https://www.recht.bund.de/bgbl/1/2024/323/VO.html",
+         "value": "29.10.2024"
+        }
+       ],
+       "status": "official"
+      }
+     },
+     "state": "pending",
+     "text_effect": {
+      "after_version": 6,
+      "attribution": "future_version_reconstructed",
+      "before_version": 5,
+      "observed_from": null,
+      "previous_observed_until": null,
+      "reconstructed": true,
+      "verification": "replay_unverified"
+     }
+    }
+   ]
+  },
+  {
+   "amending_act": {
+    "citation": "Art. 1 Nr. 37 G v. 16.4.2026 (BGBl. 2026 I Nr. 107)",
+    "document_id": "bgbl-1-2026-107",
+    "title": "Dreizehntes Gesetz zur Änderung des Zweiten Buches Sozialgesetzbuch und anderer Gesetze",
+    "gazette": {
+     "name": "BGBl.",
+     "number": 107,
+     "page": null,
+     "part": "I",
+     "reference": "BGBl. 2026 I Nr. 107",
+     "year": 2026
+    },
+    "article": "1",
+    "items": [
+     "37"
+    ],
+    "url": "https://www.recht.bund.de/bgbl/1/2026/107/VO.html",
+    "procedure_id": "329524"
+   },
+   "dates": {
+    "adopted": {
+     "basis": "recht.bund.de document metadata 'Ausfertigungsdatum' of the promulgated document",
+     "date": "2026-04-16",
+     "evidence": [
+      {
+       "field": "Ausfertigungsdatum",
+       "source": "recht.bund.de",
+       "url": "https://www.recht.bund.de/bgbl/1/2026/107/VO.html",
+       "value": "16.04.2026"
+      }
+     ],
+     "status": "official"
+    },
+    "applies_from": {
+     "date": null,
+     "status": "not_stated"
+    },
+    "in_force": {
+     "date": null,
+     "reason": "unresolved_sub_article_scope",
+     "status": "unknown"
+    },
+    "promulgated": {
+     "basis": "recht.bund.de document metadata 'Veröffentlichungsdatum' (Verkündung)",
+     "date": "2026-04-22",
+     "evidence": [
+      {
+       "field": "Veröffentlichungsdatum",
+       "source": "recht.bund.de",
+       "url": "https://www.recht.bund.de/bgbl/1/2026/107/VO.html",
+       "value": "22.04.2026"
+      }
+     ],
+     "status": "official"
+    }
+   },
+   "state": "incorporated_date_unknown",
+   "pending": false,
+   "norms": [
+    {
+     "change_id": "chg:fbb9205a3f2dab04c569cfd5",
+     "norm_id": "de/bund/sgb_2/para/52",
+     "norm_label": "§ 52",
+     "change_type": "geändert",
+     "dates": {
+      "adopted": {
+       "basis": "recht.bund.de document metadata 'Ausfertigungsdatum' of the promulgated document",
+       "date": "2026-04-16",
+       "evidence": [
+        {
+         "field": "Ausfertigungsdatum",
+         "source": "recht.bund.de",
+         "url": "https://www.recht.bund.de/bgbl/1/2026/107/VO.html",
+         "value": "16.04.2026"
+        }
+       ],
+       "status": "official"
+      },
+      "applies_from": {
+       "date": null,
+       "status": "not_stated"
+      },
+      "in_force": {
+       "date": null,
+       "reason": "unresolved_sub_article_scope",
+       "status": "unknown"
+      },
+      "promulgated": {
+       "basis": "recht.bund.de document metadata 'Veröffentlichungsdatum' (Verkündung)",
+       "date": "2026-04-22",
+       "evidence": [
+        {
+         "field": "Veröffentlichungsdatum",
+         "source": "recht.bund.de",
+         "url": "https://www.recht.bund.de/bgbl/1/2026/107/VO.html",
+         "value": "22.04.2026"
+        }
+       ],
+       "status": "official"
+      }
+     },
+     "state": "incorporated_date_unknown",
+     "text_effect": {
+      "after_version": 6,
+      "attribution": "replay_verified_between_captures",
+      "before_version": 5,
+      "observed_from": "2026-07-06",
+      "previous_observed_until": "2026-03-10",
+      "reconstructed": false,
+      "verification": "replay_verified"
+     }
+    },
+    {
+     "change_id": "chg:f4644fbb48c6ebbabf14bd68",
+     "norm_id": "de/bund/sgb_2/para/40a",
+     "norm_label": "§ 40a",
+     "change_type": "geändert",
+     "dates": {
+      "adopted": {
+       "basis": "recht.bund.de document metadata 'Ausfertigungsdatum' of the promulgated document",
+       "date": "2026-04-16",
+       "evidence": [
+        {
+         "field": "Ausfertigungsdatum",
+         "source": "recht.bund.de",
+         "url": "https://www.recht.bund.de/bgbl/1/2026/107/VO.html",
+         "value": "16.04.2026"
+        }
+       ],
+       "status": "official"
+      },
+      "applies_from": {
+       "date": null,
+       "status": "not_stated"
+      },
+      "in_force": {
+       "date": null,
+       "reason": "unresolved_sub_article_scope",
+       "status": "unknown"
+      },
+      "promulgated": {
+       "basis": "recht.bund.de document metadata 'Veröffentlichungsdatum' (Verkündung)",
+       "date": "2026-04-22",
+       "evidence": [
+        {
+         "field": "Veröffentlichungsdatum",
+         "source": "recht.bund.de",
+         "url": "https://www.recht.bund.de/bgbl/1/2026/107/VO.html",
+         "value": "22.04.2026"
+        }
+       ],
+       "status": "official"
+      }
+     },
+     "state": "incorporated_date_unknown",
+     "text_effect": {
+      "after_version": 1,
+      "attribution": "replay_verified_between_captures",
+      "before_version": 0,
+      "observed_from": "2026-07-06",
+      "previous_observed_until": "2026-03-10",
+      "reconstructed": false,
+      "verification": "replay_verified"
+     }
+    },
+    {
+     "change_id": "chg:e73d9f787d5c8adfcc433309",
+     "norm_id": "de/bund/sgb_2/para/65",
+     "norm_label": "§ 65",
+     "change_type": "eingefügt",
+     "dates": {
+      "adopted": {
+       "basis": "recht.bund.de document metadata 'Ausfertigungsdatum' of the promulgated document",
+       "date": "2026-04-16",
+       "evidence": [
+        {
+         "field": "Ausfertigungsdatum",
+         "source": "recht.bund.de",
+         "url": "https://www.recht.bund.de/bgbl/1/2026/107/VO.html",
+         "value": "16.04.2026"
+        }
+       ],
+       "status": "official"
+      },
+      "applies_from": {
+       "date": null,
+       "status": "not_stated"
+      },
+      "in_force": {
+       "date": null,
+       "reason": "unresolved_sub_article_scope",
+       "status": "unknown"
+      },
+      "promulgated": {
+       "basis": "recht.bund.de document metadata 'Veröffentlichungsdatum' (Verkündung)",
+       "date": "2026-04-22",
+       "evidence": [
+        {
+         "field": "Veröffentlichungsdatum",
+         "source": "recht.bund.de",
+         "url": "https://www.recht.bund.de/bgbl/1/2026/107/VO.html",
+         "value": "22.04.2026"
+        }
+       ],
+       "status": "official"
+      }
+     },
+     "state": "date_unknown",
+     "text_effect": null
+    },
+    {
+     "change_id": "chg:e4c9d75b5e1fbbe640a62ebd",
+     "norm_id": "de/bund/sgb_2/para/22",
+     "norm_label": "§ 22",
+     "change_type": "geändert",
+     "dates": {
+      "adopted": {
+       "basis": "recht.bund.de document metadata 'Ausfertigungsdatum' of the promulgated document",
+       "date": "2026-04-16",
+       "evidence": [
+        {
+         "field": "Ausfertigungsdatum",
+         "source": "recht.bund.de",
+         "url": "https://www.recht.bund.de/bgbl/1/2026/107/VO.html",
+         "value": "16.04.2026"
+        }
+       ],
+       "status": "official"
+      },
+      "applies_from": {
+       "date": null,
+       "status": "not_stated"
+      },
+      "in_force": {
+       "date": null,
+       "reason": "unresolved_sub_article_scope",
+       "status": "unknown"
+      },
+      "promulgated": {
+       "basis": "recht.bund.de document metadata 'Veröffentlichungsdatum' (Verkündung)",
+       "date": "2026-04-22",
+       "evidence": [
+        {
+         "field": "Veröffentlichungsdatum",
+         "source": "recht.bund.de",
+         "url": "https://www.recht.bund.de/bgbl/1/2026/107/VO.html",
+         "value": "22.04.2026"
+        }
+       ],
+       "status": "official"
+      }
+     },
+     "state": "incorporated_date_unknown",
+     "text_effect": {
+      "after_version": 12,
+      "attribution": "bracketed_promulgation_only",
+      "before_version": 11,
+      "observed_from": "2026-07-06",
+      "previous_observed_until": "2026-03-10",
+      "reconstructed": false,
+      "verification": "bracketed_by_captures"
+     }
+    }
+   ]
+  }
+ ],
+ "warnings": [],
+ "failed_components": [],
+ "total": 81,
+ "offset": 0,
+ "limit": 3,
+ "act": {
+  "act_id": "fed_sgb_2",
+  "jurabk": "SGB 2",
+  "title": "Sozialgesetzbuch (SGB) Zweites Buch (II) - Grundsicherung für Arbeitsuchende",
+  "states": 107,
+  "states_by_source": {
+   "gii_daily": 3,
+   "neuris": 1,
+   "wayback_gii": 103
+  },
+  "earliest_text": "2006-02-23",
+  "norms": 164,
+  "norm_versions": 718
+ },
+ "change_summary": {
+  "act_stand_note": {
+   "amending_act": {
+    "article": "1a",
+    "citation_text": "Art. 1a G v. 16.4.2026 I Nr. 107",
+    "gazette_lookup": {
+     "document_id": "bgbl-1-2026-107",
+     "number": 107,
+     "page": null,
+     "part": "I",
+     "stated_instrument_date": "2026-04-16",
+     "year": 2026
+    }
+   },
+   "last_amended_by_text": "Art. 1a G v. 16.4.2026 I Nr. 107",
+   "norm_specific": false,
+   "note": "GII's act-level 'zuletzt geändert' statement; it does not say which norms that amendment touched",
+   "schema": "kerf-gii-stand-note/1",
+   "scope": "act",
+   "source": "GII Stand",
+   "text": "zuletzt geändert durch Art. 1a G v. 16.4.2026 I Nr. 107"
+  },
+  "as_of": "2026-09-28",
+  "completeness": {
+   "event_history": "partial",
+   "event_history_start": "2006-03-30",
+   "gaps": [
+    {
+     "count": 21,
+     "kind": "stand_amending_act_not_in_event_store",
+     "scope": "act"
+    }
+   ],
+   "text_history_start": "2006-02-23"
+  },
+  "counts": {
+   "act_states": 107,
+   "act_states_by_source": {
+    "gii_daily": 3,
+    "neuris": 1,
+    "wayback_gii": 103
+   },
+   "amending_acts": 76,
+   "events": 235,
+   "events_date_unknown": 215,
+   "events_pending": 3,
+   "events_with_in_force": 20,
+   "versions": 718,
+   "versions_by_role": {}
+  },
+  "date_policy": "dates come only from the promulgation document (heading, issue header) and the commencement clause; an unknown date stays null and is listed in unknown_dates",
+  "documentation_notes": [
+   {
+    "amending_act": {
+     "article": "1b",
+     "citation_text": "Art. 1b G v. 16.4.2026 I Nr. 107",
+     "gazette_lookup": {
+      "document_id": "bgbl-1-2026-107",
+      "number": 107,
+      "page": null,
+      "part": "I",
+      "stated_instrument_date": "2026-04-16",
+      "year": 2026
+     }
+    },
+    "announced_effective_dates": [],
+    "applies_to_subject": null,
+    "change_id": null,
+    "documentation_complete": null,
+    "indirect": true,
+    "kind": "indirect_change_incorporated",
+    "observed_at": "2026-09-28",
+    "schema": "kerf-gii-stand-note/1",
+    "source": "GII Stand (Hinweis)",
+    "text": "Mittelbare Änderung durch Art. 1b G v. 16.4.2026 I Nr. 107 ist berücksichtigt",
+    "text_incorporated": true
+   }
+  ],
+  "last_change": {
+   "amending_act": {
+    "article": "8",
+    "citation": "Art. 8 Nr. 1 G v. 22.12.2025 (BGBl. 2025 I Nr. 363)",
+    "document_id": "bgbl-1-2025-363",
+    "gazette": {
+     "name": "BGBl.",
+     "number": 363,
+     "page": null,
+     "part": "I",
+     "reference": "BGBl. 2025 I Nr. 363",
+     "year": 2025
+    },
+    "items": [
+     "1"
+    ],
+    "procedure_id": "325663",
+    "title": "Steueränderungsgesetz 2025",
+    "url": "https://www.recht.bund.de/bgbl/1/2025/363/VO.html"
+   },
+   "change_id": "chg:898976c3be05091d4e3cea49",
+   "change_type": "geändert",
+   "dates": {
+    "adopted": {
+     "basis": "recht.bund.de document metadata 'Ausfertigungsdatum' of the promulgated document",
+     "date": "2025-12-22",
+     "evidence": [
+      {
+       "field": "Ausfertigungsdatum",
+       "source": "recht.bund.de",
+       "url": "https://www.recht.bund.de/bgbl/1/2025/363/VO.html",
+       "value": "22.12.2025"
+      }
+     ],
+     "status": "official"
+    },
+    "applies_from": {
+     "date": null,
+     "status": "not_stated"
+    },
+    "in_force": {
+     "basis": "commencement clause of the amending act, resolved for the whole amending article (official_dip_article_commencement_clause)",
+     "clause": "Artikel 12 Inkrafttreten (1) Dieses Gesetz tritt vorbehaltlich des Absatzes 2 am Tag nach der Verkündung in Kraft. (2) Die Artikel 2 und 4 bis 11 treten am 1. Januar 2026 in Kraft.",
+     "date": "2026-01-01",
+     "evidence": [
+      {
+       "document": "bgbl-1-2025-363",
+       "sha256": "881fa128d966200b75c207c4550959c55c27d7c202adf3b8f7d9e6485b342e35",
+       "source": "BGBl",
+       "url": "https://www.recht.bund.de/bgbl/1/2025/363/regelungstext.pdf?__blob=publicationFile&v=3"
+      },
+      {
+       "procedure": "325663",
+       "source": "DIP",
+       "url": "https://dip.bundestag.de/vorgang/325663"
+      }
+     ],
+     "status": "official_commencement_clause"
+    },
+    "promulgated": {
+     "basis": "recht.bund.de document metadata 'Veröffentlichungsdatum' (Verkündung)",
+     "date": "2025-12-23",
+     "evidence": [
+      {
+       "field": "Veröffentlichungsdatum",
+       "source": "recht.bund.de",
+       "url": "https://www.recht.bund.de/bgbl/1/2025/363/VO.html",
+       "value": "23.12.2025"
+      }
+     ],
+     "status": "official"
+    }
+   },
+   "norm_id": "de/bund/sgb_2/para/11a",
+   "norm_label": "§ 11a",
+   "pending": false,
+   "source_role": "official_promulgation",
+   "state": "in_force",
+   "text_effect": {
+    "after_version": 6,
+    "attribution": "bracketed_by_captures",
+    "before_version": 5,
+    "observed_from": "2026-01-26",
+    "previous_observed_until": "2025-11-02",
+    "reconstructed": false,
+    "verification": "command_wording_reflected"
+   }
+  },
+  "last_incorporated_undated": {
+   "amending_act": {
+    "article": "1",
+    "citation": "Art. 1 Nr. 37 G v. 16.4.2026 (BGBl. 2026 I Nr. 107)",
+    "document_id": "bgbl-1-2026-107",
+    "gazette": {
+     "name": "BGBl.",
+     "number": 107,
+     "page": null,
+     "part": "I",
+     "reference": "BGBl. 2026 I Nr. 107",
+     "year": 2026
+    },
+    "items": [
+     "37"
+    ],
+    "procedure_id": "329524",
+    "title": "Dreizehntes Gesetz zur Änderung des Zweiten Buches Sozialgesetzbuch und anderer Gesetze",
+    "url": "https://www.recht.bund.de/bgbl/1/2026/107/VO.html"
+   },
+   "change_id": "chg:fbb9205a3f2dab04c569cfd5",
+   "change_type": "geändert",
+   "dates": {
+    "adopted": {
+     "basis": "recht.bund.de document metadata 'Ausfertigungsdatum' of the promulgated document",
+     "date": "2026-04-16",
+     "evidence": [
+      {
+       "field": "Ausfertigungsdatum",
+       "source": "recht.bund.de",
+       "url": "https://www.recht.bund.de/bgbl/1/2026/107/VO.html",
+       "value": "16.04.2026"
+      }
+     ],
+     "status": "official"
+    },
+    "applies_from": {
+     "date": null,
+     "status": "not_stated"
+    },
+    "in_force": {
+     "date": null,
+     "reason": "unresolved_sub_article_scope",
+     "status": "unknown"
+    },
+    "promulgated": {
+     "basis": "recht.bund.de document metadata 'Veröffentlichungsdatum' (Verkündung)",
+     "date": "2026-04-22",
+     "evidence": [
+      {
+       "field": "Veröffentlichungsdatum",
+       "source": "recht.bund.de",
+       "url": "https://www.recht.bund.de/bgbl/1/2026/107/VO.html",
+       "value": "22.04.2026"
+      }
+     ],
+     "status": "official"
+    }
+   },
+   "norm_id": "de/bund/sgb_2/para/52",
+   "norm_label": "§ 52",
+   "pending": false,
+   "source_role": "official_promulgation",
+   "state": "incorporated_date_unknown",
+   "text_effect": {
+    "after_version": 6,
+    "attribution": "replay_verified_between_captures",
+    "before_version": 5,
+    "observed_from": "2026-07-06",
+    "previous_observed_until": "2026-03-10",
+    "reconstructed": false,
+    "verification": "replay_verified"
+   }
+  },
+  "next_pending_change": {
+   "amending_act": {
+    "article": "59",
+    "citation": "Art. 59 Nr. 1 G v. 23.10.2024 (BGBl. 2024 I Nr. 323)",
+    "document_id": "bgbl-1-2024-323",
+    "gazette": {
+     "name": "BGBl.",
+     "number": 323,
+     "page": null,
+     "part": "I",
+     "reference": "BGBl. 2024 I Nr. 323",
+     "year": 2024
+    },
+    "items": [
+     "1"
+    ],
+    "procedure_id": "309845",
+    "title": "Viertes Gesetz zur Entlastung der Bürgerinnen und Bürger, der Wirtschaft sowie der Verwaltung von Bürokratie (Viertes Bürokratieentlastungsgesetz)",
+    "url": "https://www.recht.bund.de/bgbl/1/2024/323/VO.html"
+   },
+   "change_id": "chg:125a538ae04afc90c79b5c25",
+   "change_type": "geändert",
+   "dates": {
+    "adopted": {
+     "basis": "recht.bund.de document metadata 'Ausfertigungsdatum' of the promulgated document",
+     "date": "2024-10-23",
+     "evidence": [
+      {
+       "field": "Ausfertigungsdatum",
+       "source": "recht.bund.de",
+       "url": "https://www.recht.bund.de/bgbl/1/2024/323/VO.html",
+       "value": "23.10.2024"
+      }
+     ],
+     "status": "official"
+    },
+    "applies_from": {
+     "date": null,
+     "status": "not_stated"
+    },
+    "in_force": {
+     "basis": "commencement clause of the amending act, resolved for the whole amending article (official_dip_article_commencement_clause)",
+     "clause": "Artikel 74 Inkrafttreten (1) Dieses Gesetz tritt vorbehaltlich der Absätze 2 bis 13 am ersten Tag des auf die Verkündung folgenden Quartals in Kraft. (2) Artikel 65 Nummer 3 tritt mit Wirkung vom 1. Januar 2024 in Kraft. (3) Artikel 3 Nummer 2 und 5, Artikel 4 Nummer 3, die Artikel 8, 10 Nummer 2, Artikel 33 Nummer 1 bis 3, 5 und 6, Artikel 39 Nummer 2 und Artikel 66 Nummer 2 treten am Tag nach der Verkündung in Kraft. (4) Artikel 18 Nummer 3 und 4 und Artikel 19 treten am 1. November 2024 in Kraft. (5) Artikel 57 Nummer 14 und 16 Buchstabe b tritt am 1. November 2024 in Kraft. (6) Artikel 5 Nummer 2 und 3 sowie die Artikel 6 und 7 treten am 1. Januar 2025 in Kraft. (7) Artikel 70 tritt am 15. April 2025 in Kraft. (8) Artikel 57 Nummer 1 bis 13, 15 und 16 Buchstabe a und Artikel 58 treten am 1. Mai 2025 in Kraft. (9) Artikel 36 Nummer 1 und 2 tritt am 1. November 2025 in Kraft. (10) Artikel 3 Nummer 3 und 6, Artikel 4 Nummer 2 und Artikel 66 Nummer 1 treten am 1. Januar 2026 in Kraft. (11) Die Artikel 59 und 61 Nummer 1 Buchstabe b, Nummer 2 und 4 treten am 1. Januar 2027 in Kraft. (12) Am 1. Januar 2028 treten in Kraft: 1. Artikel 32 Nummer 4 und 5, 2. Artikel 61 Nummer 1 Buchstabe a und Nummer 3, Seite 34 von 35 Bundesgesetzblatt Jahrgang 2024 Teil I Nr. 323, ausgegeben zu Bonn am 29. Oktober 2024 3. Artikel 66 Nummer 3 Buchstabe c und Nummer 4 sowie 4. Artikel 67. (13) Artikel 62 tritt am 1. Januar 2030 in Kraft.",
+     "date": "2027-01-01",
+     "evidence": [
+      {
+       "document": "bgbl-1-2024-323",
+       "sha256": "dbfcf74401b5009b4346362971985eded52cfcab21ab04bdec2485e626aaa55a",
+       "source": "BGBl",
+       "url": "https://www.recht.bund.de/bgbl/1/2024/323/regelungstext.pdf?__blob=publicationFile&v=1"
+      },
+      {
+       "procedure": "309845",
+       "source": "DIP",
+       "url": "https://dip.bundestag.de/vorgang/309845"
+      }
+     ],
+     "status": "official_commencement_clause"
+    },
+    "promulgated": {
+     "basis": "recht.bund.de document metadata 'Veröffentlichungsdatum' (Verkündung)",
+     "date": "2024-10-29",
+     "evidence": [
+      {
+       "field": "Veröffentlichungsdatum",
+       "source": "recht.bund.de",
+       "url": "https://www.recht.bund.de/bgbl/1/2024/323/VO.html",
+       "value": "29.10.2024"
+      }
+     ],
+     "status": "official"
+    }
+   },
+   "norm_id": "de/bund/sgb_2/para/6b",
+   "norm_label": "§ 6b",
+   "pending": true,
+   "source_role": "official_promulgation",
+   "state": "pending",
+   "text_effect": {
+    "after_version": 6,
+    "attribution": "future_version_reconstructed",
+    "before_version": 5,
+    "observed_from": null,
+    "previous_observed_until": null,
+    "reconstructed": true,
+    "verification": "replay_unverified"
+   }
+  },
+  "pending_changes": [
+   {
+    "amending_act": {
+     "article": "59",
+     "citation": "Art. 59 Nr. 1 G v. 23.10.2024 (BGBl. 2024 I Nr. 323)",
+     "document_id": "bgbl-1-2024-323",
+     "gazette": {
+      "name": "BGBl.",
+      "number": 323,
+      "page": null,
+      "part": "I",
+      "reference": "BGBl. 2024 I Nr. 323",
+      "year": 2024
+     },
+     "items": [
+      "1"
+     ],
+     "procedure_id": "309845",
+     "title": "Viertes Gesetz zur Entlastung der Bürgerinnen und Bürger, der Wirtschaft sowie der Verwaltung von Bürokratie (Viertes Bürokratieentlastungsgesetz)",
+     "url": "https://www.recht.bund.de/bgbl/1/2024/323/VO.html"
+    },
+    "change_id": "chg:125a538ae04afc90c79b5c25",
+    "change_type": "geändert",
+    "dates": {
+     "adopted": {
+      "basis": "recht.bund.de document metadata 'Ausfertigungsdatum' of the promulgated document",
+      "date": "2024-10-23",
+      "evidence": [
+       {
+        "field": "Ausfertigungsdatum",
+        "source": "recht.bund.de",
+        "url": "https://www.recht.bund.de/bgbl/1/2024/323/VO.html",
+        "value": "23.10.2024"
+       }
+      ],
+      "status": "official"
+     },
+     "applies_from": {
+      "date": null,
+      "status": "not_stated"
+     },
+     "in_force": {
+      "basis": "commencement clause of the amending act, resolved for the whole amending article (official_dip_article_commencement_clause)",
+      "clause": "Artikel 74 Inkrafttreten (1) Dieses Gesetz tritt vorbehaltlich der Absätze 2 bis 13 am ersten Tag des auf die Verkündung folgenden Quartals in Kraft. (2) Artikel 65 Nummer 3 tritt mit Wirkung vom 1. Januar 2024 in Kraft. (3) Artikel 3 Nummer 2 und 5, Artikel 4 Nummer 3, die Artikel 8, 10 Nummer 2, Artikel 33 Nummer 1 bis 3, 5 und 6, Artikel 39 Nummer 2 und Artikel 66 Nummer 2 treten am Tag nach der Verkündung in Kraft. (4) Artikel 18 Nummer 3 und 4 und Artikel 19 treten am 1. November 2024 in Kraft. (5) Artikel 57 Nummer 14 und 16 Buchstabe b tritt am 1. November 2024 in Kraft. (6) Artikel 5 Nummer 2 und 3 sowie die Artikel 6 und 7 treten am 1. Januar 2025 in Kraft. (7) Artikel 70 tritt am 15. April 2025 in Kraft. (8) Artikel 57 Nummer 1 bis 13, 15 und 16 Buchstabe a und Artikel 58 treten am 1. Mai 2025 in Kraft. (9) Artikel 36 Nummer 1 und 2 tritt am 1. November 2025 in Kraft. (10) Artikel 3 Nummer 3 und 6, Artikel 4 Nummer 2 und Artikel 66 Nummer 1 treten am 1. Januar 2026 in Kraft. (11) Die Artikel 59 und 61 Nummer 1 Buchstabe b, Nummer 2 und 4 treten am 1. Januar 2027 in Kraft. (12) Am 1. Januar 2028 treten in Kraft: 1. Artikel 32 Nummer 4 und 5, 2. Artikel 61 Nummer 1 Buchstabe a und Nummer 3, Seite 34 von 35 Bundesgesetzblatt Jahrgang 2024 Teil I Nr. 323, ausgegeben zu Bonn am 29. Oktober 2024 3. Artikel 66 Nummer 3 Buchstabe c und Nummer 4 sowie 4. Artikel 67. (13) Artikel 62 tritt am 1. Januar 2030 in Kraft.",
+      "date": "2027-01-01",
+      "evidence": [
+       {
+        "document": "bgbl-1-2024-323",
+        "sha256": "dbfcf74401b5009b4346362971985eded52cfcab21ab04bdec2485e626aaa55a",
+        "source": "BGBl",
+        "url": "https://www.recht.bund.de/bgbl/1/2024/323/regelungstext.pdf?__blob=publicationFile&v=1"
+       },
+       {
+        "procedure": "309845",
+        "source": "DIP",
+        "url": "https://dip.bundestag.de/vorgang/309845"
+       }
+      ],
+      "status": "official_commencement_clause"
+     },
+     "promulgated": {
+      "basis": "recht.bund.de document metadata 'Veröffentlichungsdatum' (Verkündung)",
+      "date": "2024-10-29",
+      "evidence": [
+       {
+        "field": "Veröffentlichungsdatum",
+        "source": "recht.bund.de",
+        "url": "https://www.recht.bund.de/bgbl/1/2024/323/VO.html",
+        "value": "29.10.2024"
+       }
+      ],
+      "status": "official"
+     }
+    },
+    "norm_id": "de/bund/sgb_2/para/6b",
+    "norm_label": "§ 6b",
+    "pending": true,
+    "source_role": "official_promulgation",
+    "state": "pending",
+    "text_effect": {
+     "after_version": 6,
+     "attribution": "future_version_reconstructed",
+     "before_version": 5,
+     "observed_from": null,
+     "previous_observed_until": null,
+     "reconstructed": true,
+     "verification": "replay_unverified"
+    }
+   },
+   {
+    "amending_act": {
+     "article": "59",
+     "citation": "Art. 59 Nr. 2 G v. 23.10.2024 (BGBl. 2024 I Nr. 323)",
+     "document_id": "bgbl-1-2024-323",
+     "gazette": {
+      "name": "BGBl.",
+      "number": 323,
+      "page": null,
+      "part": "I",
+      "reference": "BGBl. 2024 I Nr. 323",
+      "year": 2024
+     },
+     "items": [
+      "2.a,2.b,2.c"
+     ],
+     "procedure_id": "309845",
+     "title": "Viertes Gesetz zur Entlastung der Bürgerinnen und Bürger, der Wirtschaft sowie der Verwaltung von Bürokratie (Viertes Bürokratieentlastungsgesetz)",
+     "url": "https://www.recht.bund.de/bgbl/1/2024/323/VO.html"
+    },
+    "change_id": "chg:7a172da4adbf33401ae3b707",
+    "change_type": "geändert",
+    "dates": {
+     "adopted": {
+      "basis": "recht.bund.de document metadata 'Ausfertigungsdatum' of the promulgated document",
+      "date": "2024-10-23",
+      "evidence": [
+       {
+        "field": "Ausfertigungsdatum",
+        "source": "recht.bund.de",
+        "url": "https://www.recht.bund.de/bgbl/1/2024/323/VO.html",
+        "value": "23.10.2024"
+       }
+      ],
+      "status": "official"
+     },
+     "applies_from": {
+      "date": null,
+      "status": "not_stated"
+     },
+     "in_force": {
+      "basis": "commencement clause of the amending act, resolved for the whole amending article (official_dip_article_commencement_clause)",
+      "clause": "Artikel 74 Inkrafttreten (1) Dieses Gesetz tritt vorbehaltlich der Absätze 2 bis 13 am ersten Tag des auf die Verkündung folgenden Quartals in Kraft. (2) Artikel 65 Nummer 3 tritt mit Wirkung vom 1. Januar 2024 in Kraft. (3) Artikel 3 Nummer 2 und 5, Artikel 4 Nummer 3, die Artikel 8, 10 Nummer 2, Artikel 33 Nummer 1 bis 3, 5 und 6, Artikel 39 Nummer 2 und Artikel 66 Nummer 2 treten am Tag nach der Verkündung in Kraft. (4) Artikel 18 Nummer 3 und 4 und Artikel 19 treten am 1. November 2024 in Kraft. (5) Artikel 57 Nummer 14 und 16 Buchstabe b tritt am 1. November 2024 in Kraft. (6) Artikel 5 Nummer 2 und 3 sowie die Artikel 6 und 7 treten am 1. Januar 2025 in Kraft. (7) Artikel 70 tritt am 15. April 2025 in Kraft. (8) Artikel 57 Nummer 1 bis 13, 15 und 16 Buchstabe a und Artikel 58 treten am 1. Mai 2025 in Kraft. (9) Artikel 36 Nummer 1 und 2 tritt am 1. November 2025 in Kraft. (10) Artikel 3 Nummer 3 und 6, Artikel 4 Nummer 2 und Artikel 66 Nummer 1 treten am 1. Januar 2026 in Kraft. (11) Die Artikel 59 und 61 Nummer 1 Buchstabe b, Nummer 2 und 4 treten am 1. Januar 2027 in Kraft. (12) Am 1. Januar 2028 treten in Kraft: 1. Artikel 32 Nummer 4 und 5, 2. Artikel 61 Nummer 1 Buchstabe a und Nummer 3, Seite 34 von 35 Bundesgesetzblatt Jahrgang 2024 Teil I Nr. 323, ausgegeben zu Bonn am 29. Oktober 2024 3. Artikel 66 Nummer 3 Buchstabe c und Nummer 4 sowie 4. Artikel 67. (13) Artikel 62 tritt am 1. Januar 2030 in Kraft.",
+      "date": "2027-01-01",
+      "evidence": [
+       {
+        "document": "bgbl-1-2024-323",
+        "sha256": "dbfcf74401b5009b4346362971985eded52cfcab21ab04bdec2485e626aaa55a",
+        "source": "BGBl",
+        "url": "https://www.recht.bund.de/bgbl/1/2024/323/regelungstext.pdf?__blob=publicationFile&v=1"
+       },
+       {
+        "procedure": "309845",
+        "source": "DIP",
+        "url": "https://dip.bundestag.de/vorgang/309845"
+       }
+      ],
+      "status": "official_commencement_clause"
+     },
+     "promulgated": {
+      "basis": "recht.bund.de document metadata 'Veröffentlichungsdatum' (Verkündung)",
+      "date": "2024-10-29",
+      "evidence": [
+       {
+        "field": "Veröffentlichungsdatum",
+        "source": "recht.bund.de",
+        "url": "https://www.recht.bund.de/bgbl/1/2024/323/VO.html",
+        "value": "29.10.2024"
+       }
+      ],
+      "status": "official"
+     }
+    },
+    "norm_id": "de/bund/sgb_2/para/56",
+    "norm_label": "§ 56",
+    "pending": true,
+    "source_role": "official_promulgation",
+    "state": "pending",
+    "text_effect": null
+   }
+  ],
+  "schema": "kerf-change-summary/1",
+  "scope": "act",
+  "source_role": null,
+  "subject": "fed_sgb_2",
+  "unknown_dates": [
+   {
+    "amending_act": "Art. 1 Nr. 2 G (BGBl. I 2006 S. 558)",
+    "change_id": "chg:1ca32eed4cbe2875a8188874",
+    "field": "adopted",
+    "norm_label": "§ 7",
+    "reason": "no evidenced Ausfertigungsdatum in the stored promulgation document"
+   },
+   {
+    "amending_act": "Art. 1 Nr. 2 G (BGBl. I 2006 S. 558)",
+    "change_id": "chg:1ca32eed4cbe2875a8188874",
+    "field": "in_force",
+    "norm_label": "§ 7",
+    "reason": "unresolved_legacy_commencement_review"
+   },
+   {
+    "amending_act": "Art. 1 Nr. 1 G (BGBl. I 2006 S. 558)",
+    "change_id": "chg:57aaad708baa14cfbab126c9",
+    "field": "adopted",
+    "norm_label": "§ 5",
+    "reason": "no evidenced Ausfertigungsdatum in the stored promulgation document"
+   },
+   {
+    "amending_act": "Art. 1 Nr. 1 G (BGBl. I 2006 S. 558)",
+    "change_id": "chg:57aaad708baa14cfbab126c9",
+    "field": "in_force",
+    "norm_label": "§ 5",
+    "reason": "unresolved_legacy_commencement_review"
+   },
+   {
+    "amending_act": "Art. 1 Nr. 3 G (BGBl. I 2006 S. 558)",
+    "change_id": "chg:b4743ad87f2b8d4470fa5544",
+    "field": "adopted",
+    "norm_label": "§ 9",
+    "reason": "no evidenced Ausfertigungsdatum in the stored promulgation document"
+   }
+  ],
+  "unknown_dates_total": 374
+ }
+}

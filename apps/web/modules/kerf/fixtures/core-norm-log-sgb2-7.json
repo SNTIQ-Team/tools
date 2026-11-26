@@ -1,0 +1,940 @@
+{
+ "schema": "kerf-evidence-envelope/1",
+ "status": "ok",
+ "operation": "law_log",
+ "request_scope": {
+  "norm": "de/bund/sgb_2/para/7"
+ },
+ "applied_constraints": {
+  "canonical_id": "de/bund/sgb_2/para/7",
+  "act_id": "fed_sgb_2",
+  "known_at": "latest_published_knowledge",
+  "history_schema": "kerf-norm-history/1"
+ },
+ "ignored_arguments": [],
+ "snapshot_id": null,
+ "evidence": [
+  {
+   "id": "de/bund/sgb_2/para/7@2024-06-01#99028ed1d133",
+   "canonical_id": "de/bund/sgb_2/para/7",
+   "version_id": "de/bund/sgb_2/para/7@2024-06-01#99028ed1d133",
+   "pinpoint": {
+    "label": "§ 7",
+    "title": "Leistungsberechtigte",
+    "unit": "para",
+    "number": "7"
+   },
+   "content_hash": {
+    "algorithm": "sha256",
+    "value": "99028ed1d1334ff009ccad8265976f35dc6fede76d31a52248ca336f3ec00cd6",
+    "text_sha256": "8815787049a25ca366f733d2c91048cbfb769dc40a21bb3fbcf7a0a84cd335b4"
+   },
+   "source": {
+    "url": "https://www.gesetze-im-internet.de/sgb_2/__7.html",
+    "norm_url": "https://www.gesetze-im-internet.de/sgb_2/__7.html",
+    "norm_url_status": "resolved",
+    "norm_url_basis": "GII table of contents captured 2026-09-28T07:18:18Z (sha256 d70e2f7abb1c…)",
+    "act_url": "https://www.gesetze-im-internet.de/sgb_2/",
+    "role": "official_consolidation",
+    "observed_at": "2024-06-01",
+    "state_sha256": [],
+    "capture": null,
+    "archive_url": "https://web.archive.org/web/20240601125645id_/https://www.gesetze-im-internet.de/sgb_2/BJNR295500003.html"
+   },
+   "quality": {
+    "source_exact": true,
+    "complete": true,
+    "reconstruction_status": "not_reconstructed",
+    "text_history_complete": null
+   },
+   "temporal": {
+    "valid_from": "2024-06-01",
+    "valid_from_status": "official_commencement_clause",
+    "valid_from_basis": "in force date of Art. 6 Nr. 1 G v. 16.8.2023 (BGBl. 2023 I Nr. 217) (commencement clause of the amending act, resolved for the whole amending article (official_dip_article_commencement_clause)); the text change is observed between 2024-05-29 and 2024-06-01",
+    "valid_until_exclusive": null,
+    "valid_until_status": "unresolved",
+    "valid_until_basis": null,
+    "observed_from": "2024-06-01",
+    "observed_until": "2026-09-28",
+    "known_at": "2024-06-01",
+    "promulgated_in": "BGBl. 2023 I Nr. 217",
+    "commencement_basis": "commencement clause of the amending act, resolved for the whole amending article (official_dip_article_commencement_clause)",
+    "date_axes_note": "valid_* is legal validity; observed_* is when the official source served this text; they are never substituted.",
+    "known_at_basis": "first capture or retrieval in which any source showed this exact wording (not a legal date)"
+   },
+   "amendment": {
+    "act": "Gesetz zur Weiterentwicklung der Fachkräfteeinwanderung",
+    "citation": "Art. 6 Nr. 1 G v. 16.8.2023 (BGBl. 2023 I Nr. 217)",
+    "document_id": "bgbl-1-2023-217",
+    "reference": "BGBl. 2023 I Nr. 217",
+    "article": "6",
+    "items": [
+     "1"
+    ],
+    "url": "https://www.recht.bund.de/bgbl/1/2023/217/VO.html",
+    "published_at": "2023-08-18",
+    "adopted_at": "2023-08-16",
+    "effective_at": "2024-06-01",
+    "commencement_basis": "commencement clause of the amending act, resolved for the whole amending article (official_dip_article_commencement_clause)",
+    "basis": "law_history_attribution",
+    "attribution": {
+     "status": "bracketed_by_captures",
+     "verification": "command_wording_reflected",
+     "window": {
+      "after": "2024-05-29",
+      "until": "2024-06-01"
+     }
+    },
+    "change_ids": [
+     "chg:85a779bfafd7c4527a809d96"
+    ],
+    "legal_effect_verified": false
+   },
+   "relations": [],
+   "source_role": "official_consolidation",
+   "attestations": [
+    {
+     "count": 12,
+     "known_from": "2024-06-01",
+     "known_until": "2026-08-06",
+     "role": "archived_capture",
+     "samples": [
+      {
+       "archive_url": "https://web.archive.org/web/20240601125645id_/https://www.gesetze-im-internet.de/sgb_2/BJNR295500003.html",
+       "known_at": "2024-06-01",
+       "sha256": "588592d97749d3506bf99507c7e42d6bbf133722f3bc7a3892cbb814beaf2686",
+       "state_seq": 91,
+       "url": "https://www.gesetze-im-internet.de/sgb_2/BJNR295500003.html"
+      },
+      {
+       "archive_url": "https://web.archive.org/web/20240718102423id_/https://www.gesetze-im-internet.de/sgb_2/xml.zip",
+       "known_at": "2024-07-18",
+       "sha256": "28a9c9b0b1a6894e63f26a7d1e30822a17ae5ec504cc09953f85730130450c5f",
+       "state_seq": 92,
+       "url": "https://www.gesetze-im-internet.de/sgb_2/xml.zip"
+      },
+      {
+       "archive_url": "https://web.archive.org/web/20240813110439id_/https://www.gesetze-im-internet.de/sgb_2/BJNR295500003.html",
+       "known_at": "2024-08-13",
+       "sha256": "ac808e0948d5e64b3bf57174fafe1fb4c56075e7c95994929e7583ff0cf25d24",
+       "state_seq": 93,
+       "url": "https://www.gesetze-im-internet.de/sgb_2/BJNR295500003.html"
+      }
+     ],
+     "source": "Wayback/GII"
+    },
+    {
+     "count": 3,
+     "known_from": "2026-07-06",
+     "known_until": "2026-09-28",
+     "role": "official_consolidation",
+     "samples": [
+      {
+       "known_at": "2026-07-06",
+       "sha256": "39b758874fc68f44a9c0d121f8bc08921107ed29c04461eab28281d6d34a4c6d",
+       "state_seq": 102,
+       "url": "https://www.gesetze-im-internet.de/sgb_2/"
+      },
+      {
+       "known_at": "2026-07-13",
+       "sha256": "23ff35451ea1bbab06f3ca0fcb211677c71941c1299b36fed64f75aff98a8392",
+       "state_seq": 104,
+       "url": "https://www.gesetze-im-internet.de/sgb_2/"
+      },
+      {
+       "known_at": "2026-07-15",
+       "sha256": "763e306a08146bc984830c923bf54f5aafb1144a297a807eda2c06fc05104deb",
+       "state_seq": 105,
+       "url": "https://www.gesetze-im-internet.de/sgb_2/"
+      }
+     ],
+     "source": "GII"
+    },
+    {
+     "count": 1,
+     "known_from": "2026-09-28",
+     "known_until": "2026-09-28",
+     "role": "official_consolidation",
+     "samples": [
+      {
+       "known_at": "2026-09-28",
+       "sha256": "b68550c474b304432751848d15bd6befcdc0f732bb9c6933335711715f61165f",
+       "state_seq": 106,
+       "url": "https://testphase.rechtsinformationen.bund.de/v1/legislation/eli/bund/bgbl-1/2003/s2955/2026-07-01/1/deu/2026-07-14.zip"
+      }
+     ],
+     "source": "NeuRIS"
+    }
+   ],
+   "completeness": {
+    "reason": null,
+    "status": "complete"
+   },
+   "verification": {
+    "cross_source": "agree",
+    "sources": [
+     "gii_daily",
+     "neuris",
+     "wayback_gii"
+    ]
+   },
+   "change": {
+    "change_id": "chg:85a779bfafd7c4527a809d96",
+    "norm_id": "de/bund/sgb_2/para/7",
+    "norm_label": "§ 7",
+    "amending_act": {
+     "citation": "Art. 6 Nr. 1 G v. 16.8.2023 (BGBl. 2023 I Nr. 217)",
+     "document_id": "bgbl-1-2023-217",
+     "title": "Gesetz zur Weiterentwicklung der Fachkräfteeinwanderung",
+     "gazette": {
+      "name": "BGBl.",
+      "number": 217,
+      "page": null,
+      "part": "I",
+      "reference": "BGBl. 2023 I Nr. 217",
+      "year": 2023
+     },
+     "article": "6",
+     "items": [
+      "1"
+     ],
+     "url": "https://www.recht.bund.de/bgbl/1/2023/217/VO.html",
+     "procedure_id": "298214"
+    },
+    "change_type": "geändert",
+    "dates": {
+     "adopted": {
+      "basis": "recht.bund.de document metadata 'Ausfertigungsdatum' of the promulgated document",
+      "date": "2023-08-16",
+      "evidence": [
+       {
+        "field": "Ausfertigungsdatum",
+        "source": "recht.bund.de",
+        "url": "https://www.recht.bund.de/bgbl/1/2023/217/VO.html",
+        "value": "16.08.2023"
+       }
+      ],
+      "status": "official"
+     },
+     "applies_from": {
+      "date": null,
+      "status": "not_stated"
+     },
+     "in_force": {
+      "basis": "commencement clause of the amending act, resolved for the whole amending article (official_dip_article_commencement_clause)",
+      "clause": null,
+      "date": "2024-06-01",
+      "evidence": [
+       {
+        "document": "bgbl-1-2023-217",
+        "sha256": "f48f96a825e5c059b06ed9db7ead791860e00f6f4ff88d6bdfd2ee9ad4e937c0",
+        "source": "BGBl",
+        "url": "https://www.recht.bund.de/bgbl/1/2023/217/regelungstext.pdf?__blob=publicationFile&v=1"
+       },
+       {
+        "procedure": "298214",
+        "source": "DIP",
+        "url": "https://dip.bundestag.de/vorgang/298214"
+       }
+      ],
+      "status": "official_commencement_clause"
+     },
+     "promulgated": {
+      "basis": "recht.bund.de document metadata 'Veröffentlichungsdatum' (Verkündung)",
+      "date": "2023-08-18",
+      "evidence": [
+       {
+        "field": "Veröffentlichungsdatum",
+        "source": "recht.bund.de",
+        "url": "https://www.recht.bund.de/bgbl/1/2023/217/VO.html",
+        "value": "18.08.2023"
+       }
+      ],
+      "status": "official"
+     }
+    },
+    "source_role": "official_promulgation",
+    "state": "in_force",
+    "pending": false,
+    "text_effect": {
+     "after_version": 16,
+     "attribution": "bracketed_by_captures",
+     "before_version": 15,
+     "observed_from": "2024-06-01",
+     "previous_observed_until": "2024-05-29",
+     "reconstructed": false,
+     "verification": "command_wording_reflected"
+    }
+   }
+  },
+  {
+   "id": "de/bund/sgb_2/para/7@observed-2024-01-12#c49040703b5d",
+   "canonical_id": "de/bund/sgb_2/para/7",
+   "version_id": "de/bund/sgb_2/para/7@observed-2024-01-12#c49040703b5d",
+   "pinpoint": {
+    "label": "§ 7",
+    "title": "Leistungsberechtigte",
+    "unit": "para",
+    "number": "7"
+   },
+   "content_hash": {
+    "algorithm": "sha256",
+    "value": "c49040703b5dc03a53f10b9f08e05ae1fdc09c54cbdb540774b431becd9a2b02",
+    "text_sha256": "64722da579ed745fa4c8bd13da594e72ec745684ec987683c08ea49bccada44a"
+   },
+   "source": {
+    "url": "https://www.gesetze-im-internet.de/sgb_2/__7.html",
+    "norm_url": "https://www.gesetze-im-internet.de/sgb_2/__7.html",
+    "norm_url_status": "resolved",
+    "norm_url_basis": "GII table of contents captured 2026-09-28T07:18:18Z (sha256 d70e2f7abb1c…)",
+    "act_url": "https://www.gesetze-im-internet.de/sgb_2/",
+    "role": "archived_capture",
+    "observed_at": "2024-01-12",
+    "state_sha256": [],
+    "capture": null,
+    "archive_url": "https://web.archive.org/web/20240112034001id_/https://www.gesetze-im-internet.de/sgb_2/BJNR295500003.html"
+   },
+   "quality": {
+    "source_exact": true,
+    "complete": true,
+    "reconstruction_status": "not_reconstructed",
+    "text_history_complete": null
+   },
+   "temporal": {
+    "valid_from": null,
+    "valid_from_status": "unresolved",
+    "valid_from_basis": null,
+    "valid_until_exclusive": "2024-06-01",
+    "valid_until_status": "official_commencement_clause",
+    "valid_until_basis": "legal start of the next version",
+    "observed_from": "2024-01-12",
+    "observed_until": "2024-05-29",
+    "known_at": "2024-01-12",
+    "promulgated_in": null,
+    "commencement_basis": null,
+    "date_axes_note": "valid_* is legal validity; observed_* is when the official source served this text; they are never substituted.",
+    "known_at_basis": "first capture or retrieval in which any source showed this exact wording (not a legal date)"
+   },
+   "amendment": null,
+   "relations": [],
+   "source_role": "archived_capture",
+   "attestations": [
+    {
+     "count": 4,
+     "known_from": "2024-01-12",
+     "known_until": "2024-05-29",
+     "role": "archived_capture",
+     "samples": [
+      {
+       "archive_url": "https://web.archive.org/web/20240112034001id_/https://www.gesetze-im-internet.de/sgb_2/BJNR295500003.html",
+       "known_at": "2024-01-12",
+       "sha256": "20cae7aff5957e87b82bbd36677f1d2471163bfe0486565e4ae872f2a4b83bb2",
+       "state_seq": 87,
+       "url": "https://www.gesetze-im-internet.de/sgb_2/BJNR295500003.html"
+      },
+      {
+       "archive_url": "https://web.archive.org/web/20240301233752id_/https://www.gesetze-im-internet.de/sgb_2/BJNR295500003.html",
+       "known_at": "2024-03-01",
+       "sha256": "4d5ca432babaf5e41fc8fd356f14ac626905fca89912892113e5936413145c8c",
+       "state_seq": 88,
+       "url": "https://www.gesetze-im-internet.de/sgb_2/BJNR295500003.html"
+      },
+      {
+       "archive_url": "https://web.archive.org/web/20240510075759id_/https://www.gesetze-im-internet.de/sgb_2/BJNR295500003.html",
+       "known_at": "2024-05-10",
+       "sha256": "e4b72a94fa79414efb8873be4d4c52496ea56af613cfd606546a6c8d54e4232e",
+       "state_seq": 89,
+       "url": "https://www.gesetze-im-internet.de/sgb_2/BJNR295500003.html"
+      }
+     ],
+     "source": "Wayback/GII"
+    }
+   ],
+   "completeness": {
+    "reason": null,
+    "status": "complete"
+   },
+   "verification": {
+    "cross_source": "single_source",
+    "sources": [
+     "wayback_gii"
+    ]
+   },
+   "change": null
+  },
+  {
+   "id": "de/bund/sgb_2/para/7@observed-2023-09-19#c25ce4454ee8",
+   "canonical_id": "de/bund/sgb_2/para/7",
+   "version_id": "de/bund/sgb_2/para/7@observed-2023-09-19#c25ce4454ee8",
+   "pinpoint": {
+    "label": "§ 7",
+    "title": "Leistungsberechtigte",
+    "unit": "para",
+    "number": "7"
+   },
+   "content_hash": {
+    "algorithm": "sha256",
+    "value": "c25ce4454ee8b18c592e5c8cf9144dbb3ffef461f674a29863149884435111bc",
+    "text_sha256": "1ae13d42f25a80c5357dec111a001fca3e1b6a84579881b4a5c99f91400ebcac"
+   },
+   "source": {
+    "url": "https://www.gesetze-im-internet.de/sgb_2/__7.html",
+    "norm_url": "https://www.gesetze-im-internet.de/sgb_2/__7.html",
+    "norm_url_status": "resolved",
+    "norm_url_basis": "GII table of contents captured 2026-09-28T07:18:18Z (sha256 d70e2f7abb1c…)",
+    "act_url": "https://www.gesetze-im-internet.de/sgb_2/",
+    "role": "archived_capture",
+    "observed_at": "2023-09-19",
+    "state_sha256": [],
+    "capture": null,
+    "archive_url": "https://web.archive.org/web/20230919144946id_/https://www.gesetze-im-internet.de/sgb_2/BJNR295500003.html"
+   },
+   "quality": {
+    "source_exact": true,
+    "complete": true,
+    "reconstruction_status": "not_reconstructed",
+    "text_history_complete": null
+   },
+   "temporal": {
+    "valid_from": null,
+    "valid_from_status": "unresolved",
+    "valid_from_basis": null,
+    "valid_until_exclusive": null,
+    "valid_until_status": "unresolved",
+    "valid_until_basis": null,
+    "observed_from": "2023-09-19",
+    "observed_until": "2024-01-02",
+    "known_at": "2023-09-19",
+    "promulgated_in": null,
+    "commencement_basis": null,
+    "date_axes_note": "valid_* is legal validity; observed_* is when the official source served this text; they are never substituted.",
+    "known_at_basis": "first capture or retrieval in which any source showed this exact wording (not a legal date)"
+   },
+   "amendment": null,
+   "relations": [],
+   "source_role": "archived_capture",
+   "attestations": [
+    {
+     "count": 2,
+     "known_from": "2023-09-19",
+     "known_until": "2024-01-02",
+     "role": "archived_capture",
+     "samples": [
+      {
+       "archive_url": "https://web.archive.org/web/20230919144946id_/https://www.gesetze-im-internet.de/sgb_2/BJNR295500003.html",
+       "known_at": "2023-09-19",
+       "sha256": "0996c784833991348021ea4d499b1f396f820f73fae544d8933b8efbb5a94d93",
+       "state_seq": 85,
+       "url": "https://www.gesetze-im-internet.de/sgb_2/BJNR295500003.html"
+      },
+      {
+       "archive_url": "https://web.archive.org/web/20240102182010id_/https://www.gesetze-im-internet.de/sgb_2/BJNR295500003.html",
+       "known_at": "2024-01-02",
+       "sha256": "21305bd95a13e116a5fca6411a202100b1d2ae14d6dc2ca9d6ed5a6cadf605d5",
+       "state_seq": 86,
+       "url": "https://www.gesetze-im-internet.de/sgb_2/BJNR295500003.html"
+      }
+     ],
+     "source": "Wayback/GII"
+    }
+   ],
+   "completeness": {
+    "reason": null,
+    "status": "complete"
+   },
+   "verification": {
+    "cross_source": "single_source",
+    "sources": [
+     "wayback_gii"
+    ]
+   },
+   "change": null
+  },
+  {
+   "id": "de/bund/sgb_2/para/7@observed-2006-02-23#9448ff5f8022",
+   "canonical_id": "de/bund/sgb_2/para/7",
+   "version_id": "de/bund/sgb_2/para/7@observed-2006-02-23#9448ff5f8022",
+   "pinpoint": {
+    "label": "§ 7",
+    "title": "Berechtigte",
+    "unit": "para",
+    "number": "7"
+   },
+   "content_hash": {
+    "algorithm": "sha256",
+    "value": "9448ff5f80223703aec932640bf4e6fcd34835d5d20f4456a93079bd21f2fe06",
+    "text_sha256": "f00f7026ba8bee4bd5ca6b781408b28ffb8361a5b33770c705cfe8bd2c16a09c"
+   },
+   "source": {
+    "url": "https://www.gesetze-im-internet.de/sgb_2/__7.html",
+    "norm_url": "https://www.gesetze-im-internet.de/sgb_2/__7.html",
+    "norm_url_status": "resolved",
+    "norm_url_basis": "GII table of contents captured 2026-09-28T07:18:18Z (sha256 d70e2f7abb1c…)",
+    "act_url": "https://www.gesetze-im-internet.de/sgb_2/",
+    "role": "archived_capture",
+    "observed_at": "2006-02-23",
+    "state_sha256": [],
+    "capture": null,
+    "archive_url": "https://web.archive.org/web/20060223213028id_/http://bundesrecht.juris.de:80/sgb_2/BJNR295500003.html"
+   },
+   "quality": {
+    "source_exact": true,
+    "complete": true,
+    "reconstruction_status": "not_reconstructed",
+    "text_history_complete": null
+   },
+   "temporal": {
+    "valid_from": null,
+    "valid_from_status": "unresolved",
+    "valid_from_basis": null,
+    "valid_until_exclusive": null,
+    "valid_until_status": "unresolved",
+    "valid_until_basis": null,
+    "observed_from": "2006-02-23",
+    "observed_until": "2006-02-23",
+    "known_at": "2006-02-23",
+    "promulgated_in": null,
+    "commencement_basis": null,
+    "date_axes_note": "valid_* is legal validity; observed_* is when the official source served this text; they are never substituted.",
+    "known_at_basis": "first capture or retrieval in which any source showed this exact wording (not a legal date)"
+   },
+   "amendment": null,
+   "relations": [],
+   "source_role": "archived_capture",
+   "attestations": [
+    {
+     "count": 1,
+     "known_from": "2006-02-23",
+     "known_until": "2006-02-23",
+     "role": "archived_capture",
+     "samples": [
+      {
+       "archive_url": "https://web.archive.org/web/20060223213028id_/http://bundesrecht.juris.de:80/sgb_2/BJNR295500003.html",
+       "known_at": "2006-02-23",
+       "sha256": "6a654baba824d9228936b9e380b45444c9b5c815d4a2368128937c841a09ea5f",
+       "state_seq": 0,
+       "url": "https://bundesrecht.juris.de/sgb_2/BJNR295500003.html"
+      }
+     ],
+     "source": "Wayback/GII"
+    }
+   ],
+   "completeness": {
+    "reason": null,
+    "status": "complete"
+   },
+   "verification": {
+    "cross_source": "single_source",
+    "sources": [
+     "wayback_gii"
+    ]
+   },
+   "change": null
+  }
+ ],
+ "warnings": [],
+ "failed_components": [],
+ "total": 17,
+ "norm": {
+  "canonical_id": "de/bund/sgb_2/para/7",
+  "sub_unit": null,
+  "label": "§ 7",
+  "title": "Leistungsberechtigte",
+  "act": {
+   "id": "fed_sgb_2",
+   "jurabk": "SGB 2",
+   "juris": "DE",
+   "title": "Sozialgesetzbuch (SGB) Zweites Buch (II) - Grundsicherung für Arbeitsuchende",
+   "source_url": "https://www.gesetze-im-internet.de/sgb_2/",
+   "permalink": null,
+   "build": "20260714",
+   "stand": null
+  },
+  "versions": 17,
+  "present_in_latest_state": false
+ },
+ "order": "newest_first",
+ "events": [
+  {
+   "event_id": "fed-bgbl-candidate:ca81585d88262c3ad0f4",
+   "change_id": "chg:85a779bfafd7c4527a809d96",
+   "document_id": "bgbl-1-2023-217",
+   "reference": "BGBl. 2023 I Nr. 217",
+   "citation": "Art. 6 Nr. 1 G v. 16.8.2023 (BGBl. 2023 I Nr. 217)",
+   "amending_article": "6",
+   "items": [
+    "1"
+   ],
+   "procedure_title": "Gesetz zur Weiterentwicklung der Fachkräfteeinwanderung",
+   "procedure_id": "298214",
+   "adopted_at": "2023-08-16",
+   "published_at": "2023-08-18",
+   "effective_at": "2024-06-01",
+   "date_status": "official_verified",
+   "date_basis": "commencement clause of the amending act, resolved for the whole amending article (official_dip_article_commencement_clause)",
+   "text_status": "event_only",
+   "url": "https://www.recht.bund.de/bgbl/1/2023/217/VO.html",
+   "verification": "exact_name_in_integrity_checked_final_bgbl_article",
+   "legal_effect_verified": false,
+   "change_type": "geändert",
+   "commands": [
+    {
+     "item": 1,
+     "new_text": "b) deren Aufenthaltsrecht sich allein aus dem Zweck der Arbeitsuche, der Ausbildungs- oder Studienplatzsuche \noder aus einer Aufenthaltserlaubnis nach § 20a des Aufenthaltsgesetzes ergibt,",
+     "old_text_constraint": null,
+     "operation": "replace",
+     "raw": "§ 7 Absatz 1 Satz 2 Nummer 2 Buchstabe b des Zweiten Buches Sozialgesetzbuch – Bürgergeld, \nGrundsicherung für Arbeitsuchende – in der Fassung der Bekanntmachung vom 13. Mai 2011 (BGBl. I S. 850, \n2094), das zuletzt durch Artikel 5 des Gesetzes vom 17. Juli 2023 (BGBl. 2023 I Nr. 191) geändert worden ist, \nwird wie folgt gefasst:\n„b) deren Aufenthaltsrecht sich allein aus dem Zweck der Arbeitsuche, der Ausbildungs- oder Studienplatzsuche \noder aus einer Aufenthaltserlaubnis nach § 20a des Aufenthaltsgesetzes ergibt,“.",
+     "ref": {
+      "absatz": "1",
+      "buchstabe": "b",
+      "nummer": "2",
+      "para": "7",
+      "satz": "2"
+     },
+     "text": "§ 7 Absatz 1 Satz 2 Nummer 2 Buchstabe b des Zweiten Buches Sozialgesetzbuch – Bürgergeld, Grundsicherung für Arbeitsuchende – in der Fassung der Bekanntmachung vom 13. Mai 2011 (BGBl. I S. 850, 2094), das zuletzt durch Artikel 5 des Gesetzes vom 17. Juli 2023 (BGBl. 2023 I Nr. 191) geändert worden ist, wird wie folgt gefasst: „b) deren Aufenthaltsrecht sich allein aus dem Zweck der Arbeitsuche, der Ausbildungs- oder Studienplatzsuche oder aus einer Aufenthaltserlaubnis nach § 20a des Aufenthaltsgesetzes ergibt,“."
+    }
+   ]
+  },
+  {
+   "event_id": "fed-bgbl-candidate:a99c6b21a0cb2118e2c4",
+   "change_id": "chg:aec6e801d70b6956ad422374",
+   "document_id": "bgbl-1-2023-408",
+   "reference": "BGBl. 2023 I Nr. 408",
+   "citation": "Art. 3 Nr. 2 G v. 22.12.2023 (BGBl. 2023 I Nr. 408)",
+   "amending_article": "3",
+   "items": [
+    "2.a,2.b"
+   ],
+   "procedure_title": "Gesetz zur Anpassung des Zwölften und des Vierzehnten Buches Sozialgesetzbuch und weiterer Gesetze",
+   "procedure_id": "300142",
+   "adopted_at": "2023-12-22",
+   "published_at": "2023-12-28",
+   "effective_at": null,
+   "date_status": "unknown",
+   "date_basis": "unresolved_sub_article_scope",
+   "text_status": "event_only",
+   "url": "https://www.recht.bund.de/bgbl/1/2023/408/VO.html",
+   "verification": "exact_name_in_integrity_checked_final_bgbl_article",
+   "legal_effect_verified": false,
+   "change_type": "geändert",
+   "commands": [
+    {
+     "item": 2,
+     "new_text": "§ 123 Satz 1 Nummer 2",
+     "old_text_constraint": "§ 123 Nummer 2",
+     "operation": "modify",
+     "raw": "§ 7 wird wie folgt geändert:\na) Absatz 4a wird wie folgt gefasst:\n„(4a) Personen, denen Leistungen zum Lebensunterhalt nach § 93 des Vierzehnten Buches zuerkannt \nworden sind, haben keinen Anspruch auf Leistungen zur Sicherung des Lebensunterhalts.“\nb) In Absatz 5 Satz 2 wird die Angabe „§ 123 Nummer 2“ durch die Wörter „§ 123 Satz 1 Nummer 2“ ersetzt.",
+     "ref": {
+      "absatz": "4a",
+      "para": "7",
+      "satz": "2"
+     },
+     "text": "§ 7 wird wie folgt geändert: a) Absatz 4a wird wie folgt gefasst: „(4a) Personen, denen Leistungen zum Lebensunterhalt nach § 93 des Vierzehnten Buches zuerkannt worden sind, haben keinen Anspruch auf Leistungen zur Sicherung des Lebensunterhalts.“ b) In Absatz 5 Satz 2 wird die Angabe „§ 123 Nummer 2“ durch die Wörter „§ 123 Satz 1 Nummer 2“ ersetzt."
+    }
+   ]
+  }
+ ],
+ "history": {
+  "text_history_start": "2006-02-23",
+  "act_text_history_start": "2006-02-23",
+  "amendment_event_history_start": "2006-03-30",
+  "consolidated_versions": 107,
+  "act_states_by_source": {
+   "gii_daily": 3,
+   "neuris": 1,
+   "wayback_gii": 103
+  },
+  "norm_versions": 17,
+  "versions_by_role": {
+   "archived_capture": 16,
+   "official_consolidation": 1
+  },
+  "verified_legal_starts": 1,
+  "note": "Versions merge official consolidations (GII daily states, NeuRIS), archived copies of official pages (known_at = capture date) and labelled reconstructions, de-duplicated by exact wording. A legal start (valid_from) is set only when the text change is attributed to an amendment whose in-force date is evidenced by its commencement clause."
+ },
+ "change_summary": {
+  "schema": "kerf-change-summary/1",
+  "scope": "norm",
+  "subject": "de/bund/sgb_2/para/7",
+  "as_of": "2026-09-28",
+  "last_change": {
+   "change_id": "chg:85a779bfafd7c4527a809d96",
+   "norm_id": "de/bund/sgb_2/para/7",
+   "norm_label": "§ 7",
+   "amending_act": {
+    "citation": "Art. 6 Nr. 1 G v. 16.8.2023 (BGBl. 2023 I Nr. 217)",
+    "document_id": "bgbl-1-2023-217",
+    "title": "Gesetz zur Weiterentwicklung der Fachkräfteeinwanderung",
+    "gazette": {
+     "name": "BGBl.",
+     "number": 217,
+     "page": null,
+     "part": "I",
+     "reference": "BGBl. 2023 I Nr. 217",
+     "year": 2023
+    },
+    "article": "6",
+    "items": [
+     "1"
+    ],
+    "url": "https://www.recht.bund.de/bgbl/1/2023/217/VO.html",
+    "procedure_id": "298214"
+   },
+   "change_type": "geändert",
+   "dates": {
+    "adopted": {
+     "basis": "recht.bund.de document metadata 'Ausfertigungsdatum' of the promulgated document",
+     "date": "2023-08-16",
+     "evidence": [
+      {
+       "field": "Ausfertigungsdatum",
+       "source": "recht.bund.de",
+       "url": "https://www.recht.bund.de/bgbl/1/2023/217/VO.html",
+       "value": "16.08.2023"
+      }
+     ],
+     "status": "official"
+    },
+    "applies_from": {
+     "date": null,
+     "status": "not_stated"
+    },
+    "in_force": {
+     "basis": "commencement clause of the amending act, resolved for the whole amending article (official_dip_article_commencement_clause)",
+     "clause": null,
+     "date": "2024-06-01",
+     "evidence": [
+      {
+       "document": "bgbl-1-2023-217",
+       "sha256": "f48f96a825e5c059b06ed9db7ead791860e00f6f4ff88d6bdfd2ee9ad4e937c0",
+       "source": "BGBl",
+       "url": "https://www.recht.bund.de/bgbl/1/2023/217/regelungstext.pdf?__blob=publicationFile&v=1"
+      },
+      {
+       "procedure": "298214",
+       "source": "DIP",
+       "url": "https://dip.bundestag.de/vorgang/298214"
+      }
+     ],
+     "status": "official_commencement_clause"
+    },
+    "promulgated": {
+     "basis": "recht.bund.de document metadata 'Veröffentlichungsdatum' (Verkündung)",
+     "date": "2023-08-18",
+     "evidence": [
+      {
+       "field": "Veröffentlichungsdatum",
+       "source": "recht.bund.de",
+       "url": "https://www.recht.bund.de/bgbl/1/2023/217/VO.html",
+       "value": "18.08.2023"
+      }
+     ],
+     "status": "official"
+    }
+   },
+   "source_role": "official_promulgation",
+   "state": "in_force",
+   "pending": false,
+   "text_effect": {
+    "after_version": 16,
+    "attribution": "bracketed_by_captures",
+    "before_version": 15,
+    "observed_from": "2024-06-01",
+    "previous_observed_until": "2024-05-29",
+    "reconstructed": false,
+    "verification": "command_wording_reflected"
+   }
+  },
+  "last_incorporated_undated": {
+   "change_id": "chg:aec6e801d70b6956ad422374",
+   "norm_id": "de/bund/sgb_2/para/7",
+   "norm_label": "§ 7",
+   "amending_act": {
+    "citation": "Art. 3 Nr. 2 G v. 22.12.2023 (BGBl. 2023 I Nr. 408)",
+    "document_id": "bgbl-1-2023-408",
+    "title": "Gesetz zur Anpassung des Zwölften und des Vierzehnten Buches Sozialgesetzbuch und weiterer Gesetze",
+    "gazette": {
+     "name": "BGBl.",
+     "number": 408,
+     "page": null,
+     "part": "I",
+     "reference": "BGBl. 2023 I Nr. 408",
+     "year": 2023
+    },
+    "article": "3",
+    "items": [
+     "2.a,2.b"
+    ],
+    "url": "https://www.recht.bund.de/bgbl/1/2023/408/VO.html",
+    "procedure_id": "300142"
+   },
+   "change_type": "geändert",
+   "dates": {
+    "adopted": {
+     "basis": "recht.bund.de document metadata 'Ausfertigungsdatum' of the promulgated document",
+     "date": "2023-12-22",
+     "evidence": [
+      {
+       "field": "Ausfertigungsdatum",
+       "source": "recht.bund.de",
+       "url": "https://www.recht.bund.de/bgbl/1/2023/408/VO.html",
+       "value": "22.12.2023"
+      }
+     ],
+     "status": "official"
+    },
+    "applies_from": {
+     "date": null,
+     "status": "not_stated"
+    },
+    "in_force": {
+     "date": null,
+     "reason": "unresolved_sub_article_scope",
+     "status": "unknown"
+    },
+    "promulgated": {
+     "basis": "recht.bund.de document metadata 'Veröffentlichungsdatum' (Verkündung)",
+     "date": "2023-12-28",
+     "evidence": [
+      {
+       "field": "Veröffentlichungsdatum",
+       "source": "recht.bund.de",
+       "url": "https://www.recht.bund.de/bgbl/1/2023/408/VO.html",
+       "value": "28.12.2023"
+      }
+     ],
+     "status": "official"
+    }
+   },
+   "source_role": "official_promulgation",
+   "state": "date_unknown",
+   "pending": false,
+   "text_effect": null
+  },
+  "next_pending_change": null,
+  "pending_changes": [],
+  "counts": {
+   "versions": 17,
+   "versions_by_role": {
+    "archived_capture": 16,
+    "official_consolidation": 1
+   },
+   "events": 9,
+   "amending_acts": 9,
+   "events_with_in_force": 1,
+   "events_pending": 0,
+   "events_date_unknown": 8
+  },
+  "source_role": "official_consolidation",
+  "act_stand_note": {
+   "amending_act": {
+    "article": "1a",
+    "citation_text": "Art. 1a G v. 16.4.2026 I Nr. 107",
+    "gazette_lookup": {
+     "document_id": "bgbl-1-2026-107",
+     "number": 107,
+     "page": null,
+     "part": "I",
+     "stated_instrument_date": "2026-04-16",
+     "year": 2026
+    }
+   },
+   "last_amended_by_text": "Art. 1a G v. 16.4.2026 I Nr. 107",
+   "norm_specific": false,
+   "note": "GII's act-level 'zuletzt geändert' statement; it does not say which norms that amendment touched",
+   "schema": "kerf-gii-stand-note/1",
+   "scope": "act",
+   "source": "GII Stand",
+   "text": "zuletzt geändert durch Art. 1a G v. 16.4.2026 I Nr. 107"
+  },
+  "documentation_notes": [
+   {
+    "amending_act": {
+     "article": "1b",
+     "citation_text": "Art. 1b G v. 16.4.2026 I Nr. 107",
+     "gazette_lookup": {
+      "document_id": "bgbl-1-2026-107",
+      "number": 107,
+      "page": null,
+      "part": "I",
+      "stated_instrument_date": "2026-04-16",
+      "year": 2026
+     }
+    },
+    "announced_effective_dates": [],
+    "documentation_complete": null,
+    "indirect": true,
+    "kind": "indirect_change_incorporated",
+    "schema": "kerf-gii-stand-note/1",
+    "source": "GII Stand (Hinweis)",
+    "text": "Mittelbare Änderung durch Art. 1b G v. 16.4.2026 I Nr. 107 ist berücksichtigt",
+    "text_incorporated": true,
+    "observed_at": "2026-09-28",
+    "applies_to_subject": false,
+    "change_id": null
+   }
+  ],
+  "unknown_dates": [
+   {
+    "change_id": "chg:1ca32eed4cbe2875a8188874",
+    "norm_label": "§ 7",
+    "field": "adopted",
+    "reason": "no evidenced Ausfertigungsdatum in the stored promulgation document",
+    "amending_act": "Art. 1 Nr. 2 G (BGBl. I 2006 S. 558)"
+   },
+   {
+    "change_id": "chg:1ca32eed4cbe2875a8188874",
+    "norm_label": "§ 7",
+    "field": "in_force",
+    "reason": "unresolved_legacy_commencement_review",
+    "amending_act": "Art. 1 Nr. 2 G (BGBl. I 2006 S. 558)"
+   },
+   {
+    "change_id": "chg:f70e55dc56363536d502b265",
+    "norm_label": "§ 7",
+    "field": "adopted",
+    "reason": "no evidenced Ausfertigungsdatum in the stored promulgation document",
+    "amending_act": "Art. 2 Nr. 1 G (BGBl. I 2007 S. 554)"
+   },
+   {
+    "change_id": "chg:f70e55dc56363536d502b265",
+    "norm_label": "§ 7",
+    "field": "in_force",
+    "reason": "unresolved_legacy_commencement_review",
+    "amending_act": "Art. 2 Nr. 1 G (BGBl. I 2007 S. 554)"
+   },
+   {
+    "change_id": "chg:227222968a589948ec7b7a99",
+    "norm_label": "§ 7",
+    "field": "adopted",
+    "reason": "no evidenced Ausfertigungsdatum in the stored promulgation document",
+    "amending_act": "Art. 5 Nr. 3 G (BGBl. I 2011 S. 2854)"
+   },
+   {
+    "change_id": "chg:227222968a589948ec7b7a99",
+    "norm_label": "§ 7",
+    "field": "in_force",
+    "reason": "unresolved_legacy_commencement_review",
+    "amending_act": "Art. 5 Nr. 3 G (BGBl. I 2011 S. 2854)"
+   }
+  ],
+  "unknown_dates_total": 15,
+  "completeness": {
+   "event_history": "partial",
+   "event_history_start": "2006-03-30",
+   "text_history_start": "2006-02-23",
+   "gaps": [
+    {
+     "kind": "unattributed_text_change",
+     "count": 12
+    },
+    {
+     "kind": "stand_amending_act_not_in_event_store",
+     "count": 21,
+     "scope": "act"
+    }
+   ]
+  },
+  "date_policy": "dates come only from the promulgation document (heading, issue header) and the commencement clause; an unknown date stays null and is listed in unknown_dates"
+ }
+}

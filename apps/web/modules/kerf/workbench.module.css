@@ -1,0 +1,265 @@
+/* Kerf workspace shell. Colours are the site tokens (app/globals.css):
+   --c-bg, --c-text-main, --c-text-muted, --c-link, --c-accent, --c-ok/warn/bad,
+   --panel-border. The module only derives a few working values from them. */
+.app {
+  /* Chrome strips (tab bars, sidebar): a breath darker than the page. */
+  --desk-bg: color-mix(in srgb, var(--c-text-main) 3%, var(--c-bg));
+  /* Hover / pressed fill for controls. */
+  --kerf-hover: color-mix(in srgb, var(--c-text-main) 7%, transparent);
+  /* Selected fill: the accent at low strength; selected text is --c-link. */
+  --kerf-selected: color-mix(in srgb, var(--c-link) 11%, transparent);
+  /* Hairline between panes; a firmer line for inputs and other controls. */
+  --kerf-line: color-mix(in srgb, var(--c-text-main) 11%, transparent);
+  --kerf-control-line: color-mix(in srgb, var(--c-text-main) 24%, transparent);
+  /* Muted text: the site value, nudged to stay >= 4.5:1 on the desk tint. */
+  --kerf-muted: color-mix(in srgb, var(--c-text-muted) 82%, var(--c-text-main));
+  --motion-fast: 160ms; --motion-page: 240ms; --motion-ease: cubic-bezier(.2,.75,.25,1);
+  /* The strip (NightBand size=workspace) carries the header's room. */
+  width: 100%; height: 100dvh; min-height: 520px;
+  display: grid; grid-template: auto minmax(0, 1fr) / 76px minmax(0, 1fr);
+  color: var(--c-text-main); background: var(--c-bg); letter-spacing: 0;
+}
+/* Re-pointed one level down: a custom property cannot refer to itself. */
+.app > * { --c-text-muted: var(--kerf-muted); --panel-border: var(--kerf-line); }
+:global(.high-contrast) .app { --kerf-line: var(--c-text-main); --kerf-control-line: var(--c-text-main); --kerf-hover: transparent; --kerf-selected: transparent; --desk-bg: var(--c-bg); }
+.app * { letter-spacing: 0; }
+.app :is(button,a) { transition: background-color var(--motion-fast) ease, color var(--motion-fast) ease, border-color var(--motion-fast) ease; }
+.app :is(button,a,summary,[tabindex]):focus-visible { outline: 2px solid var(--c-link); outline-offset: 2px; }
+.panel, .graphPanel { animation: panelEnter var(--motion-page) var(--motion-ease); }
+@keyframes panelEnter { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+
+.top { grid-column: 1 / -1; min-width: 0; }
+/* On the strip: the name at the folded band's scale (ModuleBand), the place
+   after a night hairline, the way to Chamfer at the end. */
+.topbar { display: flex; align-items: center; gap: 14px; block-size: 3rem; min-width: 0; }
+.topbar h1 { margin: 0; font-size: 1.25rem; font-weight: 500; line-height: 1.3; letter-spacing: -.016em; color: var(--c-text-main); }
+.location { padding-left: 14px; border-left: 1px solid var(--hair); font-size: .9375rem; font-weight: 400; color: var(--c-text-muted); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.topbar a { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; min-height: 2.75rem; font-size: .875rem; font-weight: 500; color: var(--c-text-muted); }
+@media (hover: hover) { .topbar a:hover { color: var(--c-link); } }
+
+.rail { display: flex; flex-direction: column; gap: 2px; padding: 10px 6px; border-right: 1px solid var(--kerf-line); overflow-y: auto; scrollbar-width: thin; }
+.navItem { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 9px 2px; min-height: 60px; flex-shrink: 0; border-radius: var(--r-control); color: var(--c-text-muted); font-size: .6875rem; font-weight: 500; line-height: 1.25; text-align: center; position: relative; }
+.navItem:hover { background: var(--kerf-hover); color: var(--c-text-main); }
+.navItem span { max-width: 100%; overflow-wrap: anywhere; }
+.navItem[aria-pressed=true] { color: var(--c-link); font-weight: 600; }
+/* The selected module is marked on the rail's edge; the label states it too. */
+.navItem[aria-pressed=true]::before { content: ''; position: absolute; inset: 14px auto 14px -6px; width: 2px; background: var(--c-link); }
+
+.body { min-height: 0; min-width: 0; overflow: hidden; }
+.readerPanel { height: 100%; min-height: 0; }
+.graphPanel { height: 100%; min-height: 0; overflow: hidden; }
+.panel { height: 100%; overflow: auto; padding: 28px 32px 56px; scrollbar-gutter: stable; }
+.panel > * { max-width: 1200px; margin-inline: auto; }
+.app :is(.panel, .rail) { scrollbar-color: color-mix(in srgb, var(--c-text-main) 30%, transparent) transparent; }
+
+/* ── Library, versions, decisions, chronicle, hierarchy (the panel views) ──
+   One quiet document surface: no card fills, no shadows; lists are ruled. */
+.panel :global(.sntiq-panel) { box-shadow: none; border-radius: 0; background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.panel :is(h2, h3) { letter-spacing: -.02em; }
+.panel :global(.kerf-chip) { line-height: 1.35; overflow-wrap: anywhere; }
+
+@media (max-width: 900px) {
+  .app { grid-template-columns: 64px minmax(0, 1fr); }
+  .navItem { font-size: .625rem; }
+  .panel { padding: 20px 16px 48px; }
+}
+@media (max-width: 640px) {
+  .app { grid-template: auto 56px minmax(0, 1fr) / minmax(0, 1fr); min-height: 460px; }
+  .topbar { block-size: 2.75rem; gap: 10px; }
+  .topbar h1 { font-size: 1.0625rem; }
+  .topbar a span { display: none; }
+  .topbar a { min-width: 40px; justify-content: flex-end; }
+  .rail { flex-direction: row; padding: 4px 4px; gap: 0; border-right: 0; border-bottom: 1px solid var(--kerf-line); overflow-x: auto; overflow-y: hidden; }
+  /* All seven items share the row (360px: ~50px each) instead of growing to
+     their label width and pushing the last one ('Graph') out of view. */
+  .navItem { min-height: 46px; min-width: 0; padding: 4px 1px; gap: 3px; flex: 1 1 0; font-size: .625rem; }
+  .navItem span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; overflow-wrap: normal; }
+  .navItem svg { width: 17px; height: 17px; }
+  .navItem[aria-pressed=true]::before { inset: auto 10px -4px; height: 2px; width: auto; }
+  .panel { padding: 16px 16px 40px; }
+}
+@media print { .app { height: auto; display: block; } .top, .rail { display: none; } .body { overflow: visible; } }
+
+/* Panel view vocabulary (used by KerfModule.tsx) */
+.viewHead { display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:12px 24px; margin-bottom:20px; }
+.viewHead h2 { margin:0; font-size:clamp(1.5rem,2.6vw,2.25rem); font-weight:300; line-height:1.05; letter-spacing:-.028em; text-wrap:balance; }
+.viewHead p { margin:8px 0 0; max-width:46em; font-size:.9375rem; line-height:1.5; color:var(--c-text-muted); }
+.viewHead > p:first-child { margin-top:0; }
+/* A two- or three-way switch: text buttons, the chosen one filled quietly. */
+.seg { display:flex; flex-wrap:wrap; gap:2px; }
+.seg button { min-height:36px; padding:6px 12px; border-radius:var(--r-control); font-size:.875rem; font-weight:500; color:var(--c-text-muted); white-space:nowrap; }
+.seg button:hover { background:var(--kerf-hover); color:var(--c-text-main); }
+.seg button[aria-pressed=true] { background:var(--kerf-selected); color:var(--c-link); font-weight:600; }
+/* Search / filter field */
+.field { position:relative; margin-bottom:8px; }
+/* Coverage numbers: ruled columns, the figure carries the weight. */
+.coverage { margin:20px 0 0; }
+.coverage > p { margin:12px 0 0; max-width:72ch; font-size:.8125rem; line-height:1.55; color:var(--c-text-muted); }
+.facts { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:16px clamp(16px,2.4vw,32px); margin:0; }
+.facts > div { display:flex; flex-direction:column; min-width:0; padding-top:10px; border-top:1px solid var(--c-text-main); }
+.facts dd { margin:0; font-size:clamp(1.5rem,2.4vw,2.25rem); font-weight:300; line-height:1; letter-spacing:-.028em; font-variant-numeric:tabular-nums; }
+.facts dt { margin-top:8px; font-size:.8125rem; line-height:1.35; color:var(--c-text-muted); }
+/* A ruled section inside a panel view (digest, watched procedures, …). */
+.block { min-width:0; max-width:100%; margin-top:clamp(32px,4vw,48px); }
+.blockHead { display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 14px; padding-bottom:10px; border-bottom:1px solid var(--c-text-main); }
+.blockHead[data-wide=true] { align-items:flex-end; justify-content:space-between; }
+.blockHead h3 { margin:0; font-size:clamp(1.19rem,1.8vw,1.5rem); font-weight:500; line-height:1.15; letter-spacing:-.016em; }
+.blockHead p { margin:6px 0 0; max-width:46em; font-size:.875rem; line-height:1.5; color:var(--c-text-muted); }
+.blockTools { display:flex; flex-wrap:wrap; align-items:center; gap:6px 14px; min-width:0; }
+/* A state or provenance label: sentence case, 13px/600, coloured by meaning. */
+.tag { display:inline-flex; align-items:center; gap:5px; font-size:.8125rem; font-weight:600; line-height:1.3; color:var(--c-text-muted); }
+.tag[data-tone=warn] { color:var(--c-warn); }
+.tag[data-tone=ok] { color:var(--c-ok); }
+.tag[data-tone=bad] { color:var(--c-bad); }
+.tag[data-tone=link] { color:var(--c-link); }
+.fold { border-bottom:1px solid var(--kerf-line); }
+.fold summary { display:flex; align-items:center; gap:8px; min-height:44px; cursor:pointer; list-style:none; font-size:.9375rem; font-weight:600; }
+.fold summary::-webkit-details-marker { display:none; }
+.fold summary svg { color:var(--c-text-muted); }
+.fold > p { margin:0; padding:0 0 16px 24px; max-width:78ch; font-size:.9375rem; line-height:1.6; white-space:pre-wrap; overflow-wrap:anywhere; }
+.fine { margin:12px 0 0; max-width:78ch; font-size:.8125rem; line-height:1.55; color:var(--c-text-muted); overflow-wrap:anywhere; }
+/* The law index */
+.listHead { display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:10px 24px; margin-top:clamp(32px,4vw,48px); }
+.listHead h3 { margin:0; font-size:clamp(1.19rem,1.8vw,1.5rem); font-weight:500; line-height:1.15; letter-spacing:-.016em; font-variant-numeric:tabular-nums; }
+.listHead p { margin:6px 0 0; font-size:.8125rem; line-height:1.5; color:var(--c-text-muted); }
+.listTools { display:flex; flex-wrap:wrap; gap:4px 16px; }
+.listTools button { display:inline-flex; align-items:center; gap:5px; min-height:32px; font-size:.8125rem; font-weight:600; color:var(--c-text-muted); }
+.listTools button:hover { color:var(--c-text-main); }
+.topics { margin-top:12px; border-bottom:1px solid var(--c-text-main); }
+.topic { border-top:1px solid var(--c-text-main); }
+.topicHead, .subtopicHead { display:flex; align-items:center; gap:10px; width:100%; text-align:left; }
+.topicHead { min-height:52px; padding:10px 0; }
+.topicHead svg, .subtopicHead svg { color:var(--c-text-muted); }
+.topicHead h3 { flex:1; min-width:0; margin:0; font-size:1.0625rem; font-weight:600; line-height:1.25; letter-spacing:-.02em; }
+.topicHead > span, .subtopicHead > span { font-size:.8125rem; font-weight:600; color:var(--c-text-muted); font-variant-numeric:tabular-nums; }
+.topicHead:hover h3, .subtopicHead:hover h4 { color:var(--c-link); }
+.subtopic { border-top:1px solid var(--kerf-line); padding-left:26px; }
+.subtopicHead { min-height:44px; padding:8px 0; }
+.subtopicHead h4 { flex:1; min-width:0; margin:0; font-size:.875rem; font-weight:600; line-height:1.3; color:var(--c-text-muted); }
+.laws { list-style:none; margin:0; padding:0 0 10px; }
+.laws > li { border-top:1px solid var(--kerf-line); }
+.lawLine { display:flex; align-items:stretch; min-width:0; }
+.law { flex:1; min-width:0; display:grid; grid-template-columns:minmax(6rem,9.5rem) minmax(0,1.6fr) minmax(0,1fr); gap:2px clamp(12px,2vw,24px); align-items:baseline; padding:11px 0 12px; text-align:left; }
+.law > strong { font-size:1rem; font-weight:500; line-height:1.25; letter-spacing:-.016em; overflow-wrap:anywhere; }
+.law:hover > strong, .law[aria-current=true] > strong { color:var(--c-link); }
+.lawTitle { font-size:.9375rem; line-height:1.4; overflow-wrap:anywhere; }
+.lawMeta { display:flex; flex-wrap:wrap; gap:0 14px; font-size:.8125rem; line-height:1.5; color:var(--c-text-muted); font-variant-numeric:tabular-nums; }
+.lawMeta [data-tone=warn] { color:var(--c-warn); font-weight:600; }
+.lawSource { display:inline-flex; align-items:center; justify-content:center; flex:0 0 40px; min-height:40px; color:var(--c-text-muted); border-radius:var(--r-control); }
+.lawSource:hover { color:var(--c-link); background:var(--kerf-hover); }
+.laws > li[data-active=true] { background:var(--kerf-selected); margin-inline:-12px; padding-inline:12px; border-radius:var(--r-control); border-top-color:transparent; }
+.laws > li[data-active=true] + li { border-top-color:transparent; }
+.lawAction { display:inline-flex; align-items:center; gap:6px; min-height:36px; margin:0 0 10px; font-size:.875rem; font-weight:600; color:var(--c-link); }
+.lawAction:hover { text-decoration:underline; text-underline-offset:.22em; }
+
+/* The deeper panel content still uses utility surfaces. Inside the panel a
+   bordered block never sits in another bordered block: the inner one keeps a
+   hairline above it and nothing else. Controls keep their own outline. */
+.panel :global(.rounded-xl.border) :global(.rounded-xl.border):not(button):not(a),
+.panel :global(.rounded-xl.border) :global(.rounded-lg.border):not(button):not(a):not(input):not(select):not(summary) { border-width:1px 0 0; border-radius:0; background:transparent; }
+.panel :global(.rounded-xl.border):not(button):not(a) { background:transparent; }
+
+@media (max-width:900px) {
+  .facts { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .law { grid-template-columns:minmax(5.5rem,8rem) minmax(0,1fr); }
+  .lawMeta { grid-column:2; }
+}
+@media (max-width:640px) {
+  .facts { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .seg button, .listTools button { min-height:40px; }
+  .subtopic { padding-left:0; }
+  .law { grid-template-columns:minmax(0,1fr); gap:2px; }
+  .lawMeta { grid-column:auto; }
+  .fold > p { padding-left:0; }
+}
+
+/* Ruled result lists (decisions, chronicle) */
+.ruled { border-top:1px solid var(--c-text-main); }
+.commit { min-width:0; padding:14px 0 15px; border-bottom:1px solid var(--kerf-line); }
+
+/* Loading / error line of a panel view */
+.state { display:flex; flex-wrap:wrap; align-items:center; gap:10px; min-height:96px; padding:24px 0; font-size:.9375rem; color:var(--c-text-muted); }
+
+/* Hierarchy: a ruled outline of nested <details>. Depth is shown by indent
+   and by the weight of the heading, never by a box inside a box. */
+.tree { border-top:1px solid var(--c-text-main); }
+.tree > summary { display:flex; align-items:center; gap:10px; min-height:52px; padding:10px 0; cursor:pointer; list-style:none; }
+.tree > summary::-webkit-details-marker { display:none; }
+.tree > summary > svg { color:var(--c-text-muted); }
+.tree > summary > span:first-of-type { flex:1; min-width:0; font-size:1.0625rem; font-weight:600; line-height:1.25; letter-spacing:-.02em; overflow-wrap:anywhere; }
+.tree > summary > span:last-child { font-size:.8125rem; font-weight:600; color:var(--c-text-muted); font-variant-numeric:tabular-nums; text-align:right; }
+.tree > summary:hover > span:first-of-type { color:var(--c-link); }
+.tree > div { padding:0 0 14px 26px; }
+.tree > div > p { padding-inline:0; }
+.tree .tree { border-top:1px solid var(--kerf-line); }
+.tree .tree > summary { min-height:44px; padding:8px 0; }
+.tree .tree > summary > span:first-of-type { font-size:.9375rem; letter-spacing:0; }
+.tree .tree .tree > summary > span:first-of-type { font-size:.875rem; color:var(--c-text-muted); }
+.tree .tree > div { padding-bottom:10px; }
+.leaf { display:flex; align-items:baseline; gap:12px; width:100%; min-width:0; padding:5px 0; font-size:.875rem; line-height:1.45; text-align:left; }
+.leaf[data-action=true]:hover > span:last-child { color:var(--c-link); }
+@media (max-width:640px) {
+  .tree > div { padding-left:12px; }
+  .leaf { padding:9px 0; }
+}
+/* Nothing in a panel view is set smaller than 12px. */
+.panel :global([class*="text-[11px]"]) { font-size:.75rem; }
+/* One entry of a ruled list (amendment, version, feed row, citation). */
+.item { min-width:0; padding:14px 0 16px; border-bottom:1px solid var(--kerf-line); }
+/* Inline labels in the panel views are text, not pills. */
+.panel :global(.kerf-chip) { padding:0; border:0; background:transparent; }
+.panel span:global(.rounded-full):global(.border), .panel span:global(.rounded):global(.border), .panel span:global(.rounded-md):global(.border) { padding:0; border:0; border-radius:0; background:transparent; }
+.panel :is(a, button):global(.rounded):global(.border), .panel :is(a, button):global(.rounded-md):global(.border) { border-radius:var(--r-control); }
+@media (max-width:640px) {
+  /* Phone: every control in a panel view is at least a 40px target. */
+  .panel :is(button, summary) { min-height:40px; }
+  .panel :global(.sntiq-btn) { min-height:40px !important; }
+}
+
+/* Large-text mode (root at 120%): type in the module is rem-based and grows
+   with it; the rail gets the room its labels then need. */
+:global(.large-text) .app { grid-template-columns: 92px minmax(0, 1fr); }
+@media (max-width: 640px) { :global(.large-text) .app { grid-template-columns: minmax(0, 1fr); } }
+/* High contrast: the site frames every control and fixes its fill, so a
+   pressed or selected control gets a second, inner frame and an underline. */
+:global(.high-contrast) .app :is(button[aria-pressed=true], [role=tab][aria-selected=true], button[aria-current=true]) { outline: 2px solid var(--c-text-main); outline-offset: -6px; text-decoration: underline; text-underline-offset: .2em; }
+@media (max-width: 640px) {
+  /* Large text on a phone: the rail scrolls sideways instead of crushing labels. */
+  :global(.large-text) .navItem { flex: 0 0 auto; min-width: 64px; padding-inline: 6px; }
+}
+/* The reader's own load/error state fills the panel and sits in its middle. */
+.readerPanel > [data-load-state] { height: 100%; }
+@media (max-width: 420px) {
+  /* Seven labels in ~360px: one step smaller rather than cut off ("Fassun…"). */
+  .navItem { font-size: .5625rem; }
+  :global(.large-text) .navItem { font-size: .625rem; }
+}
+
+/* The reading surface fills the viewport. The shell header leaves the tab
+   order, and menus portalled to body can still open above the document. */
+.app:has([data-reader-maximized]) { position:fixed; inset:0; z-index:80; height:100dvh; min-height:0; grid-template:minmax(0,1fr) / minmax(0,1fr); }
+.app:has([data-reader-maximized]) > :is(.top, .rail) { display:none; }
+.app:has([data-reader-maximized]) > .body { grid-column:1 / -1; }
+:global(header.fixed):has(~ :global(main) .app [data-reader-maximized]) { display:none; }
+
+/* The site header hosts the visible title on desktop. The band supplies its
+   background and keeps the page heading available to assistive technology.
+   Before the header slot mounts, the band also draws the title. */
+.railChamfer { margin-top:auto; }
+.headerTitle { display:none; }
+@media (min-width:768px) {
+  .top :global([data-size="workspace"]) { min-block-size:4rem; padding-block:0; }
+  .topbar { block-size:4rem; padding-inline-start:8.5rem; }
+  .topbar h1, .headerTitle strong { padding-inline-start:16px; border-left:1px solid var(--hair); }
+  .topbar .toChamfer { display:none; }
+  .headerTitle { display:flex; align-items:center; flex:1; min-width:0; gap:14px; color:var(--c-text-main); }
+  .headerTitle strong { font-size:1.25rem; font-weight:500; line-height:1.3; letter-spacing:-.016em; }
+  .headerTitle .location { color:var(--c-text-muted); }
+  :global(html:not(.high-contrast) header[data-over-hero="true"]) .headerTitle {
+    --c-text-main:var(--night-ink); --c-text-muted:var(--night-dim); --hair:var(--night-line);
+  }
+  :global(body):has(.headerTitle) .topbar { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); padding:0; }
+}
+@media (max-width:767.98px) {
+  .railChamfer { display:none; }
+}

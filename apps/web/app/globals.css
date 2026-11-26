@@ -1,0 +1,1416 @@
+@import "tailwindcss";
+
+/* Theme is toggled via the .dark class on <html> (ThemeProvider), so the
+   dark: variant must follow that class — NOT the OS prefers-color-scheme
+   (Tailwind v4 default). Without this, every dark:* utility ignores the
+   in-app theme switch. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Smooth colour transitions for the corner ticks (--tc is painted inside
+   linear-gradient backgrounds, which only animate when registered as <color>). */
+@property --tc {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: transparent;
+}
+
+/* === FONT (self-hosted, see public/assets/fonts) === */
+@font-face {
+  font-family: 'Inter';
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  src: url('/assets/fonts/InterVariable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+  src: url('/assets/fonts/InterVariable-Italic.woff2') format('woff2');
+}
+/* Data face (dates, identifiers, counts, citations). Latin and Cyrillic
+   subsets; licence next to the files (IBMPlexMono-OFL.txt). */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('/assets/fonts/IBMPlexMono-Regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('/assets/fonts/IBMPlexMono-Regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* ========================== */
+
+/* --- 1. THEME AND ANIMATIONS (Tailwind v4) --- */
+@theme {
+  /* Colors */
+  --color-sntiq-deep: #0033A0;
+  --color-sntiq-bright: #0052FF;
+  --color-sntiq-clear: #0072CE;
+
+  /* Corners (DESIGN.md section 6, "Углы"): Tailwind's rounded-* classes
+     resolve to the site's two radii, so markup cannot invent a third.
+     sm, md, lg and plain "rounded" are controls; xl and up were cards and
+     frames, which are square. */
+  --radius-xs: var(--r-control);
+  --radius-sm: var(--r-control);
+  --radius: var(--r-control);
+  --radius-md: var(--r-control);
+  --radius-lg: var(--r-control);
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
+
+  /* Variables for bg-surface and bg-page */
+  --color-bg-page: var(--c-bg);
+  --color-surface: var(--panel-bg);
+
+  /* Custom animations registration */
+  --animate-gradient-flow: gradient-flow 4s ease infinite;
+  --animate-bounce-hint: bounce-hint 2s ease-in-out infinite;
+  --animate-blob: blob 8s ease-in-out infinite;
+  --animate-cursor: blink 1s step-end infinite;
+  --animate-fade-in: fade-in 0.3s ease-out forwards;
+
+  /* Keyframes */
+  @keyframes gradient-flow {
+
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes bounce-hint {
+
+    0%,
+    100% {
+      transform: translateY(0);
+      opacity: 0.6;
+    }
+
+    50% {
+      transform: translateY(10px);
+      opacity: 1;
+    }
+  }
+
+  @keyframes blink {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes cookie-in {
+    from { transform: translateY(130%); }
+    to { transform: translateY(0); }
+  }
+
+  @keyframes cookie-out {
+    from { transform: translateY(0); }
+    to { transform: translateY(130%); }
+  }
+
+  @keyframes scale-out {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0.97); }
+  }
+
+  @keyframes slide-up-fade {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scale-in {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(5px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* --- 2. BASE LAYERS --- */
+@layer base {
+  :root {
+    --c-bg: #F5F7FA;
+    --c-text-main: #111111;
+    /* 5.4:1 on --c-bg; #64748B was 4.43:1, just under AA for small text */
+    --c-text-muted: #5a6a80;
+    --c-primary: #0033A0;
+    --c-accent: #0052FF;
+    /* Shared vocabulary: links on the page background, hover of the accent,
+       and the three status colours (all ≥ 4.5:1 on --c-bg). */
+    --c-link: #0033A0;
+    --c-accent-hover: #0033A0;
+    --c-ok: #15803d;
+    --c-warn: #a16207;
+    --c-bad: #b91c1c;
+
+    /* Night surfaces (docs/DESIGN.md, section 3): dark in either theme. */
+    --night: #06080d;
+    --night-ink: #eef2f8;
+    --night-dim: #a0aaba;
+    --night-line: rgba(238, 242, 248, 0.16);
+    /* Links and the accent on night where no module colour applies (9.7:1). */
+    --night-link: #8fb4ff;
+
+    /* Corners (DESIGN.md section 6, "Углы"): one radius for everything that
+       is pressed, one for what floats; fields, blocks and frames are square. */
+    --r-control: 2px;
+    --r-float: 6px;
+    /* Graph kinds (Kerf and Taper graphs, DESIGN.md section 3): the
+       kind of a node, 3:1 on the page as a graphic element. Distinct from
+       the module colours, so a kind never reads as "selected". */
+    --g-eu: #7a4fb0;
+    --g-fed-act: #2f64a8;
+    --g-by-act: #137a86;
+    --g-initiator: #a8552a;
+    --g-vorgang: #56657a;
+    --g-topic: #6f6a3c;
+    --g-land: #4f5cc4;
+    --g-hub: #6b7280;
+    --g-by-bill: #2a7f5c;
+    /* Module colours: --m-<key> on night and in the dark theme,
+       --m-<key>-light in the light theme (4.5:1 as text on --c-bg). */
+    --m-kerf: #ecc583;
+    --m-kerf-light: #8e6116;
+    --m-taper: #74ddcc;
+    --m-taper-light: #0e786c;
+    --m-chamfer: #e8ebf0;
+    --m-chamfer-light: #111111;
+    --m-lathe: #eda5cf;
+    --m-lathe-light: #a23d7d;
+
+    --glass-bg: rgb(245, 247, 250);
+    --glass-blur: 0px;
+    --panel-bg: rgb(255, 255, 255);
+    /* --panel-bg at full opacity — the entrance "defrost" starts from this */
+    --panel-bg-solid: rgb(255, 255, 255);
+    --panel-border: rgba(0, 0, 0, 0.06);
+
+    /* Blob Gradient - Light Theme */
+    --blob-gradient: radial-gradient(circle at center, rgba(0, 82, 255, 0.8) 0%, rgba(0, 51, 160, 0.6) 35%, rgba(0, 51, 160, 0) 70%);
+
+    /* Terminal — light theme: a true light terminal (GitHub-light style) */
+    --term-bg: #fbfcfe;
+    --term-chrome: #f0f3f8;
+    --term-status: #f4f6fa;
+    --term-border: rgba(15, 23, 42, 0.12);
+
+    /* Decorative dot grid (hero backdrop) */
+    --grid-dot: rgba(17, 24, 39, 0.1);
+  }
+
+  .dark {
+    --c-bg: #030304;
+    --g-eu: #c39bff;
+    --g-fed-act: #7fb0ff;
+    --g-by-act: #5fd0e0;
+    --g-initiator: #f0a070;
+    --g-vorgang: #a3afc0;
+    --g-topic: #c9c08a;
+    --g-land: #a4adff;
+    --g-hub: #b8c0cc;
+    --g-by-bill: #6fd4a8;
+    --c-text-main: #FFFFFF;
+    --c-text-muted: #94A3B8;
+    --c-primary: #3b82f6;
+    --c-accent: #0052FF;
+    --c-link: #7ea6ff;
+    --c-accent-hover: #2f6bff;
+    --c-ok: #4ade80;
+    --c-warn: #fbbf24;
+    --c-bad: #f87171;
+
+    --glass-bg: rgb(3, 3, 4);
+    --glass-blur: 0px;
+    --panel-bg: rgb(20, 21, 26);
+    /* --panel-bg at full opacity — the entrance "defrost" starts from this */
+    /* Floating panels in the dark theme stand on the night surface with its
+       line (DESIGN.md section 3), not on a grey-blue slab. */
+    --panel-bg-solid: #06080d;
+    --panel-border: rgba(255, 255, 255, 0.16);
+
+    /* Blob Gradient - Dark Theme */
+    --blob-gradient: radial-gradient(circle at center, rgba(100, 180, 255, 0.9) 0%, rgba(0, 82, 255, 0.6) 35%, rgba(0, 51, 160, 0) 70%);
+
+    /* Terminal — dark theme: near-black */
+    --term-bg: #04060a;
+    --term-chrome: #090b10;
+    --term-status: #07090d;
+    --term-border: rgba(255, 255, 255, 0.07);
+
+    /* Decorative dot grid (hero backdrop) */
+    --grid-dot: rgba(255, 255, 255, 0.08);
+  }
+
+  /* Lines and the band derive from the ink. They are declared on body as well
+     as :root so that the high-contrast palette, which is set on body, reaches them. */
+  :root,
+  body {
+    --band: color-mix(in srgb, var(--c-text-main) 4%, var(--c-bg));
+    --hair: color-mix(in srgb, var(--c-text-main) 11%, transparent);
+    --hair-strong: color-mix(in srgb, var(--c-text-main) 26%, transparent);
+  }
+
+  /* The module root (data-module) takes its colour as the link colour:
+     the light-theme value on a light page, the night value in the dark
+     theme. High contrast keeps its own palette. */
+  body:not(.high-contrast) [data-module="kerf"] { --c-link: var(--m-kerf-light); }
+  body:not(.high-contrast) [data-module="taper"] { --c-link: var(--m-taper-light); }
+  body:not(.high-contrast) [data-module="chamfer"] { --c-link: var(--m-chamfer-light); }
+  body:not(.high-contrast) [data-module="lathe"] { --c-link: var(--m-lathe-light); }
+  .dark body:not(.high-contrast) [data-module="kerf"] { --c-link: var(--m-kerf); }
+  .dark body:not(.high-contrast) [data-module="taper"] { --c-link: var(--m-taper); }
+  .dark body:not(.high-contrast) [data-module="chamfer"] { --c-link: var(--m-chamfer); }
+  .dark body:not(.high-contrast) [data-module="lathe"] { --c-link: var(--m-lathe); }
+  /* The keyboard ring takes the module colour too (DESIGN section 10). Set
+     where --c-link is, so it resolves to the module's own colour. */
+  body:not(.high-contrast) [data-module] { --focus-ring: var(--c-link); }
+
+  /* HIGH CONTRAST */
+  .high-contrast {
+    --c-bg: #FFFFFF !important;
+    --c-text-main: #000000 !important;
+    --c-text-muted: #000000 !important;
+    --c-primary: #000000 !important;
+    --c-accent: #000000 !important;
+    --glass-bg: #FFFFFF !important;
+    --panel-bg: #FFFFFF !important;
+    --panel-border: #000000 !important;
+    --glass-blur: 0px;
+    --c-link: #000000 !important; --c-accent-hover: #000000 !important;
+    --c-ok: #000000 !important; --c-warn: #000000 !important; --c-bad: #000000 !important;
+  }
+
+  html.dark.high-contrast,
+  html.dark body.high-contrast {
+    --c-bg: #000000 !important;
+    --c-text-main: #FFFFFF !important;
+    --c-text-muted: #FFFFFF !important;
+    --c-primary: #FFFFFF !important;
+    --c-accent: #FFFFFF !important;
+    --glass-bg: #000000 !important;
+    --panel-bg: #000000 !important;
+    --panel-border: #FFFFFF !important;
+    --c-link: #FFFFFF !important; --c-accent-hover: #FFFFFF !important;
+    --c-ok: #FFFFFF !important; --c-warn: #FFFFFF !important; --c-bad: #FFFFFF !important;
+  }
+
+  body.high-contrast {
+    background-color: var(--c-bg) !important;
+    color: var(--c-text-main) !important;
+  }
+
+  /* Reset shadows, blur and images for everything in High Contrast */
+  .high-contrast * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-image: none !important;
+  }
+
+  /* Explicit borders and background for panels, buttons and inputs */
+  .high-contrast .sntiq-panel,
+  .high-contrast button,
+  .high-contrast input,
+  .high-contrast select,
+  .high-contrast textarea {
+    border: 2px solid var(--panel-border) !important;
+    background-color: var(--c-bg) !important;
+    color: var(--c-text-main) !important;
+  }
+
+  /* The primary action stays the inverted button in high contrast. Lives in
+     this layer on purpose: among !important rules the EARLIER layer wins, so
+     a rule in `components` could never beat the reset just above. */
+  .high-contrast .sntiq-btn-primary,
+  html.dark body.high-contrast .sntiq-btn-primary,
+  .high-contrast .sntiq-cookie-btn-primary,
+  html.dark body.high-contrast .sntiq-cookie-btn-primary {
+    background-color: var(--c-text-main) !important;
+    color: var(--c-bg) !important;
+  }
+
+  /* A selected segment (e.g. the read-aloud speed) keeps its inverted look. */
+  .high-contrast .sntiq-seg[aria-pressed="true"] {
+    background-color: var(--c-text-main) !important;
+    color: var(--c-bg) !important;
+  }
+
+  /* HEADER SPECIFIC OVERRIDES FOR HIGH CONTRAST */
+  /* Make header opaque and add border */
+  .high-contrast header {
+    background-color: var(--c-bg) !important;
+    border-bottom: 2px solid var(--panel-border) !important;
+  }
+
+  /* Hide the backdrop since the header itself now has a background */
+  .high-contrast header .sntiq-glass-base {
+    display: none !important;
+  }
+
+  /* TERMINAL SPECIFIC OVERRIDES FOR HIGH CONTRAST */
+  .high-contrast #terminal-window {
+    background-color: var(--c-bg) !important;
+    border: 2px solid var(--panel-border) !important;
+  }
+
+  /* Reset text colors inside the terminal to make everything contrast */
+  .high-contrast #terminal-window * {
+    color: var(--c-text-main) !important;
+    background-color: transparent !important;
+  }
+
+  /* For cursor and terminal decorations */
+  .high-contrast #terminal-window .term-dot {
+    border: 1px solid var(--c-text-main) !important;
+    background-color: transparent !important;
+  }
+
+  /* Make gradient text normal */
+  .high-contrast .text-transparent {
+    background: none !important;
+    -webkit-text-fill-color: var(--c-text-main) !important;
+    color: var(--c-text-main) !important;
+  }
+
+  /* Specifically hide decorative elements that interfere */
+  .high-contrast .sntiq-blob,
+  .high-contrast .animate-blob,
+  .high-contrast .sntiq-grid,
+  .high-contrast .absolute.inset-0.-z-10 {
+    display: none !important;
+    opacity: 0 !important;
+  }
+
+  .high-contrast { scrollbar-color: var(--c-text-main) var(--c-bg); }
+
+  /* 2px at 2px offset still clears WCAG 2.4.13's perimeter requirement while
+     hugging the control instead of floating a heavy ring around it — the
+     4px-offset 3px ring read as a selection artefact on round buttons. */
+  *:focus-visible {
+    /* A page may set --focus-ring / --focus-radius on the focused element to
+       fit the ring to its own surface (the homepage does). */
+    outline: 2px solid var(--focus-ring, var(--c-accent)) !important;
+    outline-offset: 2px;
+    border-radius: var(--focus-radius, var(--r-control));
+  }
+
+  /* High contrast keeps the loud ring: there, visibility beats restraint. */
+  .high-contrast *:focus-visible {
+    outline: 3px solid var(--c-accent) !important;
+    outline-offset: 3px;
+  }
+
+  html {
+    scrollbar-width: none;
+    color-scheme: light;
+  }
+
+  html.dark { color-scheme: dark; }
+  select, option, optgroup { color: var(--c-text-main); background-color: var(--panel-bg-solid, var(--c-bg)); }
+
+  body {
+    background-color: var(--c-bg);
+    color: var(--c-text-main);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Tailwind v4 preflight resets buttons to cursor: default */
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  ::selection {
+    background-color: rgba(0, 82, 255, 0.25);
+  }
+
+  .dark ::selection {
+    background-color: rgba(0, 82, 255, 0.45);
+  }
+
+  /* Read-aloud karaoke highlight (CSS Custom Highlight API, painted from
+     core/shell/speechHighlight.ts). Unsupported browsers just skip it. */
+  ::highlight(sntiq-tts) {
+    background-color: rgba(0, 82, 255, 0.22);
+    color: inherit;
+  }
+
+  .dark ::highlight(sntiq-tts) {
+    background-color: rgba(0, 82, 255, 0.4);
+  }
+
+  /* High contrast: solid yellow on black text — the HC reader convention.
+     Must come after the .dark variant so it wins at equal specificity. */
+  .high-contrast ::highlight(sntiq-tts) {
+    background-color: #FFFF00;
+    color: #000000;
+  }
+}
+
+/* --- 3. COMPONENTS --- */
+@layer components {
+  .text-main {
+    color: var(--c-text-main);
+  }
+
+  .text-muted {
+    color: var(--c-text-muted);
+    transition: color 0.3s ease;
+  }
+
+  .text-primary-custom {
+    color: var(--c-primary);
+  }
+
+  .text-accent-custom {
+    color: var(--c-accent);
+  }
+
+  /* Header bar once scrolled, and the full-screen menu: a solid sheet with
+     a hairline. Was frosted glass; a backdrop blur over the whole viewport
+     is the most expensive thing a phone can be asked to composite. */
+  .sntiq-glass-base {
+    background-color: var(--glass-bg);
+    box-shadow: 0 1px 0 var(--panel-border);
+  }
+
+  .sntiq-panel {
+    position: relative;
+    border: 1px solid var(--panel-border);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    background-color: var(--panel-bg);
+    box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.02);
+  }
+
+  .dark .sntiq-panel {
+    box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .sntiq-panel:hover {
+    border-color: rgba(0, 82, 255, 0.25);
+    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.08), 0 4px 8px -2px rgba(0, 0, 0, 0.04);
+  }
+
+  .dark .sntiq-panel:hover {
+    border-color: rgba(100, 180, 255, 0.25);
+    /* Same alpha as the resting --panel-bg, just a lighter hue. The old
+       rgba(255,255,255,0.03) dropped the pane from 60% to 3% opacity —
+       harmless on a flat surface, but with real backdrop blur the panel
+       suddenly went see-through on every hover (read as flicker). */
+    background-color: rgb(28, 30, 37);
+    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .logo-adaptive {
+    filter: none;
+  }
+
+  /* Subtle dot-grid backdrop, faded out towards the edges (hero) */
+  .sntiq-grid {
+    background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
+    background-size: 28px 28px;
+    -webkit-mask-image: radial-gradient(ellipse 75% 65% at 35% 40%, black 0%, transparent 70%);
+    mask-image: radial-gradient(ellipse 75% 65% at 35% 40%, black 0%, transparent 70%);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Entrance animation: fade + slide. The physics problem: while the
+     wrapper's opacity is < 1 it is a BACKDROP ROOT, so frosted panels
+     inside cannot blur the page background — and the blur snaps in the
+     instant opacity hits exactly 1, a visible "pop". There is no way to
+     ease that boundary itself, so the pop is masked instead: for the whole
+     fade every panel keeps a fully OPAQUE background (nothing shows through
+     glass, so nothing can snap), and only after arrival the background
+     relaxes to its translucent self — the frost thaws in gently while
+     backdrop-filter is already live (see sntiq-defrost below). */
+  .fade-element {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.5s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: opacity, transform;
+  }
+
+  .fade-element.is-visible {
+    opacity: 1;
+    transform: none;
+    /* the will-change hint would keep the backdrop root alive even at
+       opacity 1 — drop it the moment the entrance state applies */
+    will-change: auto;
+  }
+
+  /* The defrost: opaque through the 1.5 s fade (backwards fill covers the
+     delay) PLUS a 0.6 s safety margin — the transition end and the
+     animation-delay end are only timer-aligned, and with delay == duration
+     a couple of misaligned frames showed a translucent panel while the
+     backdrop root was still up (a brief sharp flash right before the blur
+     kicked in). Then 0.9 s to the panel's own translucent background, with
+     the blur long since live. Runs as an ANIMATION so it never interferes
+     with the panels' hover transitions; high-contrast/reduced-motion strip
+     it with everything else. Applies to panels inside a fade wrapper AND
+     to elements that are both at once (the legal pages' container). */
+  .fade-element.is-visible .sntiq-panel,
+  .fade-element.is-visible.sntiq-panel {
+    animation: sntiq-defrost 0.9s ease 2.1s backwards;
+  }
+
+  @keyframes sntiq-defrost {
+    from { background-color: var(--panel-bg-solid); }
+  }
+
+  /* CHANGED: Bold font for large text */
+  .large-text {
+    font-size: 120%;
+    font-weight: 700 !important;
+  }
+
+  /* Apply boldness to all descendants if a radical change is needed */
+  .large-text * {
+    font-weight: 700;
+  }
+
+  /* Arbitrary px text sizes (text-[10px] etc.) don't follow the enlarged
+     root font. Re-express each px size in use as its rem equivalent so it
+     scales with the 120% root. Ascending order: where responsive variants
+     stack (e.g. text-[11px] sm:text-[13px]) the larger size wins. */
+  .large-text :is([class*="text-[10px]"]) {
+    font-size: 0.625rem !important;
+  }
+
+  .large-text :is([class*="text-[11px]"]) {
+    font-size: 0.6875rem !important;
+  }
+
+  .large-text :is([class*="text-[13px]"]) {
+    font-size: 0.8125rem !important;
+  }
+}
+
+/* Kill-switch for CSS animations/transitions — applied both for the system
+   preference (media query) and for the manual toggle in the header a11y
+   menu (html.reduce-motion, set pre-paint in app/layout.tsx). */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    /* Delays must go too: a delayed animation with backwards fill (e.g. the
+       sntiq-defrost entrance) would otherwise HOLD its from-state for the
+       full delay and then snap — panels sat opaque for 1.5 s. */
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html.reduce-motion,
+html.reduce-motion *,
+html.reduce-motion ::before,
+html.reduce-motion ::after {
+  animation-duration: 0.01ms !important;
+  animation-delay: 0s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  transition-delay: 0s !important;
+  scroll-behavior: auto !important;
+}
+
+/* Changes of page and of theme are eased, never snapped. Both are killed by
+   the reduce-motion rules below along with every other animation. */
+@keyframes sntiq-page-in { from { opacity: 0; } }
+.sntiq-page { animation: sntiq-page-in 0.22s ease-out; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.3s; animation-timing-function: ease; }
+
+/* iOS zooms the whole page when a focused field is set smaller than 16px. */
+@media (pointer: coarse) {
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), select, textarea, [contenteditable="true"] { font-size: max(16px, 1rem) !important; }
+}
+
+/* Windows forced-colors mode repaints backgrounds, so a state shown only by a
+   fill disappears: give every selected control an outline in a system colour. */
+@media (forced-colors: active) {
+  :is([aria-pressed="true"], [aria-selected="true"], [aria-current="true"], [data-checked="true"]) { outline: 2px solid Highlight; outline-offset: -2px; }
+}
+
+/* Paper: no site chrome, dark ink on white whatever the theme. */
+@media print {
+  html, html.dark, html.dark body {
+    --c-bg: #fff; --c-text-main: #000; --c-text-muted: #444; --c-primary: #000; --c-link: #000; --c-accent: #000;
+    --panel-bg: #fff; --panel-bg-solid: #fff; --panel-border: rgba(0, 0, 0, 0.3); color-scheme: light;
+  }
+  body { background: #fff !important; }
+  footer, #cookie-banner { display: none !important; }
+  a { text-decoration: underline; }
+  .sntiq-page { animation: none; }
+}
+
+/* Large-text mode widens the centred header nav until it runs into the
+   controls on small laptops; below 1280px the same links are one tap away in
+   the menu. */
+@media (max-width: 1279px) {
+  html.large-text header [data-hotkey-zone="nav"] { display: none; }
+}
+
+/* --- 4. SCROLLBARS --- */
+@layer utilities {
+
+  /* The page's native scrollbar is hidden on pointer/desktop devices so no
+     opaque gutter cuts along Hero/NightBand; ScrollbarAutohide draws the
+     delicate translucent overlay thumb instead. */
+  @media (hover: hover) and (pointer: fine) {
+    html {
+      scrollbar-width: none;
+    }
+
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
+      background: transparent;
+    }
+  }
+
+  /* Scroll containers INSIDE the page keep a thin, fully transparent track. */
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(124, 140, 166, 0.28);
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(124, 140, 166, 0.54);
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.16);
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.34);
+  }
+}
+
+/* The page's own scrollbar, drawn by core/shell/ScrollbarAutohide.tsx: zero
+   layout width, completely transparent at rest, delicate translucent pill on hover/scroll. */
+.sntiq-scrollbar {
+  position: fixed;
+  top: 0;
+  right: 4px;
+  width: 5px;
+  height: 0;
+  border-radius: 999px;
+  background-color: rgba(124, 140, 166, 0.32);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+  opacity: 0;
+  pointer-events: none;
+  touch-action: none;
+  z-index: 9999;
+  transition: opacity 0.3s ease, background-color 0.2s ease;
+}
+
+/* Grab target, wider than the bubble it draws. 5px is clean to look at
+   and far too thin to hit; this keeps the visual and the hit box separate. */
+.sntiq-scrollbar::before {
+  content: '';
+  position: absolute;
+  inset: 0 -7px;
+}
+
+.dark .sntiq-scrollbar {
+  background-color: rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+/* Order matters below: these all weigh the same, so the later rule wins when
+   several states are on at once — near < visible < active. */
+.sntiq-scrollbar[data-near] {
+  opacity: 0.45;
+  pointer-events: auto;
+  transition: opacity 0.5s ease, background-color 0.2s ease;
+}
+
+.sntiq-scrollbar[data-visible] {
+  opacity: 0.92;
+  pointer-events: auto;
+  transition: opacity 0.22s ease, background-color 0.2s ease;
+}
+
+.sntiq-scrollbar[data-active] {
+  opacity: 1;
+  pointer-events: auto;
+  background-color: rgba(100, 116, 139, 0.62);
+  transition: opacity 0.15s ease, background-color 0.15s ease;
+}
+
+.dark .sntiq-scrollbar[data-active] {
+  background-color: rgba(255, 255, 255, 0.48);
+}
+
+/* High contrast keeps the position indicator on screen permanently — there,
+   visibility beats restraint (same call as the focus ring above) — and keeps
+   it draggable, since it never gets one of the states above to enable that. */
+.high-contrast .sntiq-scrollbar {
+  background-color: var(--c-text-main);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Touch devices keep their own overlay scrollbar, so ours would only double
+   it — and every state it has (hover, near-the-edge, drag) is a mouse idea.
+   ScrollbarAutohide declines to render here too; this covers the first paint
+   before it hydrates. */
+@media (hover: none), (pointer: coarse) {
+  .sntiq-scrollbar {
+    display: none;
+  }
+}
+
+/* --- 5. UPDATED BLOB ANIMATION --- */
+@keyframes blob {
+
+  0%,
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+/* ============================================================
+   MODULE LAYER — shared styles for SNTIQ modules (Lathe, ...)
+   ============================================================ */
+@layer components {
+  /* ── Shared vocabulary (2026-11 redesign) ─────────────────────────────
+     One small set of primitives for the shell and every module, so pages
+     agree without each inventing its own badge, button and card.
+
+     .sntiq-kicker   small label above a heading or group. Sentence case,
+                     13px/600. Replaces the mono-uppercase-tracked badges.
+     .sntiq-btn      button. Add .sntiq-btn-primary for the one main action.
+     .sntiq-surface  a bounded object (form sheet, dialog, preview): solid,
+                     hairline border, 12px radius, no shadow.
+     .sntiq-float    a floating layer (menu, popover): surface + one shadow.
+     .sntiq-rule     strong hairline that opens a list or section.
+     .sntiq-row      a row in a ruled list. */
+  .sntiq-kicker {
+    font-family: inherit; font-size: 0.8125rem; font-weight: 600; line-height: 1.3;
+    letter-spacing: 0; text-transform: none; color: var(--c-text-muted);
+  }
+  .sntiq-kicker[data-tone="accent"] { color: var(--c-link); }
+
+  /* Buttons in the language of the home page: sharp hairline frame with SNTIQ's
+     1px corner ticks tightening under pointer/focus, and one filled ink variant
+     for the primary action that turns to --c-link on hover. */
+  .sntiq-btn {
+    --tc: transparent;
+    --ta: 5px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    min-height: 2.5rem; padding: 0.5rem 1.125rem; border-radius: var(--r-control);
+    border: 1px solid rgba(128, 128, 128, 0.55); /* fallback: Safari < 16.2 drops the whole shorthand below */
+    border: 1px solid color-mix(in oklab, var(--c-text-main) 26%, transparent); background-color: transparent; color: var(--c-text-main);
+    font-size: 0.9375rem; font-weight: 500; line-height: 1.2; letter-spacing: -0.005em; text-align: center;
+    touch-action: manipulation;
+    background-repeat: no-repeat;
+    background-image:
+      linear-gradient(var(--tc), var(--tc)), linear-gradient(var(--tc), var(--tc)),
+      linear-gradient(var(--tc), var(--tc)), linear-gradient(var(--tc), var(--tc)),
+      linear-gradient(var(--tc), var(--tc)), linear-gradient(var(--tc), var(--tc)),
+      linear-gradient(var(--tc), var(--tc)), linear-gradient(var(--tc), var(--tc));
+    background-size:
+      var(--ta) 1px, 1px var(--ta), var(--ta) 1px, 1px var(--ta),
+      var(--ta) 1px, 1px var(--ta), var(--ta) 1px, 1px var(--ta);
+    background-position:
+      left top, left top, right top, right top,
+      left bottom, left bottom, right bottom, right bottom;
+    transition: border-color 0.18s ease, background-color 0.18s ease, color 0.18s ease, --tc 0.22s ease, transform 0.12s ease;
+  }
+  @media (hover: hover) {
+    .sntiq-btn:hover { --tc: var(--c-text-main); border-color: color-mix(in oklab, var(--c-text-main) 46%, transparent); background-color: color-mix(in oklab, var(--c-text-main) 5%, transparent); }
+  }
+  .sntiq-btn:focus-visible { --tc: var(--c-text-main); }
+  .sntiq-btn:active { transform: translateY(1px); }
+  .sntiq-btn:disabled, .sntiq-btn[aria-disabled="true"] { opacity: 0.45; pointer-events: none; }
+  .sntiq-btn-primary { background-image: none; background-color: var(--c-text-main); border-color: var(--c-text-main); color: var(--c-bg); }
+  @media (hover: hover) { .sntiq-btn-primary:hover { background-color: var(--c-link); border-color: var(--c-link); color: var(--c-bg); } }
+
+  .sntiq-surface { background-color: var(--panel-bg); border: 1px solid var(--panel-border); border-radius: 0; }
+  .sntiq-float { background-color: var(--panel-bg-solid); border: 1px solid color-mix(in srgb, var(--c-text-main) 12%, transparent); border-radius: var(--r-float); box-shadow: 0 18px 44px -18px rgba(0, 0, 0, 0.42); }
+  .sntiq-rule { border-top: 1px solid var(--c-text-main); }
+  .sntiq-row { border-bottom: 1px solid var(--panel-border); }
+  .sntiq-link { color: var(--c-link); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; text-decoration-color: color-mix(in srgb, currentColor 35%, transparent); }
+  .sntiq-link:hover { text-decoration-color: currentColor; }
+
+  /* ── The form kit (docs/DESIGN.md, section 6, "Поля и флажки") ──────────
+     The only way the site draws a field, a checkbox, a radio or a slider, in
+     every module. core/formKit.test.ts fails the build on a control without
+     its kit class, on a module stylesheet that styles controls, and on a
+     date placeholder written outside DateField.
+       .sntiq-field   text, number, e-mail, select, textarea: no box, a line
+                      under a faint ground (--band); focus turns the line into
+                      the module colour, an error into the error colour.
+       .sntiq-search  wrapper for a field with a leading icon (search).
+       .sntiq-field-end  room at the end for a unit sign or a button.
+       .sntiq-field-sm   the dense size for tool bars.
+       .sntiq-check   checkbox;  .sntiq-radio  radio;  .sntiq-range  slider.
+       DateField (core/DateField.tsx) for every date. */
+  /* Focus is drawn by the field itself: the line under it turns 2 px in the
+     module colour (3:1 and more against the ground) and the ground deepens.
+     The site's ring would hug the box and stand out under the line, so it
+     is switched off here (--focus-ring); high contrast keeps its loud ring
+     (it is drawn in --c-accent, not --focus-ring). Square corners: a line
+     with a sheet above it, not a box. */
+  .sntiq-field {
+    --focus-ring: transparent;
+    display: block; inline-size: 100%; min-inline-size: 0; min-block-size: 3rem; margin: 0;
+    padding: 0.75rem 0.875rem;
+    border: 0; border-block-end: 1px solid var(--c-text-muted); border-radius: 0;
+    background-color: var(--band); box-shadow: none;
+    color: var(--c-text-main); font: inherit; font-size: 1rem; font-weight: 400; line-height: 1.4; letter-spacing: 0; text-overflow: ellipsis;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  }
+  .sntiq-field::placeholder { color: var(--c-text-muted); opacity: 1; }
+  /* A control that takes the focus after a blocked step must not land under
+     the fixed header, and its label should come along. */
+  .sntiq-field, .sntiq-check, .sntiq-radio { scroll-margin: 8rem 0 5rem; }
+  .sntiq-field:focus { outline: none; border-block-end-color: var(--c-link); box-shadow: inset 0 -1px 0 var(--c-link); background-color: color-mix(in srgb, var(--c-text-main) 9%, transparent); }
+  .sntiq-field[aria-invalid="true"] { border-block-end-color: var(--c-bad); box-shadow: inset 0 -1px 0 var(--c-bad); }
+  .sntiq-field:disabled { color: var(--c-text-muted); }
+  .sntiq-field:disabled { cursor: not-allowed; }
+  @media (hover: hover) { .sntiq-field:hover:not(:focus):not(:disabled) { background-color: color-mix(in srgb, var(--c-text-main) 7%, transparent); } }
+  textarea.sntiq-field { resize: vertical; min-block-size: 6rem; }
+  select.sntiq-field {
+    padding-inline-end: 2.5rem; cursor: pointer; appearance: none; -webkit-appearance: none;
+    background-repeat: no-repeat; background-position: right 0.875rem center; background-size: 1rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238391a7' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  }
+  select.sntiq-field option { color: initial; background-color: initial; }
+  .sntiq-field-end { padding-inline-end: 3rem; }
+  /* Dense tool bars (a reader's filters and pane tools): smaller, still a
+     44 px target under a finger. */
+  .sntiq-field-sm { min-block-size: 2.25rem; padding: 0.375rem 0.625rem; font-size: 0.875rem; }
+  select.sntiq-field-sm { padding-inline-end: 2rem; background-position: right 0.5rem center; background-size: 0.875rem; }
+  .sntiq-search > .sntiq-field-sm { padding-inline-start: 2.125rem; }
+  .sntiq-search > .sntiq-field-sm ~ svg, .sntiq-search:has(> .sntiq-field-sm) > svg { inset-inline-start: 0.625rem; inline-size: 0.9375rem; block-size: 0.9375rem; }
+  @media (pointer: coarse) { .sntiq-field-sm { min-block-size: 2.75rem; } }
+  .sntiq-search { position: relative; min-inline-size: 0; }
+  .sntiq-search > svg {
+    position: absolute; inset-inline-start: 0.875rem; inset-block-start: 50%; translate: 0 -50%;
+    inline-size: 1.0625rem; block-size: 1.0625rem; color: var(--c-text-muted); pointer-events: none;
+  }
+  .sntiq-search > .sntiq-field { padding-inline-start: 2.625rem; }
+  .high-contrast .sntiq-field { border: 1px solid var(--c-text-main); background-color: var(--c-bg); }
+  @media (forced-colors: active) { .sntiq-field { border: 1px solid CanvasText; } }
+
+  /* Radio: a ring; chosen, it fills with the module colour around a ring of
+     the ground (no pseudo-element, which some engines do not draw on input). */
+  .sntiq-radio {
+    appearance: none; -webkit-appearance: none;
+    flex: none; inline-size: 1.125rem; block-size: 1.125rem; margin: 0;
+    border: 2px solid var(--c-text-muted); border-radius: 50%; background-color: transparent;
+    cursor: pointer; transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .sntiq-radio:checked { border-color: var(--c-link); background-color: var(--c-link); box-shadow: inset 0 0 0 3px var(--c-bg); }
+  .sntiq-radio:disabled { opacity: 0.45; cursor: default; }
+  @media (hover: hover) { .sntiq-radio:not(:checked):not(:disabled):hover { border-color: var(--c-text-main); } }
+  .high-contrast .sntiq-radio { border-color: var(--c-text-main); }
+  .high-contrast .sntiq-radio:checked { background-color: var(--c-text-main); }
+  @media (forced-colors: active) { .sntiq-radio { appearance: auto; -webkit-appearance: auto; } }
+
+  /* Keep the same children mounted when a workspace changes view. The
+     panel library sets display, overflow and touch-action inline. */
+  .sntiq-split { min-block-size: 0; min-inline-size: 0; }
+  /* Panel registration follows layout order. Keep the hidden slot at its
+     correct edge even before hydration or a breakpoint change. */
+  .sntiq-split[data-split-mode="first"] > [data-split-pane="second"],
+  .sntiq-split[data-split-mode="second"] > [data-split-pane="first"] {
+    flex: 0 0 0 !important; overflow: hidden !important;
+  }
+  .sntiq-split[data-split-mode="first"] > [data-split-pane="second"] > div,
+  .sntiq-split[data-split-mode="second"] > [data-split-pane="first"] > div { display: none !important; }
+  .sntiq-split[data-split-mode="stack"] > [data-panel] { inline-size: 100% !important; }
+  .sntiq-split[data-split-mode="stack"] { display: block !important; height: auto !important; }
+  .sntiq-split:not([data-split-mode="split"]),
+  .sntiq-split:not([data-split-mode="split"]) > [data-panel] > div {
+    overflow: visible !important; touch-action: auto !important;
+  }
+  .sntiq-split-handle {
+    position: relative; z-index: 1; flex: none; outline: none;
+    background-color: var(--hair, var(--panel-border));
+    transition: background-color 0.15s ease;
+  }
+  .sntiq-split-handle[data-orientation="horizontal"] { inline-size: 1px; cursor: col-resize; }
+  .sntiq-split-handle[data-orientation="vertical"] { block-size: 1px; cursor: row-resize; }
+  .sntiq-split-handle::after { content: ''; position: absolute; inset: 0; }
+  .sntiq-split-handle[data-orientation="horizontal"]::after { inset-inline: -5px; }
+  .sntiq-split-handle[data-orientation="vertical"]::after { inset-block: -5px; }
+  .sntiq-split-handle:is(:hover, :focus-visible, [data-separator="active"]) { background-color: var(--c-link); box-shadow: 0 0 0 0.5px var(--c-link); }
+  .sntiq-split-handle:focus-visible { outline: 2px solid var(--focus-ring, var(--c-link)) !important; outline-offset: 2px; }
+  @media (pointer: coarse) {
+    .sntiq-split-handle[data-orientation="horizontal"]::after { inset-inline: -22px; }
+    .sntiq-split-handle[data-orientation="vertical"]::after { inset-block: -22px; }
+  }
+
+  /* An icon inside a line of text (a link's arrow): the text's size, on
+     its baseline. */
+  .sntiq-inline-icon { display: inline-block; inline-size: 0.9em; block-size: 0.9em; vertical-align: -0.1em; flex: none; }
+
+  .sntiq-range { inline-size: 100%; margin: 0; accent-color: var(--c-link); cursor: pointer; }
+
+  /* "Read aloud" chip next to a text selection (SelectionReader): small and
+     inverted like a system selection bar, sized to its label; taller on
+     touch screens so a finger finds it. */
+  .sntiq-selread {
+    position: fixed; z-index: 95;
+    display: inline-flex; align-items: center; gap: 0.375rem;
+    block-size: 2rem; max-inline-size: 150px; padding-inline: 0.5rem 0.625rem;
+    border: 0; border-radius: var(--r-float);
+    background-color: var(--c-text-main); color: var(--c-bg);
+    font-size: 0.8125rem; font-weight: 500; line-height: 1; white-space: nowrap;
+    box-shadow: 0 6px 18px -8px rgba(0, 0, 0, 0.45);
+    animation: fade-in 0.12s ease-out;
+  }
+  .sntiq-selread svg { inline-size: 0.9375rem; block-size: 0.9375rem; flex-shrink: 0; }
+  @media (pointer: coarse) { .sntiq-selread { block-size: 2.75rem; padding-inline: 0.75rem 0.875rem; } }
+  @media (hover: hover) { .sntiq-selread:hover { background-color: color-mix(in srgb, var(--c-text-main) 86%, var(--c-bg)); } }
+
+  .sntiq-icon-for-dark { display: none; }
+  html.dark .sntiq-icon-for-dark { display: inline; }
+  html.dark .sntiq-icon-for-light { display: none; }
+
+  /* During a theme switch the view transition does the fade (ThemeProvider). */
+  html.theme-switching *, html.theme-switching *::before, html.theme-switching *::after { transition: none !important; }
+
+  /* Checkbox in the site's language (.sntiq-check): a square with a 1.5 px
+     line; checked it fills with the accent (the module colour inside a
+     module) and shows a check that contrasts with it in either theme. */
+  .sntiq-check {
+    appearance: none; -webkit-appearance: none;
+    flex: none; inline-size: 1.125rem; block-size: 1.125rem; margin: 0;
+    border: 1.5px solid var(--c-text-muted); border-radius: var(--r-control);
+    background: transparent center / 0.75rem no-repeat;
+    cursor: pointer; vertical-align: middle;
+    transition: background-color 150ms ease, border-color 150ms ease;
+    --focus-radius: 4px;
+  }
+  .sntiq-check:checked { background-color: var(--c-link); border-color: var(--c-link); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.5 6.2 5 8.6 9.5 3.6'/%3E%3C/svg%3E"); }
+  html.dark .sntiq-check:checked { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23030304' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.5 6.2 5 8.6 9.5 3.6'/%3E%3C/svg%3E"); }
+  .sntiq-check:disabled { opacity: 0.45; cursor: default; }
+  @media (hover: hover) { .sntiq-check:not(:checked):not(:disabled):hover { border-color: var(--c-text-main); } }
+  .high-contrast .sntiq-check { border-color: var(--c-text-main); }
+  @media (forced-colors: active) { .sntiq-check { appearance: auto; -webkit-appearance: auto; } }
+
+  /* DateField (core/DateField.tsx): TT.MM.JJJJ as text, a calendar button at
+     the right edge, and the system date input laid over the field, invisible
+     and click-through, so the calendar opens anchored to the field. */
+  .sntiq-date { position: relative; }
+  .sntiq-date > .sntiq-field { padding-inline-end: 3rem; }
+  .sntiq-date-picker {
+    position: absolute; inset: 0; inline-size: 100%; block-size: 100%;
+    margin: 0; padding: 0; border: 0; opacity: 0; pointer-events: none;
+  }
+  .sntiq-date-button {
+    position: absolute; inset-block: 0; inset-inline-end: 0; inline-size: 2.75rem;
+    display: grid; place-items: center; border: 0; background: none;
+    color: var(--c-text-muted); transition: color 160ms ease;
+  }
+  .sntiq-date-button svg { inline-size: 1.125rem; block-size: 1.125rem; }
+  @media (hover: hover) { .sntiq-date-button:hover { color: var(--c-link); } }
+
+  .sntiq-radio-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1rem;
+    border-radius: var(--r-control);
+    border: 1px solid var(--panel-border);
+    background-color: var(--panel-bg);
+    color: var(--c-text-main);
+    cursor: pointer;
+    transition: border-color 0.25s ease, background-color 0.25s ease;
+  }
+
+  .sntiq-radio-card:hover {
+    border-color: rgba(0, 82, 255, 0.4);
+  }
+
+  .sntiq-radio-card[data-checked="true"] {
+    border-color: var(--c-accent);
+    background-color: rgba(0, 82, 255, 0.08);
+  }
+}
+
+/* Top of the scroll on a page that opens on night (the home hero, a NightBand;
+   see core/shell/nightTop.ts): the header lies on the dark surface, so its
+   text and controls take the night's light ink in both themes. High contrast
+   keeps its own solid bar. The popovers under the buttons stay on theme tokens.
+   An error view's band says data-night-top="any" and counts on every route,
+   so a 404 on an unlisted address or a 500 inside a module reads the same;
+   it is plain CSS, so the server-rendered 404 is right on first paint. The
+   bar's solid states (scrolled, menu open, workspace) carry data-solid. */
+html:not(.high-contrast) :is(header[data-over-hero="true"], body:has([data-night-top="any"]) header:not([data-solid])) :is(.sntiq-hlogo, nav, .sntiq-hbtn) {
+  --c-text-main: var(--night-ink);
+  --c-text-muted: var(--night-dim);
+  --c-link: var(--night-link);
+}
+/* The controls change colour at the pace of the bar's own background (200 ms)
+   when it turns solid or the menu opens, instead of flipping a frame early
+   and vanishing light-on-light or dark-on-dark. */
+header :is(.sntiq-hlogo, nav, .sntiq-hbtn) :is(span, svg, a) { transition: color 200ms ease; }
+/* Corner ticks as a shared mark (the home page draws the same ones). Placed
+   before component overrides (.sntiq-hbtn, .sntiq-cookie, .sntiq-cookie-btn)
+   so each control can cleanly set its own resting --tc and arm length --ta. */
+.sntiq-ticks {
+  --tc: color-mix(in srgb, var(--c-text-main) 55%, transparent);
+  --ta: 9px;
+  transition: --tc 260ms ease;
+  background-repeat: no-repeat;
+  background-image:
+    linear-gradient(var(--tc), var(--tc)), linear-gradient(var(--tc), var(--tc)),
+    linear-gradient(var(--tc), var(--tc)), linear-gradient(var(--tc), var(--tc)),
+    linear-gradient(var(--tc), var(--tc)), linear-gradient(var(--tc), var(--tc)),
+    linear-gradient(var(--tc), var(--tc)), linear-gradient(var(--tc), var(--tc));
+  background-size:
+    var(--ta) 1px, 1px var(--ta), var(--ta) 1px, 1px var(--ta),
+    var(--ta) 1px, 1px var(--ta), var(--ta) 1px, 1px var(--ta);
+  background-position:
+    left top, left top, right top, right top,
+    left bottom, left bottom, right bottom, right bottom;
+}
+
+/* Header toolbar controls share the same 1px corner-tick highlight as nav items
+   (invisible at rest, fading in on hover, keyboard focus, or open dropdown). */
+.sntiq-hbtn.sntiq-ticks {
+  --ta: 5px;
+  --tc: transparent;
+  --focus-radius: 0px;
+  border-radius: 0;
+}
+@media (hover: hover) {
+  .sntiq-hbtn.sntiq-ticks:hover { --tc: color-mix(in oklab, var(--c-text-main) 88%, transparent); }
+}
+.sntiq-hbtn.sntiq-ticks:focus-visible,
+.sntiq-hbtn.sntiq-ticks[aria-expanded="true"] { --tc: var(--c-text-main); }
+
+/* The bar, once the page has scrolled: frosted, as it used to be, but only the
+   bar itself (the full-screen menu stays a solid sheet). Solid where blur is
+   unsupported, in high contrast, and on devices that run without the live
+   relief (html[data-lite]). */
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  html:not(.high-contrast):not([data-lite="true"]) header .sntiq-glass-base {
+    background-color: color-mix(in srgb, var(--glass-bg) 70%, transparent);
+    -webkit-backdrop-filter: blur(18px) saturate(1.5);
+    backdrop-filter: blur(18px) saturate(1.5);
+  }
+}
+
+/* On/off switch (the accessibility settings). Fixed px sizes: large-text mode
+   scales rem, and a track that grows while its knob does not is uneven. The
+   knob is a flex child, centred by the track rather than placed by offsets,
+   so its gaps stay equal at any pixel ratio. 32 x 18 border-box, 1px line,
+   2px padding: the knob (12 x 12) travels 14px. */
+.sntiq-switch {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  box-sizing: border-box;
+  inline-size: 32px;
+  block-size: 18px;
+  padding: 2px;
+  border: 1px solid var(--hair-strong);
+  border-radius: var(--r-control);
+  background-color: transparent;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+.sntiq-switch > span {
+  flex: none;
+  inline-size: 12px;
+  block-size: 12px;
+  border-radius: var(--r-control);
+  background-color: var(--c-text-muted);
+  transition: transform 150ms ease, background-color 150ms ease;
+}
+.sntiq-switch[data-on] { background-color: var(--c-text-main); border-color: var(--c-text-main); }
+.sntiq-switch[data-on] > span { transform: translateX(14px); background-color: var(--c-bg); }
+.high-contrast .sntiq-switch { border-color: var(--c-text-main); }
+/* High contrast frames every button; keep the track off the row's frame. */
+.high-contrast .sntiq-switch-row { padding-inline: 8px; }
+/* Forced colours replace backgrounds with Canvas: draw the switch in system
+   colours itself so the knob and the on state stay visible. */
+@media (forced-colors: active) {
+  .sntiq-switch { forced-color-adjust: none; border-color: ButtonText; background-color: Canvas; }
+  .sntiq-switch > span { background-color: ButtonText; }
+  .sntiq-switch[data-on] { border-color: Highlight; background-color: Highlight; }
+  .sntiq-switch[data-on] > span { background-color: HighlightText; }
+}
+
+/* Cookie notice: quiet monochrome Swiss slab in native <dialog popover="manual">,
+   adapting to dark obsidian over the Hero and cool architectural paper on light
+   surfaces. Zero decorative borders or gold trim: hairlines, ink, and air. */
+dialog.sntiq-cookie-host:is(:popover-open, [open]) {
+  display: block;
+}
+.sntiq-cookie {
+  --cookie-bg: #f5f7fa;
+  --cookie-ink: #111111;
+  --cookie-muted: #5a6a80;
+  --cookie-line: rgba(17, 17, 17, 0.11);
+  --cookie-line-strong: rgba(17, 17, 17, 0.24);
+  --cookie-primary-bg: #111111;
+  --cookie-primary-fg: #f5f7fa;
+  --cookie-primary-hover: var(--c-link);
+  --focus-ring: var(--c-link);
+  --focus-radius: 2px;
+  position: relative;
+  border-radius: var(--r-float);
+  background-color: var(--cookie-bg);
+  color: var(--cookie-ink);
+  padding: 1.0625rem 1.1875rem 1rem;
+  border: 1px solid var(--cookie-line);
+  box-shadow: 0 20px 48px -24px rgba(0, 0, 0, 0.22);
+  transition: background-color 260ms ease, color 260ms ease, border-color 260ms ease;
+}
+.dark .sntiq-cookie,
+html:not(.high-contrast) body:not(.high-contrast) .sntiq-cookie[data-over-night="true"] {
+  color-scheme: only dark;
+  --c-text-main: var(--night-ink);
+  --c-text-muted: var(--night-dim);
+  --c-link: var(--night-link);
+  --cookie-bg: #0a0c11;
+  --cookie-ink: var(--night-ink);
+  --cookie-muted: var(--night-dim);
+  --cookie-line: rgba(238, 242, 248, 0.12);
+  --cookie-line-strong: rgba(238, 242, 248, 0.24);
+  --cookie-primary-bg: #dde3ee;
+  --cookie-primary-fg: #06080d;
+  --cookie-primary-hover: #f2f5fa;
+  --focus-ring: var(--night-link);
+  background-color: var(--cookie-bg);
+  color: var(--cookie-ink);
+  border-color: var(--cookie-line);
+  box-shadow: 0 24px 56px -22px rgba(0, 0, 0, 0.68);
+}
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  html:not(.high-contrast):not([data-lite="true"]) body:not(.high-contrast) .sntiq-cookie {
+    background-color: color-mix(in oklab, var(--cookie-bg) 90%, transparent);
+    -webkit-backdrop-filter: blur(16px) saturate(1.2);
+    backdrop-filter: blur(16px) saturate(1.2);
+  }
+}
+.sntiq-cookie-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 0.75rem;
+}
+.sntiq-cookie .sntiq-cookie-title {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.012em;
+  color: var(--cookie-ink);
+}
+.sntiq-cookie-link {
+  flex-shrink: 0;
+  font-size: 0.78125rem;
+  line-height: 1.4;
+  color: var(--cookie-muted);
+  border-bottom: 1px solid var(--cookie-line-strong);
+  padding-bottom: 1px;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+@media (hover: hover) {
+  .sntiq-cookie-link:hover { color: var(--cookie-ink); border-bottom-color: var(--cookie-ink); }
+}
+.sntiq-cookie-link:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; }
+.sntiq-cookie-body {
+  margin: 0.45rem 0 0;
+  font-size: 0.79375rem;
+  line-height: 1.54;
+  color: var(--cookie-muted);
+}
+.sntiq-cookie-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.875rem;
+  padding-top: 0.8125rem;
+  border-top: 1px solid var(--cookie-line);
+}
+.sntiq-cookie-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.375rem;
+  padding: 0.4375rem 0.75rem;
+  border-radius: var(--r-control);
+  border: 1px solid var(--cookie-line-strong);
+  background-color: transparent;
+  color: var(--cookie-ink);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: -0.008em;
+  white-space: nowrap;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+@media (pointer: coarse) {
+  .sntiq-cookie-btn { min-height: 2.75rem; }
+}
+@media (hover: hover) {
+  .sntiq-cookie-btn:hover {
+    border-color: var(--cookie-ink);
+    background-color: color-mix(in oklab, var(--cookie-ink) 6%, transparent);
+  }
+}
+.sntiq-cookie-btn:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+.sntiq-cookie-btn-primary {
+  background-color: var(--cookie-primary-bg);
+  border-color: var(--cookie-primary-bg);
+  color: var(--cookie-primary-fg);
+}
+@media (hover: hover) {
+  .sntiq-cookie-btn-primary:hover {
+    background-color: var(--cookie-primary-hover);
+    border-color: var(--cookie-primary-hover);
+    color: var(--cookie-primary-fg);
+  }
+}
+.high-contrast .sntiq-cookie {
+  background-color: var(--c-bg) !important;
+  color: var(--c-text-main) !important;
+  border: 2px solid var(--c-text-main) !important;
+  outline: 2px solid var(--c-text-main);
+}
+.high-contrast .sntiq-cookie-title,
+.high-contrast .sntiq-cookie-body,
+.high-contrast .sntiq-cookie-link {
+  color: var(--c-text-main) !important;
+}
+.high-contrast .sntiq-cookie-actions {
+  border-top: 1px solid var(--c-text-main);
+}
+.high-contrast .sntiq-cookie-btn-primary {
+  background-color: var(--c-text-main) !important;
+  color: var(--c-bg) !important;
+}
+.high-contrast a.sntiq-hbtn { border: 1px solid var(--c-text-main); }
+@media (forced-colors: active) {
+  .sntiq-cookie { border: 2px solid CanvasText; background-color: Canvas; color: CanvasText; }
+  .sntiq-cookie-actions { border-top: 1px solid CanvasText; }
+  .sntiq-cookie-btn { border: 1px solid ButtonText; color: ButtonText; background-color: ButtonFace; }
+  .sntiq-cookie-btn-primary { border: 2px solid Highlight; }
+  .sntiq-hbtn:hover,
+  .sntiq-hbtn:focus-visible,
+  .sntiq-hbtn[aria-expanded="true"] { outline: 1px solid ButtonText; }
+}
+
+/* Menus under the header buttons: quiet rows, the chosen one marked by a
+   caret at its edge (the mark the home page uses for a selection). */
+.sntiq-menu-item { position: relative; border-radius: var(--r-control); transition: background-color 0.14s ease, color 0.14s ease; }
+@media (hover: hover) { .sntiq-menu-item:hover { background-color: color-mix(in srgb, var(--c-text-main) 7%, transparent); color: var(--c-text-main); } }
+.sntiq-menu-item[aria-current="true"]::before {
+  content: ""; position: absolute; left: 0; top: 28%; bottom: 28%; width: 2px; background: var(--c-link);
+}
+.sntiq-menu-code {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 0.6875rem; letter-spacing: 0.02em;
+  text-transform: uppercase; color: var(--c-text-muted);
+}
+
+/* Header nav. Corner ticks fade in around a label when it is pointed at or
+   is the section on screen, and fade out when it is neither. Nothing moves. */
+.sntiq-nav-item { display: inline-flex; }
+.sntiq-nav-link {
+  position: relative;
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 0.5rem 0.875rem; margin-inline: 0.25rem;
+  font-weight: 500; color: var(--c-text-muted);
+  transition: color 0.3s ease;
+}
+.sntiq-nav-frame {
+  --tc: var(--c-text-main);
+  --ta: 5px;
+  position: absolute; inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, --tc 260ms ease;
+}
+.sntiq-nav-item[data-active] .sntiq-nav-link { color: var(--c-text-main); }
+.sntiq-nav-item[data-active] .sntiq-nav-frame { opacity: 0.55; }
+@media (hover: hover) {
+  .sntiq-nav-item:hover .sntiq-nav-link { color: var(--c-text-main); }
+  .sntiq-nav-item:hover .sntiq-nav-frame { opacity: 1; }
+}
+
+/* The cookie card is a popover in the top layer: above everything, also the
+   open site menu, which it must not cover. Unlayered and last, so it wins
+   over the unlayered rule that shows the open card. */
+html[data-menu-open] #cookie-banner { display: none; }
+
+/* Header controls on touch screens: 44 px, like every other target
+   (DESIGN.md section 5). Unlayered so it beats the h-[36px] utility. */
+@media (pointer: coarse) {
+  header .sntiq-hbtn { min-inline-size: 2.75rem; block-size: 2.75rem; }
+}

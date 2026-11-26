@@ -1,0 +1,25 @@
+{
+  "name": "sntiq-tools",
+  "private": true,
+  "version": "1.0.0",
+  "description": "SNTIQ Kerf, Taper, Chamfer and Lathe",
+  "workspaces": [
+    "packages/*",
+    "apps/web"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @sntiq/web",
+    "build": "npm run build -w @sntiq/web",
+    "start": "npm run start -w @sntiq/web",
+    "typecheck": "npm run typecheck -w @sntiq/web",
+    "test": "npm run test -w @sntiq/web",
+    "lint": "npm run lint -w @sntiq/web"
+  },
+  "overrides": {
+    "sharp": "^0.35.5",
+    "postcss": "^8.5.28",
+    "tar": "^7.5.22",
+    "nanoid@<3.3.18": "^3.3.19"
+  },
+  "license": "Apache-2.0"
+}

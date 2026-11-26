@@ -1,0 +1,56 @@
+/* ModuleBand: the head of a module on its night band (see ModuleBand.tsx).
+   Entry: crumbs, the name at the scale of a page title (weight 300) and one
+   line under it. Folded: one row, the name at the small-heading scale with
+   the line beside it, the crumbs collapsed out of the flow. */
+
+.head { --mb-ease: cubic-bezier(0.22, 1, 0.36, 1); }
+
+/* The crumbs fold by their own height (grid row 1fr → 0fr) and fade. */
+.fold { display: grid; grid-template-rows: 1fr; }
+.fold > * { min-block-size: 0; overflow: hidden; }
+.head[data-compact="true"] .fold { grid-template-rows: 0fr; }
+
+.crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 0 0.5rem; margin-block-end: clamp(0.25rem, 1vw, 0.75rem); font-size: 0.875rem; font-weight: 500; color: var(--c-text-muted); }
+.crumbs a { display: inline-flex; align-items: center; min-block-size: 2.75rem; color: var(--c-text-muted); transition: color 160ms ease; }
+@media (hover: hover) { .crumbs a:hover { color: var(--c-text-main); } }
+.head[data-compact="true"] .crumbs { opacity: 0; }
+
+.titleRow { display: flex; flex-direction: column; gap: 0.6rem; }
+.name {
+  margin: 0;
+  font-size: clamp(2.2rem, 4.6vw, 4rem);
+  font-weight: 300;
+  line-height: 0.98;
+  letter-spacing: -0.028em;
+  color: var(--c-text-main);
+  text-wrap: balance;
+}
+.line {
+  margin: 0;
+  max-inline-size: 46rem;
+  font-size: clamp(1rem, 1.3vw, 1.125rem);
+  line-height: 1.45;
+  color: var(--c-text-muted);
+  text-wrap: pretty;
+}
+
+.head[data-compact="true"] .titleRow { flex-direction: row; align-items: baseline; gap: 0 1rem; min-inline-size: 0; }
+.head[data-compact="true"] .name { font-size: 1.25rem; font-weight: 500; letter-spacing: -0.016em; line-height: 1.3; white-space: nowrap; }
+.head[data-compact="true"] .line { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 0.9375rem; min-inline-size: 0; }
+
+/* On a phone the folded strip keeps only the name. */
+@media (max-width: 639.98px) {
+  .head[data-compact="true"] .line { display: none; }
+}
+
+/* The module's tool on the band (see ModuleBand.tsx). Entry: under the line.
+   Folded: the head becomes a row, the name and line take the free room and
+   the tool keeps its width at the end; on a phone it drops to its own row. */
+.tool { margin-block-start: clamp(1.25rem, 2.4vw, 1.75rem); max-inline-size: 44rem; }
+.head[data-compact="true"]:has(.tool) { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 2rem; }
+.head[data-compact="true"]:has(.tool) .fold { display: none; }
+.head[data-compact="true"]:has(.tool) .titleRow { flex: 1 1 18rem; }
+.head[data-compact="true"] .tool { flex: 0 1 30rem; margin-block-start: 0; }
+@media (max-width: 639.98px) {
+  .head[data-compact="true"] .tool { flex-basis: 100%; }
+}

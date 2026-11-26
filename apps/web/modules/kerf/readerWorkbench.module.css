@@ -1,0 +1,70 @@
+/* Tiles, view switch, history, comparison and the context menu of the reader.
+   Tokens come from .reader (reader.module.css) and the site (globals.css). */
+.tiles,.tileGroup { width:100%; height:100%; min-width:0; min-height:0; overflow:hidden; }
+.viewModes { display:flex; flex-shrink:0; align-items:center; gap:2px; padding-left:6px; border-left:1px solid var(--reader-line); }
+.viewModes button,.command,.compareTools button,.compareModes button { display:inline-flex; align-items:center; justify-content:center; gap:6px; min-height:32px; padding:5px 9px; border-radius:var(--r-control); font-size:.8125rem; font-weight:500; color:var(--reader-muted); }
+.viewModes button[aria-pressed=true],.compareModes button[aria-pressed=true] { background:var(--reader-active); color:var(--c-link); font-weight:600; }
+.viewModes button:hover,.command:hover,.compareTools button:hover,.compareModes button:hover { background:var(--reader-hover); color:var(--reader-ink); }
+.viewModes button[aria-pressed=true]:hover,.compareModes button[aria-pressed=true]:hover { background:var(--reader-active); color:var(--c-link); }
+.viewModes button:disabled,.compareModes button:disabled { opacity:.4; }
+.viewModes button { min-width:32px; }
+@container (max-width:640px) { .viewModes button span { display:none; } .viewModes button { padding:5px; } }
+.paneSwitcher { display:flex; align-items:center; gap:3px; min-width:0; overflow:auto; margin-left:auto; }
+
+/* Change history of an act */
+.history { padding:24px 28px 48px; overflow:auto; min-height:0; height:100%; scrollbar-width:thin; }
+.history > * { max-width:920px; }
+.historyHeading { display:flex; align-items:center; gap:8px; margin-bottom:14px; }
+.historyHeading h2 { font-size:1.25rem; font-weight:500; letter-spacing:-.016em; }
+.historyHeading span { margin-left:auto; color:var(--reader-muted); font-size:.8125rem; font-weight:600; font-variant-numeric:tabular-nums; }
+.search { display:flex; align-items:center; gap:8px; margin-bottom:14px; }
+.event { padding:18px 0; border-bottom:1px solid var(--reader-line); overflow-wrap:anywhere; scroll-margin:10px; }
+/* The event the reader jumped to: named by a fill, not by a stripe. */
+.event[data-selected=true] { background:var(--reader-active); margin-inline:-12px; padding-inline:12px; border-radius:var(--r-control); border-bottom-color:transparent; }
+.event time { font-size:.9375rem; font-weight:600; display:block; font-variant-numeric:tabular-nums; }
+.event h3 { font-size:.9375rem; line-height:1.45; font-weight:600; margin:8px 0; }
+.event small { display:block; color:var(--reader-muted); font-size:.75rem; line-height:1.55; }
+.event p { margin:5px 0; font-size:.8125rem; line-height:1.55; }
+.event a { display:inline-flex; align-items:center; gap:5px; margin-top:8px; color:var(--c-link); font-size:.8125rem; font-weight:600; }
+.event a:hover { text-decoration:underline; text-underline-offset:.2em; }
+
+/* Comparison of two editions */
+.comparison { display:flex; flex-direction:column; flex:1; min-height:0; min-width:0; overflow:hidden; container-type:inline-size; }
+.compareTools { display:flex; align-items:flex-end; gap:8px; padding:10px 12px; border-bottom:1px solid var(--reader-line); }
+.compareTools label { flex:1; min-width:0; font-size:.75rem; font-weight:600; color:var(--reader-muted); }
+.compareTools button { min-width:36px; min-height:36px; }
+.compareModes { display:flex; align-items:center; gap:3px; border-bottom:1px solid var(--reader-line); padding:4px 12px; }
+.compareModes span { margin-left:auto; font-size:.75rem; color:var(--reader-muted); font-variant-numeric:tabular-nums; }
+.compareScroll { flex:1; min-height:0; overflow:auto; padding:18px 28px 40px; scrollbar-width:thin; }
+.compareScroll > p { font-size:.875rem; color:var(--reader-muted); }
+.change { margin-bottom:22px; scroll-margin:10px; border-top:1px solid var(--reader-line); }
+.change h3 { font-size:.875rem; line-height:1.5; padding:10px 0; font-weight:600; }
+.change[data-selected=true] h3 { color:var(--c-link); }
+.inlineDiff,.splitDiff { white-space:pre-wrap; overflow-wrap:anywhere; font-size:.9375rem; line-height:1.8; }
+.splitDiff { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+.splitDiff > div { min-width:0; }
+/* Added = underlined on a green wash, removed = struck through on a red wash:
+   the mark is carried by the decoration as well as by the colour. */
+.comparison ins { background:color-mix(in srgb,var(--reader-added) 15%,transparent); color:var(--reader-ink); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:.22em; text-decoration-color:var(--reader-added); border-radius:var(--r-control); }
+.comparison del { background:color-mix(in srgb,var(--reader-removed) 13%,transparent); color:var(--reader-ink); text-decoration:line-through; text-decoration-color:var(--reader-removed); border-radius:var(--r-control); }
+
+/* Context menu: a floating layer (the one place a shadow is used). */
+.contextMenu { position:fixed; z-index:130; width:248px; max-width:calc(100vw - 16px); max-height:calc(100dvh - 16px); overflow:auto; padding:6px; border:1px solid var(--kerf-line, var(--panel-border)); border-radius:var(--r-float); background:var(--panel-bg-solid); color:var(--c-text-main); box-shadow:0 12px 32px -12px rgba(0,0,0,.28); letter-spacing:0; }
+.contextMenu button { display:flex; width:100%; min-height:36px; align-items:center; gap:10px; padding:7px 10px; text-align:left; font-size:.8125rem; border-radius:var(--r-control); }
+.contextMenu button svg { flex-shrink:0; color:var(--c-text-muted); }
+.contextMenu button:hover,.contextMenu button:focus-visible { background:color-mix(in srgb,var(--c-text-main) 7%,transparent); outline:none; }
+.contextMenu button:focus-visible { box-shadow:inset 0 0 0 2px var(--c-link); }
+.contextMenu button:disabled { opacity:.4; }
+.contextMenu span { min-width:0; overflow-wrap:anywhere; }
+:global(.high-contrast) .contextMenu { border-color:currentColor; }
+@container (max-width:480px) { .splitDiff { grid-template-columns:minmax(0,1fr); gap:12px; } .splitDiff > div + div { border-top:1px solid var(--reader-line); padding-top:12px; } }
+@media (max-width:640px) {
+  .history { padding:16px 16px 32px; }
+  .compareScroll { padding:14px 16px 32px; }
+  .compareTools { padding:8px; }
+  .viewModes button { min-width:40px; min-height:40px; }
+  .viewModes { gap:0; padding-left:4px; }
+  .compareTools button,.compareModes button { min-height:40px; min-width:40px; }
+  .contextMenu button { min-height:44px; font-size:.875rem; }
+}
+@media (prefers-reduced-motion:reduce) { .tiles * { scroll-behavior:auto!important; } }

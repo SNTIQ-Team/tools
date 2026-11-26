@@ -1,0 +1,25 @@
+/* Taper: the main action on the night band, the data type and
+   the focused place name. The search field itself is the form kit
+   (.sntiq-search, .sntiq-field), which the band draws in night tokens. */
+
+/* The main action on night: light fill, night text (the page's --c-bg would
+   be light on light in the light theme). */
+:global(html:not(.high-contrast)) .go,
+:global(html:not(.high-contrast)) .go:hover { color: var(--night); }
+
+/* Data (DESIGN.md section 4): postal codes and register keys. */
+.data {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.92em;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+}
+
+/* The open place's name takes the focus when a hit is picked (the hit is
+   gone): a reading position for the screen reader, not a control, so no
+   ring. */
+/* The site ring is !important inside a cascade layer (globals.css), which
+   no module rule can outrank; it is drawn in --focus-ring, so that is what
+   goes. */
+.heading { --focus-ring: transparent; }

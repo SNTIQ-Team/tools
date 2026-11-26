@@ -1,0 +1,30 @@
+/* Edition picker. The menu is portalled to <body>, so it reads the site tokens
+   directly; it is a floating layer and carries the one soft shadow. */
+.trigger { flex:1; min-width:0; min-height:34px; display:flex; align-items:center; gap:9px; padding:5px 8px; border-radius:var(--r-control); text-align:left; color:inherit; background:transparent; transition:background-color 160ms ease; }
+.trigger:hover,.trigger[aria-expanded=true] { background:var(--reader-hover, color-mix(in srgb,var(--c-text-main) 7%,transparent)); }
+.trigger > svg { flex-shrink:0; }
+.trigger span { min-width:0; flex:1; display:flex; align-items:baseline; flex-wrap:wrap; gap:2px 10px; }
+.trigger small { font-size:.75rem; color:var(--c-text-muted); }
+.trigger strong { font-size:.8125rem; font-weight:600; color:var(--c-text-main); overflow-wrap:anywhere; }
+.chevron { transition:transform 200ms ease; }
+@container (max-width:640px) { .trigger small { display:none; } .trigger { gap:6px; padding-inline:4px; } }
+@media (max-width:640px) { .trigger { min-height:40px; } }
+.trigger[aria-expanded=true] .chevron { transform:rotate(180deg); }
+.menu { z-index:100; overflow:auto; overscroll-behavior:contain; scrollbar-width:thin; padding:6px; border:1px solid var(--panel-border); border-radius:var(--r-float); background:var(--panel-bg-solid); color:var(--c-text-main); box-shadow:0 12px 32px -12px rgba(0,0,0,.28); animation:appear 180ms cubic-bezier(.2,.8,.2,1); letter-spacing:0; }
+.group { padding:14px 10px 6px; font-size:.8125rem; font-weight:600; color:var(--c-text-muted); border-top:1px solid var(--panel-border); margin-top:6px; }
+.option { width:100%; min-height:40px; display:flex; align-items:center; gap:12px; text-align:left; padding:8px 10px; border-radius:var(--r-control); color:inherit; transition:background-color 130ms ease; }
+.option span { flex:1; min-width:0; }
+.option svg { flex-shrink:0; color:var(--c-link); }
+.option strong { display:block; font-size:.875rem; font-weight:500; overflow-wrap:anywhere; }
+.option small { display:block; font-size:.75rem; line-height:1.4; color:var(--c-text-muted); margin-top:2px; overflow-wrap:anywhere; }
+.option:not(:disabled):hover,.option:focus-visible { background:color-mix(in srgb,var(--c-text-main) 7%,transparent); }
+.option[aria-selected=true] { background:color-mix(in srgb,var(--c-link) 11%,transparent); }
+.option[aria-selected=true] strong { font-weight:600; }
+.option:disabled { cursor:not-allowed; opacity:.55; }
+.option:focus-visible { outline:2px solid var(--c-link); outline-offset:-2px; }
+/* A text that is not in force yet: warning colour plus the clock icon and its wording. */
+.option[data-future=true] small,.option[data-future=true] svg { color:var(--c-warn); }
+:global(.high-contrast) .menu { border-color:currentColor; }
+:global(.high-contrast) .option:focus-visible,:global(.high-contrast) .option[aria-selected=true] { outline:2px solid currentColor; outline-offset:-2px; background:var(--c-bg); }
+@keyframes appear { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
+@media (prefers-reduced-motion:reduce) { .menu { animation:none; } .trigger,.chevron,.option { transition:none; } }

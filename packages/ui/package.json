@@ -1,0 +1,12 @@
+{
+  "name": "@sntiq/ui",
+  "version": "1.0.0",
+  "description": "SNTIQ design system: shared tokens, surfaces, and utilities used by every module",
+  "type": "module",
+  "exports": {
+    "./tokens.css": "./tokens.css"
+  },
+  "files": [
+    "tokens.css"
+  ]
+}

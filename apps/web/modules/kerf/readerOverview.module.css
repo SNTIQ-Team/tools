@@ -1,0 +1,97 @@
+/* Landing of the reader: search, the key acts as a ruled index, what is coming
+   and what was published. Same language as the home page: hairlines, Inter at
+   a few sizes, colour only where a state needs it. */
+.overview { flex:1; min-height:0; overflow:auto; overscroll-behavior:contain; background:var(--reader-surface); scrollbar-width:thin; scrollbar-color:color-mix(in srgb,var(--c-text) 30%,transparent) transparent; container-type:inline-size; }
+.inner { max-width:1200px; margin:0 auto; padding:clamp(24px,3.6cqw,44px) 32px 72px; min-width:0; }
+.lead { margin:0 0 18px; font-size:clamp(1.5rem,3cqw,2.25rem); font-weight:300; line-height:1.05; letter-spacing:-.028em; color:var(--c-text); text-wrap:balance; }
+.overview .lead { letter-spacing:-.028em; }
+
+.search { display:flex; align-items:center; gap:6px; }
+.search button { display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; margin-right:-8px; border-radius:var(--r-control); }
+.search button:hover { background:var(--reader-hover); color:var(--c-text); }
+.results { margin-top:4px; padding:0 0 4px; border-bottom:1px solid var(--c-text); }
+.results h3 { margin:18px 0 0; padding-bottom:6px; font-size:.8125rem; font-weight:600; color:var(--c-muted); border-bottom:1px solid var(--reader-line); }
+.resultList button { display:block; width:100%; min-width:0; padding:10px 0; border-bottom:1px solid var(--reader-line); text-align:left; }
+.resultList button:last-child { border-bottom:0; }
+.resultList button:hover strong { color:var(--c-link); }
+.resultList strong { display:block; font-size:.9375rem; font-weight:600; }
+.resultList span { display:block; font-size:.8125rem; line-height:1.45; color:var(--c-muted); overflow-wrap:anywhere; }
+.resultList em { display:block; margin-top:2px; font-size:.8125rem; font-style:normal; line-height:1.5; overflow-wrap:anywhere; }
+
+.section { margin-top:clamp(32px,4cqw,48px); min-width:0; }
+.section > header { display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:6px 16px; padding-bottom:10px; border-bottom:1px solid var(--c-text); }
+.section h2 { margin:0; font-size:clamp(1.19rem,2cqw,1.5rem); font-weight:500; line-height:1.15; color:var(--c-text); }
+.overview .section h2 { letter-spacing:-.016em; }
+.link { display:inline-flex; align-items:center; gap:5px; min-height:28px; font-size:.875rem; font-weight:600; color:var(--c-link); }
+.link:hover { text-decoration:underline; text-underline-offset:.22em; }
+
+/* Continue reading: plain controls, no pills. */
+.chips { display:flex; flex-wrap:wrap; gap:8px; padding-top:14px; }
+.chips button { display:inline-flex; align-items:center; gap:8px; max-width:100%; min-width:0; min-height:36px; padding:6px 12px; border:1px solid var(--reader-control-line); border-radius:var(--r-control); font-size:.875rem; font-weight:500; }
+.chips button svg { color:var(--c-muted); flex-shrink:0; }
+.chips button:hover { border-color:var(--c-text); }
+.chips span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.chips small { color:var(--c-muted); font-size:.75rem; font-variant-numeric:tabular-nums; }
+
+/* The index of key acts */
+.acts { list-style:none; margin:0; padding:0; }
+.actsHead, .act { display:grid; grid-template-columns:minmax(6.5rem,8.5rem) minmax(0,1.5fr) minmax(0,1.15fr) minmax(0,1.15fr); column-gap:clamp(16px,2.4cqw,32px); }
+.actsHead { padding:10px 0 8px; border-bottom:1px solid var(--reader-line); font-size:.8125rem; font-weight:600; color:var(--c-muted); }
+.act { width:100%; align-items:start; row-gap:4px; padding:12px 0 13px; border-bottom:1px solid var(--reader-line); text-align:left; }
+.act:hover .actAbbr strong, .act:focus-visible .actAbbr strong { color:var(--c-link); }
+.act:focus-visible, .chips button:focus-visible, .resultList button:focus-visible { outline:2px solid var(--c-link); outline-offset:2px; }
+.actAbbr { display:flex; flex-direction:column; gap:3px; min-width:0; }
+.actAbbr strong { font-size:clamp(1.19rem,1.8cqw,1.375rem); font-weight:500; line-height:1.1; overflow-wrap:anywhere; transition:color .15s; }
+.overview .actAbbr strong { letter-spacing:-.016em; }
+.actAbbr small { font-size:.75rem; font-weight:500; color:var(--c-muted); }
+.actTitle { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; margin-top:3px; font-size:.9375rem; line-height:1.4; color:var(--c-text); overflow-wrap:anywhere; }
+.none { padding-top:3px; color:var(--c-muted); font-size:.9375rem; }
+.changeLine { display:flex; flex-direction:column; gap:2px; min-width:0; padding-top:3px; font-size:.875rem; line-height:1.4; }
+/* On wide screens the column header names the state; the label stays for
+   assistive technology and returns visibly when the row stacks. */
+.changeLabel { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+.changeLine strong { font-size:.9375rem; font-weight:600; color:var(--c-text); font-variant-numeric:tabular-nums; }
+.changeLine small { font-size:.8125rem; line-height:1.4; color:var(--c-muted); overflow-wrap:anywhere; }
+/* "Comes into force" is the warning state; "in force" stays in ink. */
+.changeLine[data-kind=next] strong { color:var(--reader-pending); }
+.changeLine[data-date-known=false] strong { color:var(--c-muted); font-weight:500; }
+
+.columns { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr)); gap:0 clamp(24px,3.4cqw,48px); }
+.feed { list-style:none; padding:0; margin:0; }
+.feed li { display:grid; grid-template-columns:6rem minmax(0,1fr); gap:12px; padding:12px 0 13px; border-bottom:1px solid var(--reader-line); font-size:.9375rem; line-height:1.45; }
+.feed time { padding-top:1px; font-size:.875rem; color:var(--c-muted); font-variant-numeric:tabular-nums; }
+.feed li[data-priority=true] time { color:var(--reader-pending); font-weight:600; }
+.feed p { margin:0; overflow-wrap:anywhere; }
+.feed small { display:block; margin-top:2px; font-size:.8125rem; line-height:1.45; color:var(--c-muted); overflow-wrap:anywhere; }
+.feed a { color:inherit; }
+.feed a:hover { color:var(--c-link); }
+.feed div > a { display:inline-flex; align-items:center; min-width:28px; min-height:28px; margin-top:2px; color:var(--c-muted); }
+.feedActs button { margin-right:10px; font-weight:600; color:var(--c-text); }
+.feedActs button:hover { color:var(--c-link); text-decoration:underline; text-underline-offset:.22em; }
+.toggle { display:inline-flex; align-items:center; gap:8px; min-height:28px; font-size:.875rem; color:var(--c-muted); cursor:pointer; }
+.muted { padding:14px 0; font-size:.875rem; color:var(--c-muted); }
+
+/* Narrow workspace: name and states stack under the abbreviation. */
+@container (max-width:900px) {
+  .actsHead { display:none; }
+  .act { grid-template-columns:minmax(5.5rem,7.5rem) minmax(0,1fr) minmax(0,1fr); }
+  .actAbbr { grid-row:1 / span 2; }
+  .actTitle { grid-column:2 / -1; }
+  .changeLabel { position:static; width:auto; height:auto; clip-path:none; white-space:normal; font-size:.8125rem; font-weight:600; color:var(--c-muted); }
+  .none { display:none; }
+}
+@container (max-width:560px) {
+  .inner { padding:24px 16px 48px; }
+  .lead { margin-bottom:16px; }
+  .act { grid-template-columns:minmax(0,1fr); row-gap:6px; padding:14px 0 16px; }
+  .actAbbr { grid-row:auto; flex-direction:row; align-items:baseline; gap:10px; }
+  .actAbbr strong { font-size:1.375rem; }
+  .actTitle { grid-column:auto; margin-top:0; -webkit-line-clamp:3; }
+  .changeLine { padding-top:4px; }
+  .chips button { min-height:40px; }
+  .link { min-height:40px; }
+  .toggle { min-height:40px; }
+  .feed li { grid-template-columns:5.25rem minmax(0,1fr); gap:10px; }
+  .feed div > a { min-width:40px; min-height:40px; }
+  .feedActs button { min-height:32px; }
+}

@@ -1,0 +1,641 @@
+{
+ "schema": "kerf-evidence-envelope/1",
+ "status": "ok",
+ "operation": "law_text_at",
+ "request_scope": {
+  "norm": "de/bund/aufenthg_2004/para/85a",
+  "version": "de/bund/aufenthg_2004/para/85a@observed-2026-07-06#6f5887ff9790"
+ },
+ "applied_constraints": {
+  "canonical_id": "de/bund/aufenthg_2004/para/85a",
+  "act_id": "fed_aufenthg_2004",
+  "known_at": "latest_published_knowledge",
+  "history_schema": "kerf-norm-history/1",
+  "valid_at": "2026-07-06"
+ },
+ "ignored_arguments": [],
+ "snapshot_id": null,
+ "evidence": [
+  {
+   "id": "de/bund/aufenthg_2004/para/85a@observed-2026-07-06#6f5887ff9790",
+   "canonical_id": "de/bund/aufenthg_2004/para/85a",
+   "version_id": "de/bund/aufenthg_2004/para/85a@observed-2026-07-06#6f5887ff9790",
+   "pinpoint": {
+    "label": "§ 85a",
+    "title": "Verfahren bei konkreten Anhaltspunkten einer missbräuchlichen Anerkennung der Vaterschaft",
+    "unit": "para",
+    "number": "85a"
+   },
+   "content_hash": {
+    "algorithm": "sha256",
+    "value": "6f5887ff979053b010f972fbaa1c0711408b810b9f2543f2d6f0737fa25e973f",
+    "text_sha256": "bea81e244a66837e34bc157fd9bf2e7707f6544ca8338bff76d1c6255b271955"
+   },
+   "source": {
+    "url": "https://www.gesetze-im-internet.de/aufenthg_2004/__85a.html",
+    "norm_url": "https://www.gesetze-im-internet.de/aufenthg_2004/__85a.html",
+    "norm_url_status": "resolved",
+    "norm_url_basis": "GII table of contents captured 2026-09-28T07:16:02Z (sha256 f166dc2213f3…)",
+    "act_url": "https://www.gesetze-im-internet.de/aufenthg_2004/",
+    "role": "official_consolidation",
+    "observed_at": "2026-07-06",
+    "state_sha256": [],
+    "capture": null
+   },
+   "quality": {
+    "source_exact": true,
+    "complete": true,
+    "reconstruction_status": "not_reconstructed",
+    "text_history_complete": null
+   },
+   "temporal": {
+    "valid_from": null,
+    "valid_from_status": "unresolved",
+    "valid_from_basis": null,
+    "valid_until_exclusive": "2026-07-29",
+    "valid_until_status": "official_commencement_clause",
+    "valid_until_basis": "legal start of the next version",
+    "observed_from": "2026-07-06",
+    "observed_until": "2026-07-28",
+    "known_at": "2026-07-06",
+    "promulgated_in": null,
+    "commencement_basis": null,
+    "date_axes_note": "valid_* is legal validity; observed_* is when the official source served this text; they are never substituted.",
+    "known_at_basis": "first capture or retrieval in which any source showed this exact wording (not a legal date)",
+    "resolution": {
+     "resolution": "exact_version",
+     "status": "ok",
+     "selector": "version",
+     "version_id": "de/bund/aufenthg_2004/para/85a@observed-2026-07-06#6f5887ff9790"
+    }
+   },
+   "amendment": null,
+   "relations": [],
+   "text": "(1) Wird der Ausländerbehörde von einer beurkundenden Behörde oder einer Urkundsperson mitgeteilt, dass konkrete Anhaltspunkte für eine missbräuchliche Anerkennung der Vaterschaft im Sinne von § 1597a Absatz 1 des Bürgerlichen Gesetzbuchs bestehen, prüft die Ausländerbehörde, ob eine solche vorliegt. Ergibt die Prüfung, dass die Anerkennung der Vaterschaft missbräuchlich ist, stellt die Ausländerbehörde dies durch schriftlichen oder elektronischen Verwaltungsakt fest. Ergibt die Prüfung, dass die Anerkennung der Vaterschaft nicht missbräuchlich ist, stellt die Ausländerbehörde das Verfahren ein.(2) Eine missbräuchliche Anerkennung der Vaterschaft wird regelmäßig vermutet, wenn 1.der Anerkennende erklärt, dass seine Anerkennung gezielt gerade einem Zweck im Sinne von § 1597a Absatz 1 des Bürgerlichen Gesetzbuchs dient,2.die Mutter erklärt, dass ihre Zustimmung gezielt gerade einem Zweck im Sinne von § 1597a Absatz 1 des Bürgerlichen Gesetzbuchs dient,3.der Anerkennende bereits mehrfach die Vaterschaft von Kindern verschiedener ausländischer Mütter anerkannt hat und jeweils die rechtlichen Voraussetzungen für die erlaubte Einreise oder den erlaubten Aufenthalt des Kindes oder der Mutter durch die Anerkennung geschaffen hat, auch wenn das Kind durch die Anerkennung die deutsche Staatsangehörigkeit erworben hat,4.dem Anerkennenden oder der Mutter ein Vermögensvorteil für die Anerkennung der Vaterschaft oder die Zustimmung hierzu gewährt oder versprochen worden istund die Erlangung der rechtlichen Voraussetzungen für die erlaubte Einreise oder den erlaubten Aufenthalt des Kindes, des Anerkennenden oder der Mutter ohne die Anerkennung der Vaterschaft und die Zustimmung hierzu nicht zu erwarten ist. Dies gilt auch, wenn die rechtlichen Voraussetzungen für die erlaubte Einreise oder den erlaubten Aufenthalt des Kindes durch den Erwerb der deutschen Staatsangehörigkeit des Kindes nach § 4 Absatz 1 oder Absatz 3 Satz 1 des Staatsangehörigkeitsgesetzes geschaffen werden sollen.(3) Ist die Feststellung nach Absatz 1 Satz 2 unanfechtbar, gibt die Ausländerbehörde der beurkundenden Behörde oder der Urkundsperson und dem Standesamt eine beglaubigte Abschrift mit einem Vermerk über den Eintritt der Unanfechtbarkeit zur Kenntnis. Stellt die Behörde das Verfahren ein, teilt sie dies der beurkundenden Behörde oder der Urkundsperson, den Beteiligten und dem Standesamt schriftlich oder elektronisch mit.(4) Im Ausland sind für die Maßnahmen und Feststellungen nach den Absätzen 1 und 3 die deutschen Auslandsvertretungen zuständig.",
+   "structure": {
+    "parser_version": "law-structure/1",
+    "mode": "legal_units",
+    "numbered_absaetze": true,
+    "counts": {
+     "absatz": 4,
+     "satz": 7,
+     "nummer": 4,
+     "buchstabe": 0,
+     "doppelbuchstabe": 0,
+     "text_block": 2
+    },
+    "units": [
+     {
+      "type": "absatz",
+      "number": "1",
+      "locator": "abs/1",
+      "start": 0,
+      "end": 602,
+      "text": "Wird der Ausländerbehörde von einer beurkundenden Behörde oder einer Urkundsperson mitgeteilt, dass konkrete Anhaltspunkte für eine missbräuchliche Anerkennung der Vaterschaft im Sinne von § 1597a Absatz 1 des Bürgerlichen Gesetzbuchs bestehen, prüft die Ausländerbehörde, ob eine solche vorliegt. Ergibt die Prüfung, dass die Anerkennung der Vaterschaft missbräuchlich ist, stellt die Ausländerbehörde dies durch schriftlichen oder elektronischen Verwaltungsakt fest. Ergibt die Prüfung, dass die Anerkennung der Vaterschaft nicht missbräuchlich ist, stellt die Ausländerbehörde das Verfahren ein.",
+      "marker": "(1)",
+      "children": [
+       {
+        "type": "satz",
+        "number": "1",
+        "locator": "abs/1/satz/1",
+        "start": 4,
+        "end": 301,
+        "text": "Wird der Ausländerbehörde von einer beurkundenden Behörde oder einer Urkundsperson mitgeteilt, dass konkrete Anhaltspunkte für eine missbräuchliche Anerkennung der Vaterschaft im Sinne von § 1597a Absatz 1 des Bürgerlichen Gesetzbuchs bestehen, prüft die Ausländerbehörde, ob eine solche vorliegt."
+       },
+       {
+        "type": "satz",
+        "number": "2",
+        "locator": "abs/1/satz/2",
+        "start": 301,
+        "end": 472,
+        "text": "Ergibt die Prüfung, dass die Anerkennung der Vaterschaft missbräuchlich ist, stellt die Ausländerbehörde dies durch schriftlichen oder elektronischen Verwaltungsakt fest."
+       },
+       {
+        "type": "satz",
+        "number": "3",
+        "locator": "abs/1/satz/3",
+        "start": 472,
+        "end": 602,
+        "text": "Ergibt die Prüfung, dass die Anerkennung der Vaterschaft nicht missbräuchlich ist, stellt die Ausländerbehörde das Verfahren ein."
+       }
+      ]
+     },
+     {
+      "type": "absatz",
+      "number": "2",
+      "locator": "abs/2",
+      "start": 602,
+      "end": 2001,
+      "text": "Eine missbräuchliche Anerkennung der Vaterschaft wird regelmäßig vermutet, wenn 1.der Anerkennende erklärt, dass seine Anerkennung gezielt gerade einem Zweck im Sinne von § 1597a Absatz 1 des Bürgerlichen Gesetzbuchs dient,2.die Mutter erklärt, dass ihre Zustimmung gezielt gerade einem Zweck im Sinne von § 1597a Absatz 1 des Bürgerlichen Gesetzbuchs dient,3.der Anerkennende bereits mehrfach die Vaterschaft von Kindern verschiedener ausländischer Mütter anerkannt hat und jeweils die rechtlichen Voraussetzungen für die erlaubte Einreise oder den erlaubten Aufenthalt des Kindes oder der Mutter durch die Anerkennung geschaffen hat, auch wenn das Kind durch die Anerkennung die deutsche Staatsangehörigkeit erworben hat,4.dem Anerkennenden oder der Mutter ein Vermögensvorteil für die Anerkennung der Vaterschaft oder die Zustimmung hierzu gewährt oder versprochen worden istund die Erlangung der rechtlichen Voraussetzungen für die erlaubte Einreise oder den erlaubten Aufenthalt des Kindes, des Anerkennenden oder der Mutter ohne die Anerkennung der Vaterschaft und die Zustimmung hierzu nicht zu erwarten ist. Dies gilt auch, wenn die rechtlichen Voraussetzungen für die erlaubte Einreise oder den erlaubten Aufenthalt des Kindes durch den Erwerb der deutschen Staatsangehörigkeit des Kindes nach § 4 Absatz 1 oder Absatz 3 Satz 1 des Staatsangehörigkeitsgesetzes geschaffen werden sollen.",
+      "marker": "(2)",
+      "children": [
+       {
+        "type": "satz",
+        "number": "1",
+        "locator": "abs/2/satz/1",
+        "start": 606,
+        "end": 2001,
+        "text": "Eine missbräuchliche Anerkennung der Vaterschaft wird regelmäßig vermutet, wenn 1.der Anerkennende erklärt, dass seine Anerkennung gezielt gerade einem Zweck im Sinne von § 1597a Absatz 1 des Bürgerlichen Gesetzbuchs dient,2.die Mutter erklärt, dass ihre Zustimmung gezielt gerade einem Zweck im Sinne von § 1597a Absatz 1 des Bürgerlichen Gesetzbuchs dient,3.der Anerkennende bereits mehrfach die Vaterschaft von Kindern verschiedener ausländischer Mütter anerkannt hat und jeweils die rechtlichen Voraussetzungen für die erlaubte Einreise oder den erlaubten Aufenthalt des Kindes oder der Mutter durch die Anerkennung geschaffen hat, auch wenn das Kind durch die Anerkennung die deutsche Staatsangehörigkeit erworben hat,4.dem Anerkennenden oder der Mutter ein Vermögensvorteil für die Anerkennung der Vaterschaft oder die Zustimmung hierzu gewährt oder versprochen worden istund die Erlangung der rechtlichen Voraussetzungen für die erlaubte Einreise oder den erlaubten Aufenthalt des Kindes, des Anerkennenden oder der Mutter ohne die Anerkennung der Vaterschaft und die Zustimmung hierzu nicht zu erwarten ist. Dies gilt auch, wenn die rechtlichen Voraussetzungen für die erlaubte Einreise oder den erlaubten Aufenthalt des Kindes durch den Erwerb der deutschen Staatsangehörigkeit des Kindes nach § 4 Absatz 1 oder Absatz 3 Satz 1 des Staatsangehörigkeitsgesetzes geschaffen werden sollen.",
+        "children": [
+         {
+          "type": "text_block",
+          "number": "einleitung",
+          "locator": "abs/2/satz/1/text/einleitung",
+          "start": 606,
+          "end": 686,
+          "text": "Eine missbräuchliche Anerkennung der Vaterschaft wird regelmäßig vermutet, wenn"
+         },
+         {
+          "type": "nummer",
+          "number": "1",
+          "locator": "abs/2/satz/1/nr/1",
+          "start": 686,
+          "end": 829,
+          "text": "der Anerkennende erklärt, dass seine Anerkennung gezielt gerade einem Zweck im Sinne von § 1597a Absatz 1 des Bürgerlichen Gesetzbuchs dient,",
+          "marker": "1."
+         },
+         {
+          "type": "nummer",
+          "number": "2",
+          "locator": "abs/2/satz/1/nr/2",
+          "start": 829,
+          "end": 964,
+          "text": "die Mutter erklärt, dass ihre Zustimmung gezielt gerade einem Zweck im Sinne von § 1597a Absatz 1 des Bürgerlichen Gesetzbuchs dient,",
+          "marker": "2."
+         },
+         {
+          "type": "nummer",
+          "number": "3",
+          "locator": "abs/2/satz/1/nr/3",
+          "start": 964,
+          "end": 1329,
+          "text": "der Anerkennende bereits mehrfach die Vaterschaft von Kindern verschiedener ausländischer Mütter anerkannt hat und jeweils die rechtlichen Voraussetzungen für die erlaubte Einreise oder den erlaubten Aufenthalt des Kindes oder der Mutter durch die Anerkennung geschaffen hat, auch wenn das Kind durch die Anerkennung die deutsche Staatsangehörigkeit erworben hat,",
+          "marker": "3."
+         },
+         {
+          "type": "nummer",
+          "number": "4",
+          "locator": "abs/2/satz/1/nr/4",
+          "start": 1329,
+          "end": 1738,
+          "text": "dem Anerkennenden oder der Mutter ein Vermögensvorteil für die Anerkennung der Vaterschaft oder die Zustimmung hierzu gewährt oder versprochen worden istund die Erlangung der rechtlichen Voraussetzungen für die erlaubte Einreise oder den erlaubten Aufenthalt des Kindes, des Anerkennenden oder der Mutter ohne die Anerkennung der Vaterschaft und die Zustimmung hierzu nicht zu erwarten ist. Dies gilt auch,",
+          "marker": "4."
+         },
+         {
+          "type": "text_block",
+          "number": "schlussteil",
+          "locator": "abs/2/satz/1/text/schlussteil",
+          "start": 1738,
+          "end": 2001,
+          "text": "wenn die rechtlichen Voraussetzungen für die erlaubte Einreise oder den erlaubten Aufenthalt des Kindes durch den Erwerb der deutschen Staatsangehörigkeit des Kindes nach § 4 Absatz 1 oder Absatz 3 Satz 1 des Staatsangehörigkeitsgesetzes geschaffen werden sollen."
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "type": "absatz",
+      "number": "3",
+      "locator": "abs/3",
+      "start": 2001,
+      "end": 2425,
+      "text": "Ist die Feststellung nach Absatz 1 Satz 2 unanfechtbar, gibt die Ausländerbehörde der beurkundenden Behörde oder der Urkundsperson und dem Standesamt eine beglaubigte Abschrift mit einem Vermerk über den Eintritt der Unanfechtbarkeit zur Kenntnis. Stellt die Behörde das Verfahren ein, teilt sie dies der beurkundenden Behörde oder der Urkundsperson, den Beteiligten und dem Standesamt schriftlich oder elektronisch mit.",
+      "marker": "(3)",
+      "children": [
+       {
+        "type": "satz",
+        "number": "1",
+        "locator": "abs/3/satz/1",
+        "start": 2005,
+        "end": 2252,
+        "text": "Ist die Feststellung nach Absatz 1 Satz 2 unanfechtbar, gibt die Ausländerbehörde der beurkundenden Behörde oder der Urkundsperson und dem Standesamt eine beglaubigte Abschrift mit einem Vermerk über den Eintritt der Unanfechtbarkeit zur Kenntnis."
+       },
+       {
+        "type": "satz",
+        "number": "2",
+        "locator": "abs/3/satz/2",
+        "start": 2252,
+        "end": 2425,
+        "text": "Stellt die Behörde das Verfahren ein, teilt sie dies der beurkundenden Behörde oder der Urkundsperson, den Beteiligten und dem Standesamt schriftlich oder elektronisch mit."
+       }
+      ]
+     },
+     {
+      "type": "absatz",
+      "number": "4",
+      "locator": "abs/4",
+      "start": 2425,
+      "end": 2553,
+      "text": "Im Ausland sind für die Maßnahmen und Feststellungen nach den Absätzen 1 und 3 die deutschen Auslandsvertretungen zuständig.",
+      "marker": "(4)",
+      "children": [
+       {
+        "type": "satz",
+        "number": "1",
+        "locator": "abs/4/satz/1",
+        "start": 2429,
+        "end": 2553,
+        "text": "Im Ausland sind für die Maßnahmen und Feststellungen nach den Absätzen 1 und 3 die deutschen Auslandsvertretungen zuständig."
+       }
+      ]
+     }
+    ]
+   },
+   "source_role": "official_consolidation",
+   "attestations": [
+    {
+     "count": 3,
+     "known_from": "2026-07-06",
+     "known_until": "2026-07-28",
+     "role": "official_consolidation",
+     "samples": [
+      {
+       "known_at": "2026-07-06",
+       "sha256": "6d2ff12d306fc517bbc37b7aae719464801636e55744ba790d84f6a01c64cfc8",
+       "state_seq": 0,
+       "url": "https://www.gesetze-im-internet.de/aufenthg_2004/"
+      },
+      {
+       "known_at": "2026-07-13",
+       "sha256": "daced9e61a8904dc1979f1edae31164b677d981d313ac613e63df17525fdff66",
+       "state_seq": 1,
+       "url": "https://www.gesetze-im-internet.de/aufenthg_2004/"
+      },
+      {
+       "known_at": "2026-07-23",
+       "sha256": "e673fa040792bb2397b5cf4a0ea1b8027495f7626b9b2dd1f242a3ba9a2ae2cd",
+       "state_seq": 3,
+       "url": "https://www.gesetze-im-internet.de/aufenthg_2004/"
+      }
+     ],
+     "source": "GII"
+    },
+    {
+     "count": 3,
+     "known_from": "2026-07-15",
+     "known_until": "2026-07-25",
+     "role": "official_consolidation",
+     "samples": [
+      {
+       "known_at": "2026-07-15",
+       "sha256": "dc6016306a1d237a6efb5f124a4be33442e1d7c0cdafdab65add0a3801b06701",
+       "state_seq": 2,
+       "url": "https://testphase.rechtsinformationen.bund.de/v1/legislation/eli/bund/bgbl-1/2004/s1950/2026-07-01/1/deu/2026-06-03.zip"
+      },
+      {
+       "known_at": "2026-07-24",
+       "sha256": "e96dd20a55d1cd41309aa4ce2ee2c093d51c1ccdb2963ca735dca4f62061ffad",
+       "state_seq": 4,
+       "url": "https://testphase.rechtsinformationen.bund.de/v1/legislation/eli/bund/bgbl-1/2004/s1950/2026-07-23/1/deu/2026-07-22.zip"
+      },
+      {
+       "known_at": "2026-07-25",
+       "sha256": "448af3c0a4f70de32f9fc33cc27ca7274f5776428990023ec9cbf81907fc84a5",
+       "state_seq": 5,
+       "url": "https://testphase.rechtsinformationen.bund.de/v1/legislation/eli/bund/bgbl-1/2004/s1950/2026-07-23/1/deu/2026-07-23.zip"
+      }
+     ],
+     "source": "NeuRIS"
+    }
+   ],
+   "completeness": {
+    "reason": null,
+    "status": "complete"
+   },
+   "verification": {
+    "cross_source": "agree",
+    "sources": [
+     "gii_daily",
+     "neuris"
+    ]
+   },
+   "change": null
+  }
+ ],
+ "warnings": [],
+ "failed_components": [],
+ "total": 1,
+ "norm": {
+  "canonical_id": "de/bund/aufenthg_2004/para/85a",
+  "sub_unit": null,
+  "label": "§ 85a",
+  "title": "Zustimmung der Ausländerbehörde zu einer Anerkennung der Vaterschaft; Anwendungsbereich",
+  "act": {
+   "id": "fed_aufenthg_2004",
+   "jurabk": "AufenthG 2004",
+   "juris": "DE",
+   "title": "Gesetz über den Aufenthalt, die Erwerbstätigkeit und die Integration von Ausländern im Bundesgebiet",
+   "source_url": "https://www.gesetze-im-internet.de/aufenthg_2004/",
+   "permalink": null,
+   "build": "20260910",
+   "stand": null
+  },
+  "versions": 2,
+  "present_in_latest_state": false
+ },
+ "resolution": {
+  "resolution": "exact_version",
+  "status": "ok",
+  "selector": "version",
+  "version_id": "de/bund/aufenthg_2004/para/85a@observed-2026-07-06#6f5887ff9790"
+ },
+ "change_summary": {
+  "schema": "kerf-change-summary/1",
+  "scope": "norm",
+  "subject": "de/bund/aufenthg_2004/para/85a",
+  "as_of": "2026-07-06",
+  "last_change": null,
+  "last_incorporated_undated": null,
+  "next_pending_change": {
+   "change_id": "chg:cd7c2fd5a09d7631d80d438b",
+   "norm_id": "de/bund/aufenthg_2004/para/85a",
+   "norm_label": "§ 85a",
+   "amending_act": {
+    "citation": "Art. 1 G v. 21.7.2026 (BGBl. 2026 I Nr. 221)",
+    "document_id": "bgbl-1-2026-221",
+    "title": "Gesetz zur besseren Verhinderung missbräuchlicher Anerkennungen der Vaterschaft und zur Änderung weiterer Vorschriften",
+    "gazette": {
+     "name": "BGBl.",
+     "number": 221,
+     "page": null,
+     "part": "I",
+     "reference": "BGBl. 2026 I Nr. 221",
+     "year": 2026
+    },
+    "article": "1",
+    "items": [
+     "1.a,1.b",
+     "6.a,6.b,6.c"
+    ],
+    "url": "https://www.recht.bund.de/bgbl/1/2026/221/VO.html",
+    "procedure_id": "329481"
+   },
+   "change_type": "geändert",
+   "dates": {
+    "adopted": {
+     "basis": "recht.bund.de document metadata 'Ausfertigungsdatum' of the promulgated document",
+     "date": "2026-07-21",
+     "evidence": [
+      {
+       "field": "Ausfertigungsdatum",
+       "source": "recht.bund.de",
+       "url": "https://www.recht.bund.de/bgbl/1/2026/221/VO.html",
+       "value": "21.07.2026"
+      }
+     ],
+     "status": "official"
+    },
+    "applies_from": {
+     "date": null,
+     "status": "not_stated"
+    },
+    "in_force": {
+     "basis": "commencement clause of the amending act, resolved for the whole amending article (official_dip_article_commencement_clause)",
+     "clause": "Artikel 12 Inkrafttreten (1) Dieses Gesetz tritt vorbehaltlich der Absätze 2 und 3 am Tag nach der Verkündung in Kraft. (2) Artikel 8 Nummer 7 tritt am 1. Januar 2030 in Kraft. (3) Artikel 10 Nummer 2 tritt am 1. Oktober 2026 in Kraft.",
+     "date": "2026-07-29",
+     "evidence": [
+      {
+       "document": "bgbl-1-2026-221",
+       "sha256": "be483ae5386c79ef3257a0e5fce30e6ee2466947818987ba69f37c0eef308ee9",
+       "source": "BGBl",
+       "url": "https://www.recht.bund.de/bgbl/1/2026/221/regelungstext.pdf?__blob=publicationFile&v=1"
+      },
+      {
+       "procedure": "329481",
+       "source": "DIP",
+       "url": "https://dip.bundestag.de/vorgang/329481"
+      }
+     ],
+     "status": "official_commencement_clause"
+    },
+    "promulgated": {
+     "basis": "recht.bund.de document metadata 'Veröffentlichungsdatum' (Verkündung)",
+     "date": "2026-07-28",
+     "evidence": [
+      {
+       "field": "Veröffentlichungsdatum",
+       "source": "recht.bund.de",
+       "url": "https://www.recht.bund.de/bgbl/1/2026/221/VO.html",
+       "value": "28.07.2026"
+      }
+     ],
+     "status": "official"
+    }
+   },
+   "source_role": "official_promulgation",
+   "state": "pending",
+   "pending": true,
+   "text_effect": {
+    "after_version": 1,
+    "attribution": "bracketed_by_captures",
+    "before_version": 0,
+    "observed_from": "2026-07-29",
+    "previous_observed_until": "2026-07-28",
+    "verification": "bracketed_by_captures"
+   }
+  },
+  "pending_changes": [
+   {
+    "change_id": "chg:cd7c2fd5a09d7631d80d438b",
+    "norm_id": "de/bund/aufenthg_2004/para/85a",
+    "norm_label": "§ 85a",
+    "amending_act": {
+     "citation": "Art. 1 G v. 21.7.2026 (BGBl. 2026 I Nr. 221)",
+     "document_id": "bgbl-1-2026-221",
+     "title": "Gesetz zur besseren Verhinderung missbräuchlicher Anerkennungen der Vaterschaft und zur Änderung weiterer Vorschriften",
+     "gazette": {
+      "name": "BGBl.",
+      "number": 221,
+      "page": null,
+      "part": "I",
+      "reference": "BGBl. 2026 I Nr. 221",
+      "year": 2026
+     },
+     "article": "1",
+     "items": [
+      "1.a,1.b",
+      "6.a,6.b,6.c"
+     ],
+     "url": "https://www.recht.bund.de/bgbl/1/2026/221/VO.html",
+     "procedure_id": "329481"
+    },
+    "change_type": "geändert",
+    "dates": {
+     "adopted": {
+      "basis": "recht.bund.de document metadata 'Ausfertigungsdatum' of the promulgated document",
+      "date": "2026-07-21",
+      "evidence": [
+       {
+        "field": "Ausfertigungsdatum",
+        "source": "recht.bund.de",
+        "url": "https://www.recht.bund.de/bgbl/1/2026/221/VO.html",
+        "value": "21.07.2026"
+       }
+      ],
+      "status": "official"
+     },
+     "applies_from": {
+      "date": null,
+      "status": "not_stated"
+     },
+     "in_force": {
+      "basis": "commencement clause of the amending act, resolved for the whole amending article (official_dip_article_commencement_clause)",
+      "clause": "Artikel 12 Inkrafttreten (1) Dieses Gesetz tritt vorbehaltlich der Absätze 2 und 3 am Tag nach der Verkündung in Kraft. (2) Artikel 8 Nummer 7 tritt am 1. Januar 2030 in Kraft. (3) Artikel 10 Nummer 2 tritt am 1. Oktober 2026 in Kraft.",
+      "date": "2026-07-29",
+      "evidence": [
+       {
+        "document": "bgbl-1-2026-221",
+        "sha256": "be483ae5386c79ef3257a0e5fce30e6ee2466947818987ba69f37c0eef308ee9",
+        "source": "BGBl",
+        "url": "https://www.recht.bund.de/bgbl/1/2026/221/regelungstext.pdf?__blob=publicationFile&v=1"
+       },
+       {
+        "procedure": "329481",
+        "source": "DIP",
+        "url": "https://dip.bundestag.de/vorgang/329481"
+       }
+      ],
+      "status": "official_commencement_clause"
+     },
+     "promulgated": {
+      "basis": "recht.bund.de document metadata 'Veröffentlichungsdatum' (Verkündung)",
+      "date": "2026-07-28",
+      "evidence": [
+       {
+        "field": "Veröffentlichungsdatum",
+        "source": "recht.bund.de",
+        "url": "https://www.recht.bund.de/bgbl/1/2026/221/VO.html",
+        "value": "28.07.2026"
+       }
+      ],
+      "status": "official"
+     }
+    },
+    "source_role": "official_promulgation",
+    "state": "pending",
+    "pending": true,
+    "text_effect": {
+     "after_version": 1,
+     "attribution": "bracketed_by_captures",
+     "before_version": 0,
+     "observed_from": "2026-07-29",
+     "previous_observed_until": "2026-07-28",
+     "verification": "bracketed_by_captures"
+    }
+   }
+  ],
+  "counts": {
+   "versions": 2,
+   "versions_by_role": {
+    "official_consolidation": 2
+   },
+   "events": 1,
+   "amending_acts": 1,
+   "events_with_in_force": 1,
+   "events_pending": 1,
+   "events_date_unknown": 0
+  },
+  "source_role": "official_consolidation",
+  "act_stand_note": {
+   "amending_act": {
+    "article": "1",
+    "citation_text": "Art. 1 G v. 21.7.2026 I Nr. 221",
+    "gazette_lookup": {
+     "document_id": "bgbl-1-2026-221",
+     "number": 221,
+     "page": null,
+     "part": "I",
+     "stated_instrument_date": "2026-07-21",
+     "year": 2026
+    }
+   },
+   "last_amended_by_text": "Art. 1 G v. 21.7.2026 I Nr. 221",
+   "norm_specific": false,
+   "note": "GII's act-level 'zuletzt geändert' statement; it does not say which norms that amendment touched",
+   "schema": "kerf-gii-stand-note/1",
+   "scope": "act",
+   "source": "GII Stand",
+   "text": "zuletzt geändert durch Art. 1 G v. 21.7.2026 I Nr. 221"
+  },
+  "documentation_notes": [
+   {
+    "amending_act": {
+     "article": "3",
+     "citation_text": "Art. 3 G v. 22.7.2026 I Nr. 222",
+     "gazette_lookup": {
+      "document_id": "bgbl-1-2026-222",
+      "number": 222,
+      "page": null,
+      "part": "I",
+      "stated_instrument_date": "2026-07-22",
+      "year": 2026
+     }
+    },
+    "announced_effective_dates": [],
+    "documentation_complete": false,
+    "indirect": false,
+    "kind": "textually_incorporated_documentation_pending",
+    "schema": "kerf-gii-stand-note/1",
+    "source": "GII Stand (Hinweis)",
+    "text": "Änderung durch Art. 3 G v. 22.7.2026 I Nr. 222 textlich nachgewiesen, dokumentarisch noch nicht abschließend bearbeitet",
+    "text_incorporated": true,
+    "observed_at": "2026-09-28"
+   },
+   {
+    "amending_act": {
+     "article": "13",
+     "citation_text": "Art. 13 G v. 22.7.2026 I Nr. 222",
+     "gazette_lookup": {
+      "document_id": "bgbl-1-2026-222",
+      "number": 222,
+      "page": null,
+      "part": "I",
+      "stated_instrument_date": "2026-07-22",
+      "year": 2026
+     }
+    },
+    "announced_effective_dates": [],
+    "documentation_complete": null,
+    "indirect": false,
+    "kind": "incorporated",
+    "schema": "kerf-gii-stand-note/1",
+    "source": "GII Stand (Hinweis)",
+    "text": "Änderung durch Art. 13 G v. 22.7.2026 I Nr. 222 ist berücksichtigt",
+    "text_incorporated": true,
+    "observed_at": "2026-09-28"
+   },
+   {
+    "amending_act": {
+     "article": "4",
+     "citation_text": "Art. 4 G v. 20.12.2023 I Nr. 390",
+     "gazette_lookup": {
+      "document_id": "bgbl-1-2023-390",
+      "number": 390,
+      "page": null,
+      "part": "I",
+      "stated_instrument_date": "2023-12-20",
+      "year": 2023
+     }
+    },
+    "announced_effective_dates": [],
+    "documentation_complete": null,
+    "indirect": true,
+    "kind": "change_not_executable",
+    "schema": "kerf-gii-stand-note/1",
+    "source": "GII Stand (Sonst)",
+    "text": "Mittelbare Änderung durch Art. 4 G v. 20.12.2023 I Nr. 390 betreffend § 104 Abs. 17 ist nicht mehr ausführbar",
+    "text_incorporated": false,
+    "observed_at": "2026-09-28"
+   }
+  ],
+  "unknown_dates": [],
+  "unknown_dates_total": 0,
+  "completeness": {
+   "event_history": "complete_for_observed_text_changes",
+   "event_history_start": "2007-07-27",
+   "text_history_start": "2026-07-06",
+   "gaps": []
+  },
+  "date_policy": "dates come only from the promulgation document (heading, issue header) and the commencement clause; an unknown date stays null and is listed in unknown_dates"
+ }
+}

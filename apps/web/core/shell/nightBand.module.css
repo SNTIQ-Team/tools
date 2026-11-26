@@ -1,0 +1,142 @@
+/* NightBand: the night surface at the top of a page (docs/DESIGN.md, sections
+   3 and 7). Full-bleed, dark in either theme, the relief behind the content,
+   the content on the header's frame and standing on the band's lower edge.
+   Its heights count the room under the fixed header. */
+
+.band {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: clip;
+  isolation: isolate;
+}
+.band[data-size="page"] {
+  --nb-top: 6rem;
+  min-block-size: clamp(260px, 34vw, 420px);
+  padding-block: var(--nb-top) clamp(1.75rem, 3.6vw, 3rem);
+}
+.band[data-size="module"] {
+  --nb-top: 6rem;
+  min-block-size: clamp(240px, 22vw, 280px);
+  padding-block: var(--nb-top) clamp(1.25rem, 2.6vw, 2rem);
+}
+/* A module band folds to a strip under the header while the visitor works:
+   the name stays, the rest gives the room back to the work (ModuleBand). */
+.band[data-size="module"][data-compact="true"] {
+  min-block-size: calc(var(--nb-top) + 3.25rem);
+  padding-block: var(--nb-top) 0.75rem;
+}
+/* The strip over a workspace (Kerf): the header's 4rem, then one row of
+   3rem for the tool's name and place; on a phone 2.75rem. */
+.band[data-size="workspace"] {
+  --nb-top: 4rem;
+  min-block-size: calc(var(--nb-top) + 3rem);
+  padding-block: var(--nb-top) 0;
+}
+@media (max-width: 640px) {
+  .band[data-size="workspace"] { min-block-size: calc(var(--nb-top) + 2.75rem); }
+}
+
+/* Night colours, and the page's own tokens turned to night inside the band so
+   that whatever stands on it (links, rules, focus) reads light on dark. Not
+   in high contrast: there the band is page ground (see below). */
+:global(html:not(.high-contrast)) .band {
+  background: var(--night);
+  color: var(--night-ink);
+  --c-text-main: var(--night-ink);
+  --c-text-muted: var(--night-dim);
+  --hair: var(--night-line);
+  --hair-strong: var(--night-dim);
+  /* the ground of a field (the form kit) on night */
+  --band: color-mix(in srgb, var(--night-ink) 6%, transparent);
+  --c-link: var(--night-link);
+  /* The ring in the band's link colour (DESIGN section 10); resolved here,
+     after a module band has set its own --c-link below. */
+  --focus-ring: var(--c-link);
+}
+/* A module's band: its links take the module's night colour (the light-theme
+   value from [data-module] would be dark on dark). */
+:global(html:not(.high-contrast)) .band[data-preset="kerf"] { --c-link: var(--m-kerf); }
+:global(html:not(.high-contrast)) .band[data-preset="taper"] { --c-link: var(--m-taper); }
+:global(html:not(.high-contrast)) .band[data-preset="chamfer"] { --c-link: var(--m-chamfer); }
+:global(html:not(.high-contrast)) .band[data-preset="lathe"] { --c-link: var(--m-lathe); }
+:global(.high-contrast) .band {
+  background: var(--c-bg);
+  color: var(--c-text-main);
+  border-block-end: 1px solid var(--c-text-main);
+}
+
+.gl {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  inline-size: 100%;
+  block-size: 100%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1800ms cubic-bezier(0.3, 0, 0.2, 1);   /* the surface comes up out of the dark */
+}
+.gl[data-on="true"] { opacity: 1; }
+
+/* The picture of the same surface, where the relief does not run. It is only
+   in the DOM then, so it is not loaded on devices that show the live one. */
+.still {
+  position: absolute;
+  inset: -5%;
+  z-index: -1;
+  background: center / cover no-repeat;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  :global(html:not(.reduce-motion)) .still { animation: drift 48s ease-in-out infinite alternate; }
+}
+@keyframes drift {
+  from { transform: scale(1.01) translate3d(-1.4%, -0.8%, 0); }
+  to { transform: scale(1.09) translate3d(1.6%, 1.1%, 0); }
+}
+:global(.high-contrast) .gl,
+:global(.high-contrast) .still { display: none; }
+
+.body { position: relative; }
+
+/* Shade: night laid over the relief where text stands on it, so the light
+   text keeps 4.5:1 over the brightest folds. One under the header, one rising
+   behind the band's content; between them the relief stays open. Both sit
+   above the canvas and below the content (z-index -1 in the band's own
+   stacking context, after the canvas in tree order). */
+.band::after,
+.body::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+.band::after {
+  inset: 0 0 auto;
+  block-size: calc(var(--nb-top) + 3rem);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--night) var(--nb-shade), transparent) calc(100% - 3rem), transparent);
+}
+.body::before {
+  inset: -4rem 0 -4rem;
+  background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--night) var(--nb-shade), transparent) 4rem);
+}
+/* Measured over the page preset (canvas and still): 72% left night-dim text
+   in the header at 4.2:1, 76% gives 4.9:1 or more. */
+.band { --nb-shade: 76%; }
+:global(.high-contrast) .band::after,
+:global(.high-contrast) .body::before { display: none; }
+
+/* On paper the band is page ground: the title prints in the page's ink. */
+@media print {
+  .band[data-size] { min-block-size: 0; padding-block: 0 1rem; }
+  :global(html:not(.high-contrast)) .band {
+    background: none;
+    color: inherit;
+    --c-text-main: inherit;
+    --c-text-muted: inherit;
+    --hair: inherit;
+    --hair-strong: inherit;
+  }
+  .gl, .still, .band::after, .body::before { display: none; }
+}

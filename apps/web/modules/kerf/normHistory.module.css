@@ -1,0 +1,181 @@
+/* Version history of a provision or act: versions, wording, comparison,
+   changes, provenance. Lists are ruled; states are text in a status colour
+   (warning = not in force yet / uncertain, bad = failed, ok = official). */
+.root { padding:24px 28px 48px; overflow:auto; min-height:0; height:100%; scrollbar-width:thin; scrollbar-color:color-mix(in srgb,var(--reader-ink) 30%,transparent) transparent; overflow-wrap:anywhere; }
+.root > * { max-width:920px; }
+.heading { display:flex; flex-wrap:wrap; align-items:center; gap:6px 8px; margin-bottom:16px; }
+.root .heading h2 { font-size:1.25rem; font-weight:500; line-height:1.2; letter-spacing:-.02em; }
+/* The canonical norm id is a real identifier: monospace is right here. */
+.heading code { margin-left:auto; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.75rem; color:var(--reader-muted); }
+.modes { display:flex; flex-wrap:wrap; gap:2px; border-bottom:1px solid var(--reader-ink); padding-bottom:8px; margin:18px 0 14px; }
+.modes button { display:inline-flex; align-items:center; gap:6px; min-height:34px; padding:5px 10px; border-radius:var(--r-control); font-size:.8125rem; font-weight:500; color:var(--reader-muted); }
+.modes button:hover:not(:disabled) { background:var(--reader-hover); color:var(--reader-ink); }
+.modes button[aria-pressed=true] { background:var(--reader-active); color:var(--c-link); font-weight:600; }
+.modes button:disabled { opacity:.4; }
+.notice { display:flex; gap:9px; align-items:flex-start; padding:10px 0; margin:0 0 12px; border-block:1px solid var(--reader-line); font-size:.8125rem; line-height:1.55; }
+.notice > svg { flex-shrink:0; margin-top:3px; color:var(--reader-pending); }
+.notice[data-status=integrity_check_failed] > svg,.notice[data-status=unavailable] > svg,.notice[data-status=not_in_corpus] > svg { color:var(--reader-removed); }
+.notice p { margin:3px 0 0; }
+.notice button { margin-left:auto; display:inline-flex; gap:5px; align-items:center; min-height:28px; font-size:.8125rem; font-weight:600; color:var(--c-link); }
+.muted { color:var(--reader-muted); font-size:.8125rem; line-height:1.55; }
+
+/* One version of a provision */
+.version { padding:16px 0; border-bottom:1px solid var(--reader-line); font-size:.875rem; line-height:1.55; }
+.version header { display:flex; align-items:center; gap:4px 9px; flex-wrap:wrap; }
+.version header > svg { color:var(--reader-muted); }
+.version header strong { font-size:.9375rem; font-weight:600; font-variant-numeric:tabular-nums; }
+.version small { display:block; color:var(--reader-muted); font-size:.8125rem; }
+.version p { margin:5px 0; }
+.version a { color:var(--c-link); display:inline-flex; align-items:center; gap:4px; }
+.version a:hover,.version footer button:hover { text-decoration:underline; text-underline-offset:.2em; }
+.version footer { display:flex; flex-wrap:wrap; align-items:center; gap:4px 16px; margin-top:8px; font-size:.8125rem; }
+.version footer code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.75rem; color:var(--reader-muted); }
+.version footer button { display:inline-flex; align-items:center; gap:5px; min-height:28px; color:var(--c-link); font-weight:600; }
+.version footer a { min-height:28px; font-weight:600; }
+.version[data-future=true] header strong { color:var(--reader-pending); }
+.role { font-size:.8125rem; color:var(--reader-muted); }
+.role[data-exact=false] { color:var(--reader-pending); font-weight:600; }
+/* State labels: sentence case, 13px/600, coloured by meaning. No pills. */
+.badge { font-size:.8125rem; font-weight:600; color:var(--reader-pending); }
+.currentBadge { font-size:.8125rem; font-weight:600; color:var(--c-link); }
+.events { margin-top:28px; }
+.events h3 { font-size:1rem; font-weight:600; letter-spacing:-.01em; padding-bottom:8px; border-bottom:1px solid var(--reader-ink); margin-bottom:4px; }
+.event { padding:12px 0; border-bottom:1px solid var(--reader-line); font-size:.8125rem; line-height:1.55; }
+.event small { display:block; color:var(--reader-muted); }
+.event a { color:var(--c-link); display:inline-flex; gap:4px; align-items:center; font-weight:600; }
+
+/* Comparison and attribution */
+.diff,.blame { font-size:.9375rem; line-height:1.75; }
+.pickers { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px; }
+.pickers label { flex:1 1 180px; min-width:0; font-size:.75rem; font-weight:600; color:var(--reader-muted); }
+.change { border-top:1px solid var(--reader-line); padding:10px 0 14px; }
+.change h4 { font-size:.8125rem; font-weight:600; color:var(--reader-muted); margin-bottom:4px; }
+/* Added = underlined, removed = struck through; the wash is a second cue. */
+.diff ins { background:color-mix(in srgb,var(--reader-added) 15%,transparent); color:var(--reader-ink); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:.22em; text-decoration-color:var(--reader-added); border-radius:var(--r-control); }
+.diff del { background:color-mix(in srgb,var(--reader-removed) 13%,transparent); color:var(--reader-ink); text-decoration:line-through; text-decoration-color:var(--reader-removed); border-radius:var(--r-control); }
+.blameRow { display:grid; grid-template-columns:minmax(0,220px) minmax(0,1fr); gap:16px; padding:11px 0; border-bottom:1px solid var(--reader-line); }
+.blameMeta { display:flex; flex-direction:column; gap:2px; font-size:.75rem; line-height:1.5; color:var(--reader-muted); }
+.blameMeta strong { color:var(--reader-ink); font-size:.8125rem; font-weight:600; }
+.blameRow[data-status=introduced_within_history] .blameMeta strong { color:var(--c-link); }
+.blameRow p { margin:0; }
+@media (max-width:560px) { .blameRow { grid-template-columns:minmax(0,1fr); gap:4px; } }
+.provenance { flex-basis:100%; display:flex; flex-direction:column; gap:4px; margin-top:6px; font-size:.75rem; line-height:1.55; }
+.provenance .notice { margin:4px 0; }
+.provenance details summary { cursor:pointer; color:var(--reader-muted); }
+.provenance dl { display:grid; grid-template-columns:max-content minmax(0,1fr); gap:2px 12px; margin-top:6px; font-size:.75rem; }
+.provenance dt { color:var(--reader-muted); font-weight:600; }
+.provenance dd { margin:0; overflow-wrap:anywhere; }
+.materialGroup { margin-top:10px; }
+.materialGroup h4 { font-size:.8125rem; font-weight:600; margin:14px 0 2px; }
+.more { display:inline-flex; align-items:center; gap:5px; min-height:32px; font-size:.8125rem; font-weight:600; color:var(--c-link); margin-top:6px; }
+.more:hover { text-decoration:underline; text-underline-offset:.2em; }
+
+/* Change summary: a ruled block at the top of a provision or act. */
+.summary { margin:0 0 16px; padding:12px 0 14px; border-block:1px solid var(--reader-line); font-size:.8125rem; line-height:1.55; }
+.summary > header { display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-bottom:8px; }
+.summary > header strong { font-size:.8125rem; font-weight:600; color:var(--reader-muted); }
+.summary > header button { min-height:24px; font-size:.8125rem; font-weight:600; color:var(--c-link); }
+.summary > header button:hover { text-decoration:underline; text-underline-offset:.2em; }
+.summaryRows { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr)); gap:10px 24px; }
+.summaryRows > div { display:flex; flex-direction:column; gap:2px; min-width:0; font-size:.875rem; }
+.summaryRows em { color:var(--reader-muted); font-style:normal; }
+.summaryRows small { color:var(--reader-muted); }
+.summaryLabel { display:inline-flex; align-items:center; gap:5px; font-size:.8125rem; font-weight:600; color:var(--reader-muted); }
+.summaryRows > div[data-pending=true] .summaryLabel { color:var(--reader-pending); }
+.summaryCounts { display:flex; flex-wrap:wrap; gap:2px 14px; margin:10px 0 0; color:var(--reader-muted); font-variant-numeric:tabular-nums; }
+.summaryNote { margin:6px 0 0; overflow-wrap:anywhere; }
+.summaryNote small { color:var(--reader-muted); }
+.summary[data-compact=true] { margin:16px 0 0; border-bottom:0; padding-bottom:0; }
+.unknown { margin-top:6px; }
+.unknown summary { cursor:pointer; color:var(--reader-muted); }
+.unknown ul { margin:6px 0 0; padding-left:16px; list-style:disc; }
+.unknown li { margin:2px 0; overflow-wrap:anywhere; }
+.unknown li small { color:var(--reader-muted); }
+.brief { display:inline-flex; flex-wrap:wrap; align-items:baseline; gap:2px 8px; min-width:0; }
+.brief strong { font-weight:600; font-variant-numeric:tabular-nums; }
+.brief[data-state=pending] strong { color:var(--reader-pending); }
+.brief strong[data-date-known=false] { color:var(--reader-muted); font-weight:500; }
+.chamferNorm { font-weight:600; }
+/* Inline, so a wrapped citation keeps its external-link mark at the end of the text. */
+.citation a { color:var(--c-link); }
+.citation a svg { display:inline; vertical-align:-1px; margin-left:3px; }
+.citation a:hover { text-decoration:underline; text-underline-offset:.2em; }
+.citation { overflow-wrap:anywhere; }
+
+/* Change records: ruled rows, the amending act first. */
+.changeList, .actHistory { display:flex; flex-direction:column; }
+.pendingGroup { display:flex; flex-direction:column; margin-bottom:8px; }
+.pendingGroup h3 { display:flex; align-items:center; gap:6px; margin:0; padding:10px 0 8px; border-bottom:1px solid var(--reader-ink); font-size:.875rem; font-weight:600; color:var(--reader-pending); }
+.changeCard { padding:14px 0 16px; border-bottom:1px solid var(--reader-line); font-size:.8125rem; line-height:1.55; min-width:0; }
+.changeCard > header { display:flex; flex-wrap:wrap; align-items:baseline; gap:2px 12px; font-size:.9375rem; font-weight:600; }
+.pendingBadge { display:inline-flex; align-items:center; gap:5px; align-self:center; font-size:.8125rem; font-weight:600; color:var(--reader-pending); }
+.typeBadge { font-size:.8125rem; font-weight:600; color:var(--reader-muted); }
+.typeBadge[data-type=aufgehoben] { color:var(--reader-removed); }
+.typeBadge[data-type=eingefügt] { color:var(--reader-added); }
+.normLink { color:var(--c-link); font-weight:600; }
+.normLink:hover { text-decoration:underline; text-underline-offset:.2em; }
+.actTitle { margin:3px 0 0; color:var(--reader-muted); overflow-wrap:anywhere; }
+.dateGrid { display:flex; flex-wrap:wrap; gap:2px 20px; margin:6px 0 0; font-variant-numeric:tabular-nums; }
+.dateGrid > div { display:flex; gap:6px; min-width:0; }
+.dateGrid dt { color:var(--reader-muted); }
+.dateGrid dd { margin:0; font-weight:500; }
+.dateGrid dd[data-known=false] { color:var(--reader-muted); font-weight:400; }
+.dateGrid dd small { color:var(--reader-muted); font-weight:400; }
+.stateLine { margin:6px 0 0; font-weight:600; }
+.stateLine[data-state=pending] { color:var(--reader-pending); }
+.stateLine[data-state=date_unknown], .stateLine[data-state=incorporated_date_unknown] { color:var(--reader-muted); font-weight:500; }
+.changeCard > footer { display:flex; flex-wrap:wrap; align-items:flex-start; gap:6px 16px; margin-top:8px; }
+.changeCard > footer button { display:inline-flex; align-items:center; gap:5px; min-height:28px; color:var(--c-link); font-weight:600; }
+.changeCard > footer button:hover { text-decoration:underline; text-underline-offset:.2em; }
+.changeCard details summary { cursor:pointer; color:var(--reader-muted); display:inline-flex; align-items:center; gap:4px; min-height:28px; }
+.changeCard pre { margin:6px 0 0; padding:2px 0 2px 14px; border-left:2px solid var(--reader-control-line); white-space:pre-wrap; overflow-wrap:anywhere; font:inherit; font-size:.8125rem; color:var(--reader-muted); }
+.affected { display:flex; flex-wrap:wrap; align-items:baseline; gap:2px 14px; margin-top:8px; }
+.affected > span { color:var(--reader-muted); }
+.affected button { min-height:26px; color:var(--c-link); font-weight:600; }
+.affected button:hover:not(:disabled) { text-decoration:underline; text-underline-offset:.2em; }
+.affected button small { font-weight:400; color:var(--reader-muted); }
+.affected button:disabled { color:inherit; cursor:default; }
+
+/* Where a version comes from */
+.provenanceLine { display:flex; flex-wrap:wrap; align-items:baseline; gap:2px 12px; margin:4px 0; font-size:.8125rem; }
+.provenanceLine small { color:var(--reader-muted); font-size:.8125rem; }
+.roleBadge { font-size:.8125rem; font-weight:600; color:var(--reader-muted); }
+.roleBadge[data-role=reconstruction] { color:var(--reader-pending); }
+.roleBadge[data-role=archived_capture] { color:var(--reader-ink); }
+.roleBadge[data-role=official_promulgation] { color:var(--reader-added); }
+.completeBadge { font-size:.8125rem; font-weight:600; color:var(--reader-pending); }
+.attestations { margin:4px 0; font-size:.8125rem; }
+.attestations summary { cursor:pointer; color:var(--reader-muted); }
+.attestations ul { margin:4px 0 0; padding-left:16px; list-style:disc; }
+.attestations a { display:inline-flex; gap:3px; align-items:center; }
+.swap { align-self:flex-end; display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border:1px solid var(--reader-control-line); border-radius:var(--r-control); color:var(--reader-muted); }
+.swap:hover { border-color:var(--reader-ink); color:var(--reader-ink); }
+.sides { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr)); gap:4px 16px; margin:4px 0 10px; }
+.sides small { color:var(--reader-muted); font-size:.75rem; font-weight:600; }
+
+/* Full wording of one version */
+.textView { font-size:.875rem; }
+.versionText { margin-top:14px; padding-top:14px; border-top:1px solid var(--reader-line); font-size:1rem; line-height:1.85; }
+.versionText h3 { font-size:1.0625rem; font-weight:600; letter-spacing:-.01em; margin:0 0 10px; }
+.versionText p { margin:0 0 12px; }
+.versionText [data-unit=absatz] { margin:0 0 12px; }
+.versionText [data-marker] { font-weight:600; }
+.versionText [data-unit=nummer], .versionText [data-unit=buchstabe], .versionText [data-unit=doppelbuchstabe] { display:grid; grid-template-columns:2.2em minmax(0,1fr); margin:2px 0 2px .4em; }
+.versionText [data-unit=buchstabe] { margin-left:1.2em; }
+.versionText [data-unit=doppelbuchstabe] { margin-left:2em; }
+.versionText div[data-unit=text_block] { margin:4px 0 0; }
+.versionText [data-version-note] { font-size:.8125rem; color:var(--reader-muted); }
+
+.futureNote { margin:4px 0; font-size:.8125rem; font-weight:600; color:var(--reader-pending); }
+.summaryMore { margin-top:6px; }
+.summaryMore > summary { cursor:pointer; color:var(--reader-muted); font-size:.8125rem; min-height:28px; }
+@media (min-width:641px) { .summaryMore > summary { display:none; } }
+@media (max-width:640px) {
+  .root { padding:16px 16px 32px; }
+  .modes button { min-height:40px; }
+  .version footer { gap:0 16px; }
+  .version footer button,.version footer a,.changeCard > footer button,.changeCard details summary,.more,.notice button,.summary > header button,.summaryMore > summary { min-height:40px; }
+  .affected { gap:0 16px; }
+  .affected button { min-height:36px; }
+  .swap { width:40px; height:40px; }
+}

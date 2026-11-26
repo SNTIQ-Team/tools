@@ -1,0 +1,16 @@
+# dependencies & build output
+node_modules/
+.next/
+out/
+dist/
+*.tsbuildinfo
+
+# runtime noise
+*.log
+.env*.local
+.tmp/
+.claude/
+.data/
+
+# Generated from the locked PDF.js package by prebuild/predev.
+apps/web/public/pdfjs/

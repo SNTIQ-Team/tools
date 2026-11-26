@@ -1,0 +1,217 @@
+/* Lathe: module-local layout and form primitives (2026-11 redesign).
+   A plain stylesheet with lathe- prefixed classes rather than a CSS module:
+   Step.test.tsx renders these components in bare Node, which cannot import
+   a .module.css. Imported once, by LatheModule.tsx.
+   Same language as the home page and Chamfer: Inter, hairline rules and
+   whitespace. The questionnaire is a ruled sheet on the page background (no
+   fill, no radius); the one bounded object is the PDF preview, a hairline
+   frame around a real document. Blue only where something is selected or
+   can be pressed.
+   The desktop workspace is a viewport-height frame whose two panes scroll on
+   their own, which keeps the action bar in a fixed place.
+   Hover styles sit in (hover: hover) so they do not stick after a tap. */
+
+/* ── page frame: the module band on top (ModuleBand), the workspace under it.
+   The module colour (data-module="lathe") is the accent: links, the chosen
+   answer, the progress fill, focus. ── */
+.lathe-shell { display: flex; flex-direction: column; }
+.lathe-page { padding-top: clamp(1rem, 2vw, 1.5rem); padding-bottom: 2.5rem; --lathe-on: var(--c-link); --lathe-line: color-mix(in srgb, var(--c-text-main) 18%, transparent); }
+.lathe-frame { display: flex; flex-direction: column; }
+
+/* ── view tabs: plain text, the current one carries the rule ── */
+.lathe-nav { display: flex; flex-wrap: wrap; align-items: stretch; justify-content: space-between; gap: 0 1.5rem; border-bottom: 1px solid var(--panel-border); }
+.lathe-tabs { display: flex; flex-wrap: wrap; gap: 0 clamp(1rem, 3vw, 2.25rem); min-width: 0; }
+.lathe-tabs button { display: inline-flex; align-items: center; min-height: 2.75rem; margin-bottom: -1px; padding: 0; border: 0; border-bottom: 2px solid transparent; border-radius: 0; background: none;
+  font-size: .9375rem; font-weight: 500; line-height: 1.2; color: var(--c-text-muted); white-space: nowrap; transition: color .15s ease, border-color .15s ease; }
+.lathe-tabs button[aria-pressed='true'] { color: var(--c-text-main); border-bottom-color: var(--lathe-on); }
+.lathe-tabsWide { display: none; }
+
+/* ── opt-in local draft: one quiet line under the tabs ── */
+.lathe-draft { display: flex; flex-wrap: wrap; align-items: center; gap: 0 1.5rem; padding-top: .25rem; }
+.lathe-draftToggle { display: inline-flex; align-items: center; gap: .625rem; min-height: 2.75rem; cursor: pointer; user-select: none; font-size: .9375rem; font-weight: 500; line-height: 1.3; color: var(--c-text-main); }
+.lathe-draftNote { flex: 1 1 22rem; margin: 0; padding: .25rem 0 .5rem; font-size: .8125rem; line-height: 1.45; color: var(--c-text-muted); }
+.lathe-draftFound { flex: 1 1 100%; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; padding: .625rem 0; border-top: 1px solid var(--panel-border); font-size: .9375rem; color: var(--c-text-main); }
+.lathe-draftFound > span { margin-right: auto; }
+
+/* ── workspace ── */
+.lathe-work { margin-top: .75rem; }
+/* The sections scroll their sheet and PDF individually. FLIP transitions travel
+   outside each slot when the form moves from the centre to its split position. */
+.lathe-split, .lathe-split .lathe-paneSlot { overflow: visible !important; }
+.lathe-pane { display: flex; flex-direction: column; min-width: 0; }
+.lathe-paneHead { flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; gap: .5rem 1rem; min-height: 2.75rem; }
+.lathe-paneBody { flex: 1 1 auto; min-height: 0; padding: 1.75rem 0 2rem; }
+/* the rules span the pane; the reading column stays 44rem wide */
+.lathe-column { max-width: 44rem; }
+.lathe-paneFoot { flex-shrink: 0; padding: .875rem 0; border-top: 1px solid var(--panel-border); }
+
+/* ── progress: the step as text; the sheet's top rule is the track ── */
+.lathe-stepNo { margin: 0; color: var(--c-text-main); font-variant-numeric: tabular-nums; }
+.lathe-track { flex-shrink: 0; height: 2px; background-color: var(--lathe-line); }
+.lathe-fill { height: 100%; background-color: var(--lathe-on); transition: width .3s ease; }
+
+/* ── step ── */
+.lathe-stepTitle { margin: 0; font-size: clamp(1.6rem, 2.6vw, 2.25rem); font-weight: 350; line-height: 1.1; letter-spacing: -.022em; color: var(--c-text-main); text-wrap: balance; }
+.lathe-stepLead { margin-top: .625rem; font-size: 1rem; line-height: 1.55; color: var(--c-text-muted); }
+.lathe-fields { display: grid; gap: 1.5rem; margin-top: 1.75rem; }
+.lathe-label { display: block; margin-bottom: .5rem; font-size: .9375rem; font-weight: 500; line-height: 1.35; color: var(--c-text-main); }
+.lathe-req { color: var(--c-text-muted); font-weight: 500; }
+.lathe-hint { margin-top: .4rem; font-size: .8125rem; line-height: 1.5; color: var(--c-text-muted); }
+.lathe-error { margin-top: .4rem; font-size: .875rem; font-weight: 500; line-height: 1.45; color: var(--c-bad); }
+.lathe-note { padding-top: 1rem; border-top: 1px solid var(--panel-border); }
+.lathe-note h3 { margin: 0; font-size: .9375rem; font-weight: 500; line-height: 1.35; color: var(--c-text-main); }
+.lathe-note p { margin-top: .3rem; font-size: .9375rem; line-height: 1.55; color: var(--c-text-muted); }
+.lathe-status { display: flex; gap: .625rem; align-items: flex-start; font-size: .9375rem; line-height: 1.5; color: var(--c-text-main); }
+.lathe-status > svg { width: 1.125rem; height: 1.125rem; margin-top: .15rem; flex-shrink: 0; }
+.lathe-status[data-tone='warn'] > svg, .lathe-status[data-tone='warn'] strong { color: var(--c-warn); }
+.lathe-status[data-tone='bad'] > svg, .lathe-status[data-tone='bad'] strong { color: var(--c-bad); }
+.lathe-status strong { font-weight: 600; }
+
+/* Fields, radios and checkboxes are the site's form kit (globals.css,
+   DESIGN.md section 6); Lathe only places them. The euro sign sits in the
+   room the kit's .sntiq-field-end leaves at the end of the field. */
+.lathe-unit { position: absolute; right: .875rem; top: 50%; transform: translateY(-50%); font-size: .9375rem; color: var(--c-text-muted); pointer-events: none; }
+
+/* Answer options: a ruled list. The chosen row says so twice — a filled
+   radio and heavier text — never with a box. */
+.lathe-choices { display: grid; grid-template-columns: minmax(0, 1fr); border-top: 1px solid var(--panel-border); }
+/* position: relative keeps the radio inside its row, and so
+   inside the scrolling pane: focusing it must not scroll the window. */
+.lathe-choice { position: relative; display: flex; align-items: center; gap: .75rem; min-height: 3rem; padding: .625rem 0; border-bottom: 1px solid var(--panel-border); cursor: pointer;
+  font-size: 1rem; font-weight: 400; line-height: 1.4; color: var(--c-text-main); }
+.lathe-choice[data-checked='true'] { font-weight: 500; }
+
+/* ── dependents: a ruled list ── */
+.lathe-person { padding-top: 1rem; border-top: 1px solid var(--panel-border); }
+/* straight after a question's ruled options the list needs no second rule */
+.lathe-fields > div:has(> .lathe-choices) + div > .lathe-person:first-child { padding-top: 0; border-top: 0; }
+.lathe-personHead { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: .75rem; }
+.lathe-personHead h3 { margin: 0; color: var(--c-text-main); }
+.lathe-personGrid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+.lathe-small { min-height: 2.75rem; padding: .375rem .75rem; font-size: .875rem; }
+
+/* ── action bar ── */
+.lathe-actions { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+.lathe-actions .sntiq-btn { min-height: 2.75rem; }
+.lathe-next { min-width: 8.5rem; }
+.lathe-warnings { max-height: 14rem; overflow-y: auto; }
+.lathe-warnings ul { margin: .25rem 0 0 1.25rem; list-style: disc; font-size: .8125rem; overflow-wrap: anywhere; }
+.lathe-icon { display: inline-flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; flex-shrink: 0; border: 0; border-radius: var(--r-control); background: none; color: var(--c-text-muted); transition: color .15s ease; }
+.lathe-icon:disabled { opacity: .4; }
+.lathe-icon svg { width: 1.125rem; height: 1.125rem; }
+
+/* ── preview: tools as a line of text-level controls, then the document in
+   its one hairline frame ── */
+.lathe-toolGroup { display: flex; align-items: center; gap: .25rem; }
+.lathe-toolTitle { display: none; margin: 0 auto 0 0; }
+.lathe-pageNo { min-width: 3.25rem; text-align: center; font-size: .875rem; font-weight: 600; color: var(--c-text-main); font-variant-numeric: tabular-nums; }
+.lathe-previewNote { padding: .75rem 0; }
+.lathe-canvasArea { flex: 1 1 auto; min-height: 0; overflow-x: auto; border: 1px solid var(--lathe-line); }
+.lathe-paper { margin: 0 auto; background-color: #fff; }
+.lathe-paper canvas { display: block; width: 100%; height: auto; }
+.lathe-placeholder { display: flex; flex-direction: column; align-items: center; gap: .75rem; padding: 4rem 1rem; text-align: center; font-size: .9375rem; color: var(--c-text-muted); }
+.lathe-spinner { width: 1.5rem; height: 1.5rem; border: 2px solid var(--lathe-line); border-top-color: var(--c-text-main); border-radius: 50%; animation: lathe-spin .9s linear infinite; }
+@keyframes lathe-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .lathe-spinner { animation: none; } .lathe-fill { transition: none; } }
+
+/* ── switching views: animated in LatheModule (FLIP, 200 ms, translate and
+   opacity only), so nothing here. ── */
+
+/* ── pointer hover only: a tap must not leave a hover state behind ── */
+@media (hover: hover) {
+  .lathe-tabs button:hover { color: var(--c-link); }
+  .lathe-tabs button[aria-pressed='true']:hover { color: var(--c-text-main); }
+  .lathe-icon:hover:not(:disabled) { color: var(--c-text-main); }
+}
+
+/* ── phone and tablet: one pane at a time, the sheet in normal page flow ── */
+@media (max-width: 1023.98px) {
+  .lathe-split { height: auto !important; }
+}
+@media (min-width: 640px) {
+  .lathe-personGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lathe-toolTitle { display: block; }
+}
+/* ── desktop: a viewport-height frame, the two panes scroll inside it ── */
+@media (min-width: 1024px) {
+  .lathe-shell { height: 100dvh; min-height: 44rem; }
+  .lathe-page { flex: 1 1 auto; min-height: 0; padding-bottom: 1.5rem; }
+  .lathe-frame { height: 100%; }
+  .lathe-tabsNarrow { display: none; }
+  .lathe-tabsWide { display: flex; }
+  .lathe-work { flex: 1 1 auto; min-height: 0; }
+  .lathe-work[data-mode='split'] .lathe-formPane { padding-inline-end: clamp(.75rem, 1.7vw, 1.5rem); }
+  .lathe-work[data-mode='split'] .lathe-previewPane { padding-inline-start: clamp(.75rem, 1.7vw, 1.5rem); }
+  .lathe-previewPane { container: lathe-preview / inline-size; }
+  .lathe-pane { height: 100%; min-height: 0; }
+  /* Form alone: the sheet stands in the middle of the screen. */
+  .lathe-work[data-mode='form'] .lathe-formPane { width: 100%; max-width: 44rem; margin-inline: auto; }
+  /* Preview alone: the sheet at a reading size in the middle, not stretched
+     over 1280 px with only section A in view. */
+  .lathe-work[data-mode='preview'] .lathe-previewPane { width: 100%; max-width: 56rem; margin-inline: auto; }
+  /* Scrolling a pane to its end does not drag the whole page along. */
+  .lathe-paneBody, .lathe-canvasArea { overscroll-behavior: contain; }
+  /* The scrolling body is half a rem wider than the sheet on each side, so a
+     focus ring on a full-width control is not cut by the scroll box. */
+  .lathe-paneBody { overflow-y: auto; margin-inline: -.5rem; padding-inline: .5rem; }
+  .lathe-canvasArea { overflow-y: auto; }
+
+  /* More below: a quiet "⋯" sits on the rule above the actions while the
+     sheet has more to scroll. Nothing covers the text and the scrollbar
+     stays as it is. The sheet's own scroll drives it (scroll-driven
+     animation on a named timeline, shared with the foot through
+     timeline-scope); with nothing to scroll the timeline is inactive and
+     the mark stays hidden. */
+  .lathe-formPane { timeline-scope: --lathe-sheet; }
+  .lathe-formPane .lathe-paneBody { scroll-timeline: --lathe-sheet block; }
+  .lathe-formPane .lathe-actions { position: relative; }
+  /* A band of page colour fading in above the actions, with the "⋯" at its
+     foot: the last lines dim, so it reads as "the sheet goes on". It is the
+     page colour under a gradient mask (not a gradient of colours), so it
+     follows a theme switch at the page's own pace instead of flashing as a
+     box. */
+  .lathe-formPane .lathe-actions::before {
+    content: '\22EF'; position: absolute; inset-inline: 0; inset-block-end: 100%; block-size: 3.25rem;
+    display: flex; align-items: flex-end; justify-content: center; padding-block-end: .2rem;
+    background-color: var(--c-bg);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 70%); mask-image: linear-gradient(to bottom, transparent, #000 70%);
+    font-size: 1.25rem; line-height: 1; letter-spacing: .12em; color: var(--c-text-muted);
+    pointer-events: none; opacity: 0;
+    transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: lathe-more linear both; animation-timeline: --lathe-sheet; animation-range: calc(100% - 2rem) 100%;
+  }
+}
+@container lathe-preview (max-width: 22rem) { .lathe-toolTitle { display: none; } }
+@keyframes lathe-more { from { opacity: 1; } to { opacity: 0; } }
+
+/* ── high contrast: state must not rest on a tint ── */
+.high-contrast .lathe-nav { padding-bottom: .5rem; }
+.high-contrast .lathe-tabs { gap: .375rem .5rem; }
+.high-contrast .lathe-tabs button { margin-bottom: 0; padding-inline: .625rem; }
+.high-contrast .lathe-track { height: 6px; background-color: var(--c-bg); outline: 1px solid var(--c-text-main); outline-offset: -1px; }
+.high-contrast .lathe-choice { border-bottom-color: var(--c-text-main); }
+.high-contrast .lathe-choice[data-checked='true'] { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .25em; }
+.high-contrast .lathe-canvasArea { border-color: var(--c-text-main); }
+.high-contrast .lathe-icon { border-radius: var(--r-control); }
+/* The shell's high-contrast reset paints every <button> with !important from
+   @layer base, and important declarations of an earlier layer beat unlayered
+   ones. The two states that must stay distinguishable — the pressed view and
+   the primary action — are therefore declared in that same layer, where the
+   higher specificity decides. */
+@layer base {
+  .high-contrast .lathe-tabs button[aria-pressed='true'],
+  .high-contrast .lathe-actions button.lathe-next { background-color: var(--c-text-main) !important; color: var(--c-bg) !important; }
+}
+
+/* ── Windows forced colours: backgrounds are dropped and transparent borders
+   become visible, so "selected" is redrawn with system colours ── */
+@media (forced-colors: active) {
+  .lathe-tabs button { margin-bottom: 0; border-bottom-color: Canvas; }
+  .lathe-tabs button[aria-pressed='true'] { border-bottom-color: Highlight; outline: 2px solid Highlight; outline-offset: -2px; }
+  .lathe-tabs button:focus-visible { outline: 3px solid CanvasText !important; outline-offset: 2px; }
+  .lathe-track { forced-color-adjust: none; background-color: GrayText; }
+  .lathe-fill { forced-color-adjust: none; background-color: Highlight; }
+  .lathe-choice { padding-inline: .5rem; }
+  .lathe-choice[data-checked='true'] { outline: 2px solid Highlight; outline-offset: -2px; }
+  .lathe-canvasArea { border-color: CanvasText; }
+}

@@ -1,0 +1,130 @@
+/* ============================================================
+   SNTIQ Design System — Shared Tokens (v3.1)
+   Reference copy of the platform design tokens for standalone
+   apps/modules that don't use apps/web/app/globals.css:
+     @import "@sntiq/ui/tokens.css";
+   apps/web defines the same tokens in globals.css (Tailwind v4
+   @theme); keep the two in sync when changing values.
+   ============================================================ */
+
+/* === TYPOGRAPHY ===
+   Font files live in the consuming app, e.g. apps/web/public/assets/fonts. */
+@font-face {
+  font-family: 'Inter';
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  src: url('/assets/fonts/InterVariable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+  src: url('/assets/fonts/InterVariable-Italic.woff2') format('woff2');
+}
+
+/* === COLOR / SURFACE TOKENS === */
+:root {
+  --c-bg: #F5F7FA;
+  --c-text-main: #111111;
+  --c-text-muted: #64748B;
+  --c-primary: #0033A0;   /* Pantone 286C */
+  --c-accent: #0052FF;    /* Electric accent */
+  --c-clear: #0072CE;
+
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-blur: 16px;
+  --panel-bg: rgba(255, 255, 255, 0.9);
+  --panel-border: rgba(0, 0, 0, 0.06);
+
+  --blob-gradient: radial-gradient(circle at center,
+      rgba(0, 82, 255, 0.8) 0%,
+      rgba(0, 51, 160, 0.6) 35%,
+      rgba(0, 51, 160, 0) 70%);
+}
+
+.dark {
+  --c-bg: #030304;
+  --c-text-main: #FFFFFF;
+  --c-text-muted: #94A3B8;
+  --c-primary: #3b82f6;
+  --c-accent: #0052FF;
+
+  --glass-bg: rgba(10, 11, 15, 0.7);
+  --glass-blur: 24px;
+  --panel-bg: rgba(20, 21, 26, 0.6);
+  --panel-border: rgba(255, 255, 255, 0.08);
+
+  --blob-gradient: radial-gradient(circle at center,
+      rgba(100, 180, 255, 0.9) 0%,
+      rgba(0, 82, 255, 0.6) 35%,
+      rgba(0, 51, 160, 0) 70%);
+}
+
+/* === BASE === */
+.sntiq-base,
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--c-bg);
+  color: var(--c-text-main);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* === GLASS (headers / bars) === */
+.sntiq-glass-base {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.dark .sntiq-glass-base {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* === PANEL (cards / modals) === */
+.sntiq-panel {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 24px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.sntiq-panel:hover {
+  border-color: rgba(0, 82, 255, 0.25);
+}
+
+.dark .sntiq-panel {
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--c-accent);
+}
+
+/* === UTILITIES === */
+.text-main { color: var(--c-text-main); }
+.text-muted { color: var(--c-text-muted); }
+.text-primary-custom { color: var(--c-primary); }

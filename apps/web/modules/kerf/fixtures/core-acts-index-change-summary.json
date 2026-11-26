@@ -1,0 +1,161 @@
+[
+ {
+  "id": "fed_asylblg",
+  "jurabk": "AsylbLG",
+  "juris": "DE",
+  "source_url": "https://www.gesetze-im-internet.de/asylblg/",
+  "title": "Asylbewerberleistungsgesetz",
+  "norms": 31,
+  "build": "20260728",
+  "last_change": null,
+  "next_change": null,
+  "pending": 9,
+  "decisions": 3,
+  "change_summary": {
+   "schema": "kerf-change-summary/1",
+   "scope": "act",
+   "as_of": "2026-09-28",
+   "last_change": {
+    "change_id": "chg:bd364cc3cc95cc4a0562c7a5",
+    "norm_label": "§ 1",
+    "citation": "Art. 4 Nr. 1 G v. 23.4.2026 (BGBl. 2026 I Nr. 111)",
+    "document_id": "bgbl-1-2026-111",
+    "gazette": "BGBl. 2026 I Nr. 111",
+    "title": "Gesetz zur Anpassung des nationalen Rechts an die Reform des Gemeinsamen Europäischen Asylsystems (GEAS-Anpassungsgesetz)",
+    "in_force": "2026-06-12",
+    "promulgated": "2026-04-28",
+    "adopted": "2026-04-23",
+    "state": "in_force"
+   },
+   "next_pending_change": null,
+   "counts": {
+    "versions": 32,
+    "act_states": 2,
+    "events": 63,
+    "amending_acts": 26,
+    "events_pending": 0,
+    "events_date_unknown": 46
+   },
+   "documentation_notes": 1
+  }
+ },
+ {
+  "id": "fed_aufenthg_2004",
+  "jurabk": "AufenthG 2004",
+  "juris": "DE",
+  "source_url": "https://www.gesetze-im-internet.de/aufenthg_2004/",
+  "title": "Gesetz über den Aufenthalt, die Erwerbstätigkeit und die Integration von Ausländern im Bundesgebiet",
+  "norms": 203,
+  "build": "20260910",
+  "last_change": null,
+  "next_change": null,
+  "pending": 14,
+  "decisions": 1,
+  "change_summary": {
+   "schema": "kerf-change-summary/1",
+   "scope": "act",
+   "as_of": "2026-09-28",
+   "last_change": {
+    "change_id": "chg:cd7c2fd5a09d7631d80d438b",
+    "norm_label": "§ 85a",
+    "citation": "Art. 1 G v. 21.7.2026 (BGBl. 2026 I Nr. 221)",
+    "document_id": "bgbl-1-2026-221",
+    "gazette": "BGBl. 2026 I Nr. 221",
+    "title": "Gesetz zur besseren Verhinderung missbräuchlicher Anerkennungen der Vaterschaft und zur Änderung weiterer Vorschriften",
+    "in_force": "2026-07-29",
+    "promulgated": "2026-07-28",
+    "adopted": "2026-07-21",
+    "state": "in_force"
+   },
+   "next_pending_change": null,
+   "counts": {
+    "versions": 224,
+    "act_states": 8,
+    "events": 357,
+    "amending_acts": 72,
+    "events_pending": 0,
+    "events_date_unknown": 305
+   },
+   "documentation_notes": 3
+  }
+ },
+ {
+  "id": "fed_sgb_2",
+  "jurabk": "SGB 2",
+  "juris": "DE",
+  "source_url": "https://www.gesetze-im-internet.de/sgb_2/",
+  "title": "Sozialgesetzbuch (SGB) Zweites Buch (II) - Grundsicherung für Arbeitsuchende",
+  "norms": 157,
+  "build": "20260714",
+  "last_change": null,
+  "next_change": null,
+  "pending": 16,
+  "decisions": 0,
+  "change_summary": {
+   "schema": "kerf-change-summary/1",
+   "scope": "act",
+   "as_of": "2026-09-28",
+   "last_change": {
+    "change_id": "chg:b51b7572b001ad4c9521483e",
+    "norm_label": "§ 11a",
+    "citation": "Art. 8 Nr. 1 G (BGBl. 2025 I Nr. 363)",
+    "document_id": "bgbl-1-2025-363",
+    "gazette": "BGBl. 2025 I Nr. 363",
+    "title": "Steueränderungsgesetz 2025",
+    "in_force": "2026-01-01",
+    "promulgated": "2025-12-23",
+    "adopted": null,
+    "state": "in_force"
+   },
+   "next_pending_change": {
+    "change_id": "chg:de4e99c57d28256d3f4aa609",
+    "norm_label": "§ 6b",
+    "citation": "Art. 59 Nr. 1 G (BGBl. 2024 I Nr. 323)",
+    "document_id": "bgbl-1-2024-323",
+    "gazette": "BGBl. 2024 I Nr. 323",
+    "title": "Viertes Gesetz zur Entlastung der Bürgerinnen und Bürger, der Wirtschaft sowie der Verwaltung von Bürokratie (Viertes Bürokratieentlastungsgesetz)",
+    "in_force": "2027-01-01",
+    "promulgated": "2024-10-29",
+    "adopted": null,
+    "state": "pending"
+   },
+   "counts": {
+    "versions": 158,
+    "act_states": 3,
+    "events": 235,
+    "amending_acts": 76,
+    "events_pending": 3,
+    "events_date_unknown": 215
+   },
+   "documentation_notes": 1
+  }
+ },
+ {
+  "id": "by_agsg",
+  "jurabk": "AGSG",
+  "juris": "DE-BY",
+  "title": "Gesetz zur Ausführung der Sozialgesetze (AGSG)",
+  "norms": 144,
+  "build": "17.09.2026",
+  "last_change": "2026-08-01",
+  "next_change": null,
+  "pending": 0,
+  "decisions": 0,
+  "change_summary": {
+   "schema": "kerf-change-summary/1",
+   "scope": "act",
+   "as_of": "2026-09-28",
+   "last_change": null,
+   "next_pending_change": null,
+   "counts": {
+    "versions": 148,
+    "act_states": 7,
+    "events": 0,
+    "amending_acts": 0,
+    "events_pending": 0,
+    "events_date_unknown": 0
+   },
+   "documentation_notes": 0
+  }
+ }
+]

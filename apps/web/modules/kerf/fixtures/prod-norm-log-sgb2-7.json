@@ -1,0 +1,239 @@
+{
+ "schema": "kerf-evidence-envelope/1",
+ "status": "ok",
+ "operation": "law_log",
+ "request_scope": {
+  "norm": "de/bund/sgb_2/para/7"
+ },
+ "applied_constraints": {
+  "canonical_id": "de/bund/sgb_2/para/7",
+  "act_id": "fed_sgb_2",
+  "known_at": "latest_published_knowledge",
+  "history_schema": "kerf-norm-history/1"
+ },
+ "ignored_arguments": [],
+ "snapshot_id": "web-data.release-20260928T131924Z-64429",
+ "searched": [
+  {
+   "source": "federal_states",
+   "status": "ok",
+   "count": 3
+  },
+  {
+   "source": "retrospective_history",
+   "status": "ok",
+   "count": 93
+  }
+ ],
+ "evidence": [
+  {
+   "id": "de/bund/sgb_2/para/7@observed-2026-07-06#99028ed1d133",
+   "canonical_id": "de/bund/sgb_2/para/7",
+   "version_id": "de/bund/sgb_2/para/7@observed-2026-07-06#99028ed1d133",
+   "pinpoint": {
+    "label": "§ 7",
+    "title": "Leistungsberechtigte",
+    "unit": "para",
+    "number": "7"
+   },
+   "content_hash": {
+    "algorithm": "sha256",
+    "value": "99028ed1d1334ff009ccad8265976f35dc6fede76d31a52248ca336f3ec00cd6",
+    "text_sha256": "8815787049a25ca366f733d2c91048cbfb769dc40a21bb3fbcf7a0a84cd335b4"
+   },
+   "source": {
+    "url": "https://www.gesetze-im-internet.de/sgb_2/__7.html",
+    "norm_url": "https://www.gesetze-im-internet.de/sgb_2/__7.html",
+    "norm_url_status": "resolved",
+    "norm_url_basis": "GII table of contents captured 2026-09-28T07:18:18Z (sha256 d70e2f7abb1c…)",
+    "act_url": "https://www.gesetze-im-internet.de/sgb_2/",
+    "role": "official_consolidation_gii",
+    "observed_at": "2026-07-06",
+    "state_sha256": [
+     "39b758874fc68f44a9c0d121f8bc08921107ed29c04461eab28281d6d34a4c6d",
+     "23ff35451ea1bbab06f3ca0fcb211677c71941c1299b36fed64f75aff98a8392",
+     "763e306a08146bc984830c923bf54f5aafb1144a297a807eda2c06fc05104deb"
+    ],
+    "capture": null
+   },
+   "quality": {
+    "source_exact": true,
+    "complete": true,
+    "reconstruction_status": "not_reconstructed",
+    "text_history_complete": null
+   },
+   "temporal": {
+    "valid_from": null,
+    "valid_from_status": "unresolved",
+    "valid_from_basis": null,
+    "valid_until_exclusive": null,
+    "valid_until_status": "unresolved",
+    "valid_until_basis": null,
+    "observed_from": "2026-07-06",
+    "observed_until": "2026-09-28",
+    "known_at": null,
+    "promulgated_in": "Art. 8 G v. 22.12.2025 I Nr. 363",
+    "commencement_basis": null,
+    "date_axes_note": "valid_* is legal validity; observed_* is when the official source served this text; they are never substituted."
+   },
+   "amendment": {
+    "act": "Art. 8 G v. 22.12.2025 I Nr. 363",
+    "reference": "Art. 8 G v. 22.12.2025 I Nr. 363",
+    "basis": "gii_stand_note",
+    "commencement_basis": null,
+    "legal_effect_verified": false,
+    "note": "GII's own 'zuletzt geändert durch' note for this consolidation; not a verified commencement date",
+    "pending_note": "Änderung durch Art. 1 G v. 16.4.2026 I Nr. 107 textlich nachgewiesen, dokumentarisch noch nicht abschließend bearbeitet"
+   },
+   "relations": []
+  }
+ ],
+ "warnings": [],
+ "failed_components": [],
+ "total": 1,
+ "norm": {
+  "canonical_id": "de/bund/sgb_2/para/7",
+  "sub_unit": null,
+  "label": "§ 7",
+  "title": "Leistungsberechtigte",
+  "act": {
+   "id": "fed_sgb_2",
+   "jurabk": "SGB 2",
+   "juris": "DE",
+   "title": "Sozialgesetzbuch (SGB) Zweites Buch (II) - Grundsicherung für Arbeitsuchende",
+   "source_url": "https://www.gesetze-im-internet.de/sgb_2/",
+   "permalink": null,
+   "build": "20260714",
+   "stand": "Neuf: Neugefasst durch Bek. v. 13.5.2011 I 850, 2094; | Stand: zuletzt geändert durch Art. 1a G v. 16.4.2026 I Nr. 107 | Hinweis: Mittelbare Änderung durch Art. 1b G v. 16.4.2026 I Nr. 107 ist berücksichtigt"
+  },
+  "versions": 1,
+  "present_in_latest_state": true
+ },
+ "order": "newest_first",
+ "events": [
+  {
+   "event_id": "fed-bgbl-candidate:ca81585d88262c3ad0f4",
+   "document_id": "bgbl-1-2023-217",
+   "reference": "BGBl. 2023 I Nr. 217",
+   "amending_article": "6",
+   "procedure_title": "Gesetz zur Weiterentwicklung der Fachkräfteeinwanderung",
+   "procedure_id": "298214",
+   "published_at": "2023-08-18",
+   "effective_at": "2024-06-01",
+   "date_status": "official_verified",
+   "date_basis": "official_dip_article_commencement_clause",
+   "text_status": "event_only",
+   "url": "https://www.recht.bund.de/bgbl/1/2023/217/VO.html",
+   "verification": "exact_name_in_integrity_checked_final_bgbl_article",
+   "legal_effect_verified": false,
+   "commands": [
+    {
+     "operation": "replace",
+     "ref": {
+      "absatz": "1",
+      "buchstabe": "b",
+      "nummer": "2",
+      "para": "7",
+      "satz": "2"
+     },
+     "raw": "§ 7 Absatz 1 Satz 2 Nummer 2 Buchstabe b des Zweiten Buches Sozialgesetzbuch – Bürgergeld, \nGrundsicherung für Arbeitsuchende – in der Fassung der Bekanntmachung vom 13. Mai 2011 (BGBl. I S. 850, \n2094), das zuletzt durch Artikel 5 des Gesetzes vom 17. Juli 2023 (BGBl. 2023 I Nr. 191) geändert worden ist, \nwird wie folgt gefasst:\n„b) deren Aufenthaltsrecht sich allein aus dem Zweck der Arbeitsuche, der Ausbildungs- oder Studienplatzsuche \noder aus einer Aufenthaltserlaubnis nach § 20a des Aufenthaltsgesetzes ergibt,“.",
+     "raw_sha256": "f30e7f880bb6f652ec1fd43cbb54e6950f3ffb41ebb803b291e9c7071df2e2e0",
+     "text": "§ 7 Absatz 1 Satz 2 Nummer 2 Buchstabe b des Zweiten Buches Sozialgesetzbuch – Bürgergeld, Grundsicherung für Arbeitsuchende – in der Fassung der Bekanntmachung vom 13. Mai 2011 (BGBl. I S. 850, 2094), das zuletzt durch Artikel 5 des Gesetzes vom 17. Juli 2023 (BGBl. 2023 I Nr. 191) geändert worden ist, wird wie folgt gefasst: „b) deren Aufenthaltsrecht sich allein aus dem Zweck der Arbeitsuche, der Ausbildungs- oder Studienplatzsuche oder aus einer Aufenthaltserlaubnis nach § 20a des Aufenthaltsgesetzes ergibt,“.",
+     "page_furniture_removed": [],
+     "new_text": "b) deren Aufenthaltsrecht sich allein aus dem Zweck der Arbeitsuche, der Ausbildungs- oder Studienplatzsuche \noder aus einer Aufenthaltserlaubnis nach § 20a des Aufenthaltsgesetzes ergibt,",
+     "old_text_constraint": null
+    }
+   ]
+  },
+  {
+   "event_id": "fed-bgbl-candidate:a99c6b21a0cb2118e2c4",
+   "document_id": "bgbl-1-2023-408",
+   "reference": "BGBl. 2023 I Nr. 408",
+   "amending_article": "3",
+   "procedure_title": "Gesetz zur Anpassung des Zwölften und des Vierzehnten Buches Sozialgesetzbuch und weiterer Gesetze",
+   "procedure_id": "300142",
+   "published_at": "2023-12-28",
+   "effective_at": null,
+   "date_status": "unknown",
+   "date_basis": "unresolved_sub_article_scope",
+   "text_status": "event_only",
+   "url": "https://www.recht.bund.de/bgbl/1/2023/408/VO.html",
+   "verification": "exact_name_in_integrity_checked_final_bgbl_article",
+   "legal_effect_verified": false,
+   "commands": [
+    {
+     "operation": "modify",
+     "ref": {
+      "absatz": "4a",
+      "para": "7",
+      "satz": "2"
+     },
+     "raw": "§ 7 wird wie folgt geändert:\na) Absatz 4a wird wie folgt gefasst:\n„(4a) Personen, denen Leistungen zum Lebensunterhalt nach § 93 des Vierzehnten Buches zuerkannt \nworden sind, haben keinen Anspruch auf Leistungen zur Sicherung des Lebensunterhalts.“\nb) In Absatz 5 Satz 2 wird die Angabe „§ 123 Nummer 2“ durch die Wörter „§ 123 Satz 1 Nummer 2“ ersetzt.",
+     "raw_sha256": "66c2343a3e934a12a0bd561dc1c599cc74c0b26f57c87407e9a8fde570ed33b2",
+     "text": "§ 7 wird wie folgt geändert: a) Absatz 4a wird wie folgt gefasst: „(4a) Personen, denen Leistungen zum Lebensunterhalt nach § 93 des Vierzehnten Buches zuerkannt worden sind, haben keinen Anspruch auf Leistungen zur Sicherung des Lebensunterhalts.“ b) In Absatz 5 Satz 2 wird die Angabe „§ 123 Nummer 2“ durch die Wörter „§ 123 Satz 1 Nummer 2“ ersetzt.",
+     "page_furniture_removed": [],
+     "new_text": "§ 123 Satz 1 Nummer 2",
+     "old_text_constraint": "§ 123 Nummer 2"
+    }
+   ]
+  },
+  {
+   "event_id": "fed-bgbl-candidate:07cdc7407e437b517cbd",
+   "document_id": "bgbl-1-2022-s2328",
+   "reference": "BGBl. I 2022 S. 2328",
+   "amending_article": "1",
+   "procedure_title": "Zwölftes Gesetz zur Änderung des Zweiten Buches Sozialgesetzbuch und anderer Gesetze - Einführung eines Bürgergeldes (Bürgergeld-Gesetz)",
+   "procedure_id": "291526",
+   "published_at": "2022-12-20",
+   "effective_at": null,
+   "date_status": "unknown",
+   "date_basis": "unresolved_legacy_commencement_review",
+   "text_status": "event_only",
+   "url": "https://www.bgbl.de/xaver/bgbl/start.xav?start=%2F%2F%2A%5B%40attr_id%3D%27bgbl122s2328.pdf%27%5D&startbk=Bundesanzeiger_BGBl",
+   "verification": "exact_name_in_integrity_checked_final_bgbl_article",
+   "legal_effect_verified": false,
+   "commands": [
+    {
+     "operation": "replace",
+     "ref": {},
+     "raw": "In der Überschrift wird das Wort „Grundsiche -\nrung“ durch die Wörter „Bürgergeld, Grundsiche -\nrung“ ersetzt.",
+     "raw_sha256": "3f4f112dd2f74fe6df701a72e35af54f48dc4c65f41fb9115cc81d0fadbc7a62",
+     "text": "In der Überschrift wird das Wort „Grundsiche - rung“ durch die Wörter „Bürgergeld, Grundsiche - rung“ ersetzt.",
+     "page_furniture_removed": [],
+     "new_text": "Bürgergeld, Grundsiche - rung",
+     "old_text_constraint": "Grundsiche - rung"
+    },
+    {
+     "operation": "repeal",
+     "ref": {
+      "absatz": "4a",
+      "para": "7"
+     },
+     "raw": "§ 7 Absatz 4a wird aufgehoben.",
+     "raw_sha256": "8b2fb6f1b038128c39f3bcfe2d84c5626239162ea5b68947e07175193396edf4",
+     "text": "§ 7 Absatz 4a wird aufgehoben.",
+     "page_furniture_removed": [],
+     "new_text": null,
+     "old_text_constraint": null
+    },
+    {
+     "operation": "replace",
+     "ref": {},
+     "raw": "Die Überschrift zu Kapitel 3 Abschnitt 2 Unterab -\nschnitt 5 wird wie folgt gefasst:\n„Unterabschnitt 5\nLeistungsminderungen “.",
+     "raw_sha256": "f543be96c5604a98b210e668b15080715a78fcb0b72f78ca498bfd86377d89fb",
+     "text": "Die Überschrift zu Kapitel 3 Abschnitt 2 Unterab - schnitt 5 wird wie folgt gefasst: „Unterabschnitt 5 Leistungsminderungen “.",
+     "page_furniture_removed": [],
+     "new_text": "Unterabschnitt 5\nLeistungsminderungen",
+     "old_text_constraint": null
+    }
+   ]
+  }
+ ],
+ "history": {
+  "text_history_start": "2026-07-06",
+  "amendment_event_history_start": "2006-03-30",
+  "consolidated_versions": 3,
+  "verified_legal_starts": 0,
+  "note": "Versions are complete official consolidations (or replay-verified reconstructions); a valid_from is shown only when verified against the final BGBl command and its commencement clause. Amendment events before the text history are listed without reconstructed text."
+ }
+}

@@ -1,0 +1,40 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { PDFDocument } from 'pdf-lib';
+import { fillPdf } from './fill';
+import { buildZp1aOperations } from './mapping';
+import { INITIAL_DATA } from '../wizard';
+import { IncomeType } from '../types';
+import { CYRILLIC_RE } from '../../../core/forms';
+
+test('the generated PDF preserves negative balances and amount-only income for both partners', async context => {
+  const template = readFileSync(new URL('../../../public/dt/lathe/forms/zp1a.pdf', import.meta.url));
+  const font = readFileSync(new URL('../../../public/fonts/NotoSans-Regular.ttf', import.meta.url));
+  const oldFetch = globalThis.fetch;
+  globalThis.fetch = async input => {
+    assert.equal(input, '/fonts/NotoSans-Regular.ttf');
+    return new Response(new Uint8Array(font));
+  };
+  context.after(() => { globalThis.fetch = oldFetch; });
+  const data = structuredClone(INITIAL_DATA);
+  data.incomeType = IncomeType.BENEFITS_SGB_II;
+  data.personal.lastName = 'O’Connor'.replace(CYRILLIC_RE, '');
+  data.financials.income.buergergeld = '520,00';
+  data.personal.maritalStatus = 'verheiratet';
+  data.financials.hasBank = true;
+  data.financials.bankBalance = '-1.234,56';
+  data.financials.income.other1Amount = '350,00';
+  data.financials.partnerIncome.other1Amount = '125,00';
+  const result = await fillPdf(new Uint8Array(template).buffer, buildZp1aOperations(data));
+  assert.deepEqual(result.warnings, []);
+  const form = (await PDFDocument.load(result.bytes)).getForm();
+  assert.equal(form.getTextField('Name, Vorname, ggf. Geburtsname').getText(), 'O’Connor, ');
+  assert.ok(form.getCheckBox('E20').isChecked());
+  assert.equal(form.getTextField('Monatliche Bruttoeinnahmen durch Bürgergeld in Euro\r').getText(), '520,00');
+  assert.equal(form.getTextField('Kontostand').getText(), '-1.234,56');
+  assert.equal(form.getTextField('Bruttobezug 1').getText(), '350,00');
+  assert.equal(form.getTextField('Bruttobezug Partner/Partnerin 1').getText(), '125,00');
+  for (const field of ['E26', 'E52']) assert.ok(form.getCheckBox(field).isChecked(), field);
+  for (const field of ['E25', 'E51']) assert.ok(!form.getCheckBox(field).isChecked(), field);
+});

@@ -1,0 +1,563 @@
+[
+ {
+  "hash": "97270561",
+  "date": "2026-10-01",
+  "lane": 1,
+  "type": "commit",
+  "actor": "BGBl / Kerf",
+  "msg": "Amtliche Änderung wird wirksam · AsylVfG 1992",
+  "future": true,
+  "acts": [
+   "AsylVfG 1992"
+  ],
+  "paras": [
+   "47"
+  ],
+  "refs": [
+   "effective_date_verified",
+   "bgbl-1-2026-221",
+   "Artikel 10"
+  ],
+  "merge_ref": null,
+  "url": "https://www.recht.bund.de/bgbl/1/2026/221/regelungstext.pdf?__blob=publicationFile&v=1",
+  "targets_verified": true,
+  "target_basis": "final_bgbl_command+complete_gii_state_pair+dip_article_commencement",
+  "date_basis": "official_bgbl_command_and_commencement_clause",
+  "verification": "official_final_text_and_complete_state_pair",
+  "legal_verification": "official_final_text_and_complete_state_pair",
+  "legal_effect_verified": true,
+  "published_at": "2026-07-28",
+  "effective_at": "2026-10-01",
+  "observed_at": "2026-07-29",
+  "state_digest": "f74d8bf27b8e9afe78c5a4e76fd2cb713d3e020e8f0de56f22e234bc3008c502",
+  "previous_state_digest": "84157c9fa877823847052ca2abca76fe8ba0b3390b51ac56a487964874605917",
+  "review_id": "fed-review:5fa76368a55f51abd5c6",
+  "procedure_id": "329481",
+  "bgbl": {
+   "document_id": "bgbl-1-2026-221",
+   "year": "2026",
+   "issue": "221",
+   "eli": "https://www.recht.bund.de/eli/bund/bgbl-1/2026/221",
+   "pdf_url": "https://www.recht.bund.de/bgbl/1/2026/221/regelungstext.pdf?__blob=publicationFile&v=1",
+   "pdf_sha256": "be483ae5386c79ef3257a0e5fce30e6ee2466947818987ba69f37c0eef308ee9",
+   "text_sha256": "7d3970a022e7859ca95e23dd14fd49070952e1cd39964801e2af96578ab6ddf7",
+   "integrity_verified": true
+  }
+ },
+ {
+  "hash": "dfb9197c",
+  "date": "2026-10-01",
+  "lane": 1,
+  "type": "commit",
+  "actor": "BGBl / Kerf",
+  "msg": "Amtliche Änderung wird wirksam · VwGO",
+  "future": true,
+  "acts": [
+   "VwGO"
+  ],
+  "paras": [
+   "§ 167"
+  ],
+  "refs": [
+   "bgbl-1-2026-152",
+   "Artikel 9",
+   "effective_date_verified"
+  ],
+  "merge_ref": null,
+  "url": "https://www.recht.bund.de/bgbl/1/2026/152/regelungstext.pdf?__blob=publicationFile&v=1",
+  "targets_verified": true,
+  "target_basis": "exact_name_in_final_bgbl_article",
+  "date_basis": "official_dip_article_commencement_clause",
+  "verification": "exact_name_in_final_bgbl_article",
+  "legal_effect_verified": true,
+  "candidate_only": true,
+  "historical_text_reconstructed": false,
+  "published_at": "2026-05-26",
+  "effective_at": "2026-10-01",
+  "event_id": "fed-bgbl-candidate:ad1a843f2bbf6d5f7ddc",
+  "procedure_id": "327971",
+  "bgbl": {
+   "document_id": "bgbl-1-2026-152",
+   "pdf_url": "https://www.recht.bund.de/bgbl/1/2026/152/regelungstext.pdf?__blob=publicationFile&v=1",
+   "pdf_sha256": "76b8a4e49be30a35dfa400d4e1933dce7d2c57aa3303b59e78bf1851fa167d4e",
+   "integrity_verified": true
+  }
+ },
+ {
+  "hash": "a7e300d5",
+  "date": "2026-10-01",
+  "lane": 1,
+  "type": "commit",
+  "actor": "BGBl / Kerf",
+  "msg": "Amtliche Änderung wird wirksam · SGG",
+  "future": true,
+  "acts": [
+   "SGG"
+  ],
+  "paras": [
+   "§ 198"
+  ],
+  "refs": [
+   "bgbl-1-2026-152",
+   "Artikel 8",
+   "effective_date_verified"
+  ],
+  "merge_ref": null,
+  "url": "https://www.recht.bund.de/bgbl/1/2026/152/regelungstext.pdf?__blob=publicationFile&v=1",
+  "targets_verified": true,
+  "target_basis": "exact_name_in_final_bgbl_article",
+  "date_basis": "official_dip_article_commencement_clause",
+  "verification": "exact_name_in_final_bgbl_article",
+  "legal_effect_verified": true,
+  "candidate_only": true,
+  "historical_text_reconstructed": false,
+  "published_at": "2026-05-26",
+  "effective_at": "2026-10-01",
+  "event_id": "fed-bgbl-candidate:07eebc52bfdb801751a8",
+  "procedure_id": "327971",
+  "bgbl": {
+   "document_id": "bgbl-1-2026-152",
+   "pdf_url": "https://www.recht.bund.de/bgbl/1/2026/152/regelungstext.pdf?__blob=publicationFile&v=1",
+   "pdf_sha256": "76b8a4e49be30a35dfa400d4e1933dce7d2c57aa3303b59e78bf1851fa167d4e",
+   "integrity_verified": true
+  }
+ },
+ {
+  "hash": "bfec183c",
+  "date": "2026-10-01",
+  "lane": 1,
+  "type": "commit",
+  "actor": "BGBl / Kerf",
+  "msg": "Amtliche Änderung wird wirksam · SGB 10",
+  "future": true,
+  "acts": [
+   "SGB 10"
+  ],
+  "paras": [
+   "§ 66"
+  ],
+  "refs": [
+   "bgbl-1-2026-152",
+   "Artikel 17",
+   "effective_date_verified"
+  ],
+  "merge_ref": null,
+  "url": "https://www.recht.bund.de/bgbl/1/2026/152/regelungstext.pdf?__blob=publicationFile&v=1",
+  "targets_verified": true,
+  "target_basis": "exact_name_in_final_bgbl_article",
+  "date_basis": "official_dip_article_commencement_clause",
+  "verification": "exact_name_in_final_bgbl_article",
+  "legal_effect_verified": true,
+  "candidate_only": true,
+  "historical_text_reconstructed": false,
+  "published_at": "2026-05-26",
+  "effective_at": "2026-10-01",
+  "event_id": "fed-bgbl-candidate:7bdf287bea21aa799f98",
+  "procedure_id": "327971",
+  "bgbl": {
+   "document_id": "bgbl-1-2026-152",
+   "pdf_url": "https://www.recht.bund.de/bgbl/1/2026/152/regelungstext.pdf?__blob=publicationFile&v=1",
+   "pdf_sha256": "76b8a4e49be30a35dfa400d4e1933dce7d2c57aa3303b59e78bf1851fa167d4e",
+   "integrity_verified": true
+  }
+ },
+ {
+  "hash": "29b32c75",
+  "date": "2026-10-01",
+  "lane": 1,
+  "type": "commit",
+  "actor": "BGBl / Kerf",
+  "msg": "Amtliche Änderung wird wirksam · ZPO",
+  "future": true,
+  "acts": [
+   "ZPO"
+  ],
+  "paras": [
+   "§ 750",
+   "§ 752",
+   "§ 753",
+   "§ 753a",
+   "§ 755",
+   "§ 757",
+   "§ 758a",
+   "§ 802a",
+   "§ 802d",
+   "§ 802g",
+   "§ 829",
+   "§ 829a",
+   "§ 840",
+   "§ 851c"
+  ],
+  "refs": [
+   "bgbl-1-2026-152",
+   "Artikel 1",
+   "effective_date_verified"
+  ],
+  "merge_ref": null,
+  "url": "https://www.recht.bund.de/bgbl/1/2026/152/regelungstext.pdf?__blob=publicationFile&v=1",
+  "targets_verified": true,
+  "target_basis": "exact_name_in_final_bgbl_article",
+  "date_basis": "official_dip_article_commencement_clause",
+  "verification": "exact_name_in_final_bgbl_article",
+  "legal_effect_verified": true,
+  "candidate_only": true,
+  "historical_text_reconstructed": false,
+  "published_at": "2026-05-26",
+  "effective_at": "2026-10-01",
+  "event_id": "fed-bgbl-candidate:598a90674f667b558522",
+  "procedure_id": "327971",
+  "bgbl": {
+   "document_id": "bgbl-1-2026-152",
+   "pdf_url": "https://www.recht.bund.de/bgbl/1/2026/152/regelungstext.pdf?__blob=publicationFile&v=1",
+   "pdf_sha256": "76b8a4e49be30a35dfa400d4e1933dce7d2c57aa3303b59e78bf1851fa167d4e",
+   "integrity_verified": true
+  }
+ },
+ {
+  "hash": "c7a4438e",
+  "date": "2026-11-01",
+  "lane": 1,
+  "type": "commit",
+  "actor": "BGBl / Kerf",
+  "msg": "Amtliche Änderung wird wirksam · AZRG",
+  "future": true,
+  "acts": [
+   "AZRG"
+  ],
+  "paras": [
+   "§ 2",
+   "§ 3",
+   "§ 6",
+   "§ 10",
+   "§ 17",
+   "§ 17a",
+   "§ 18a",
+   "§ 18b",
+   "§ 18c",
+   "§ 18d",
+   "§ 21a",
+   "§ 23"
+  ],
+  "refs": [
+   "bgbl-1-2026-112",
+   "Artikel 1",
+   "effective_date_verified"
+  ],
+  "merge_ref": null,
+  "url": "https://www.recht.bund.de/bgbl/1/2026/112/regelungstext.pdf?__blob=publicationFile&v=1",
+  "targets_verified": true,
+  "target_basis": "exact_name_in_final_bgbl_article",
+  "date_basis": "official_dip_article_commencement_clause",
+  "verification": "exact_name_in_final_bgbl_article",
+  "legal_effect_verified": true,
+  "candidate_only": true,
+  "historical_text_reconstructed": false,
+  "published_at": "2026-04-28",
+  "effective_at": "2026-11-01",
+  "event_id": "fed-bgbl-candidate:e76ea2453b6c2b0d723a",
+  "procedure_id": "325562",
+  "bgbl": {
+   "document_id": "bgbl-1-2026-112",
+   "pdf_url": "https://www.recht.bund.de/bgbl/1/2026/112/regelungstext.pdf?__blob=publicationFile&v=1",
+   "pdf_sha256": "6fb3de261cd8cb6292b49ba77c185aa2ee546a7c8b45bf5d269f53432c6faf08",
+   "integrity_verified": true
+  }
+ },
+ {
+  "hash": "9e579883",
+  "date": "2027-01-01",
+  "lane": 1,
+  "type": "commit",
+  "actor": "BGBl / Kerf",
+  "msg": "Amtliche Änderung wird wirksam · ZPO",
+  "future": true,
+  "acts": [
+   "ZPO"
+  ],
+  "paras": [
+   "§ 829"
+  ],
+  "refs": [
+   "bgbl-1-2026-152",
+   "Artikel 2",
+   "effective_date_verified"
+  ],
+  "merge_ref": null,
+  "url": "https://www.recht.bund.de/bgbl/1/2026/152/regelungstext.pdf?__blob=publicationFile&v=1",
+  "targets_verified": true,
+  "target_basis": "exact_name_in_final_bgbl_article",
+  "date_basis": "official_dip_article_commencement_clause",
+  "verification": "exact_name_in_final_bgbl_article",
+  "legal_effect_verified": true,
+  "candidate_only": true,
+  "historical_text_reconstructed": false,
+  "published_at": "2026-05-26",
+  "effective_at": "2027-01-01",
+  "event_id": "fed-bgbl-candidate:c3ca13cd9e9e34d18b09",
+  "procedure_id": "327971",
+  "bgbl": {
+   "document_id": "bgbl-1-2026-152",
+   "pdf_url": "https://www.recht.bund.de/bgbl/1/2026/152/regelungstext.pdf?__blob=publicationFile&v=1",
+   "pdf_sha256": "76b8a4e49be30a35dfa400d4e1933dce7d2c57aa3303b59e78bf1851fa167d4e",
+   "integrity_verified": true
+  }
+ },
+ {
+  "hash": "d14a3ce5",
+  "date": "2027-01-01",
+  "lane": 1,
+  "type": "commit",
+  "actor": "BGBl / Kerf",
+  "msg": "Amtliche Änderung wird wirksam · SGG",
+  "future": true,
+  "acts": [
+   "SGG"
+  ],
+  "paras": [
+   "§ 211"
+  ],
+  "refs": [
+   "bgbl-1-2025-319",
+   "Artikel 30",
+   "effective_date_verified"
+  ],
+  "merge_ref": null,
+  "url": "https://www.recht.bund.de/bgbl/1/2025/319/regelungstext.pdf?__blob=publicationFile&v=3",
+  "targets_verified": true,
+  "target_basis": "exact_name_in_final_bgbl_article",
+  "date_basis": "official_dip_article_commencement_clause",
+  "verification": "exact_name_in_final_bgbl_article",
+  "legal_effect_verified": true,
+  "candidate_only": true,
+  "historical_text_reconstructed": false,
+  "published_at": "2025-12-11",
+  "effective_at": "2027-01-01",
+  "event_id": "fed-bgbl-candidate:62ebf8ecb05ca0650bbe",
+  "procedure_id": "325605",
+  "bgbl": {
+   "document_id": "bgbl-1-2025-319",
+   "pdf_url": "https://www.recht.bund.de/bgbl/1/2025/319/regelungstext.pdf?__blob=publicationFile&v=3",
+   "pdf_sha256": "a8f16ba660bc1a3d3f2c1509dc7be430495dc11849e34f1d44585cc3f1476fef",
+   "integrity_verified": true
+  }
+ },
+ {
+  "hash": "172e8fb0",
+  "date": "2027-01-01",
+  "lane": 1,
+  "type": "commit",
+  "actor": "BGBl / Kerf",
+  "msg": "Amtliche Änderung wird wirksam · ZPO",
+  "future": true,
+  "acts": [
+   "ZPO"
+  ],
+  "paras": [
+   "§ 43"
+  ],
+  "refs": [
+   "bgbl-1-2025-319",
+   "Artikel 17",
+   "effective_date_verified"
+  ],
+  "merge_ref": null,
+  "url": "https://www.recht.bund.de/bgbl/1/2025/319/regelungstext.pdf?__blob=publicationFile&v=3",
+  "targets_verified": true,
+  "target_basis": "exact_name_in_final_bgbl_article",
+  "date_basis": "official_dip_article_commencement_clause",
+  "verification": "exact_name_in_final_bgbl_article",
+  "legal_effect_verified": true,
+  "candidate_only": true,
+  "historical_text_reconstructed": false,
+  "published_at": "2025-12-11",
+  "effective_at": "2027-01-01",
+  "event_id": "fed-bgbl-candidate:8ecf7023b5155026ee8f",
+  "procedure_id": "325605",
+  "bgbl": {
+   "document_id": "bgbl-1-2025-319",
+   "pdf_url": "https://www.recht.bund.de/bgbl/1/2025/319/regelungstext.pdf?__blob=publicationFile&v=3",
+   "pdf_sha256": "a8f16ba660bc1a3d3f2c1509dc7be430495dc11849e34f1d44585cc3f1476fef",
+   "integrity_verified": true
+  }
+ },
+ {
+  "hash": "e59fb5a9",
+  "date": "2027-01-01",
+  "lane": 1,
+  "type": "commit",
+  "actor": "BGBl / Kerf",
+  "msg": "Amtliche Änderung wird wirksam · SGB 2",
+  "future": true,
+  "acts": [
+   "SGB 2"
+  ],
+  "paras": [
+   "§ 6b",
+   "§ 56"
+  ],
+  "refs": [
+   "bgbl-1-2024-323",
+   "Artikel 59",
+   "effective_date_verified"
+  ],
+  "merge_ref": null,
+  "url": "https://www.recht.bund.de/bgbl/1/2024/323/regelungstext.pdf?__blob=publicationFile&v=1",
+  "targets_verified": true,
+  "target_basis": "exact_name_in_final_bgbl_article",
+  "date_basis": "official_dip_article_commencement_clause",
+  "verification": "exact_name_in_final_bgbl_article",
+  "legal_effect_verified": true,
+  "candidate_only": true,
+  "historical_text_reconstructed": false,
+  "published_at": "2024-10-29",
+  "effective_at": "2027-01-01",
+  "event_id": "fed-bgbl-candidate:2014d1019743b5118bee",
+  "procedure_id": "309845",
+  "bgbl": {
+   "document_id": "bgbl-1-2024-323",
+   "pdf_url": "https://www.recht.bund.de/bgbl/1/2024/323/regelungstext.pdf?__blob=publicationFile&v=1",
+   "pdf_sha256": "dbfcf74401b5009b4346362971985eded52cfcab21ab04bdec2485e626aaa55a",
+   "integrity_verified": true
+  }
+ },
+ {
+  "hash": "69294d52",
+  "date": "2036-01-01",
+  "lane": 1,
+  "type": "commit",
+  "actor": "BGBl / Kerf",
+  "msg": "Amtliche Änderung wird wirksam · GKG 2004",
+  "future": true,
+  "acts": [
+   "GKG 2004"
+  ],
+  "paras": [
+   "§ 69b"
+  ],
+  "refs": [
+   "bgbl-1-2025-349",
+   "Artikel 25",
+   "effective_date_verified"
+  ],
+  "merge_ref": null,
+  "url": "https://www.recht.bund.de/bgbl/1/2025/349/regelungstext.pdf?__blob=publicationFile&v=3",
+  "targets_verified": true,
+  "target_basis": "exact_name_in_final_bgbl_article",
+  "date_basis": "official_dip_article_commencement_clause",
+  "verification": "exact_name_in_final_bgbl_article",
+  "legal_effect_verified": true,
+  "candidate_only": true,
+  "historical_text_reconstructed": false,
+  "published_at": "2025-12-22",
+  "effective_at": "2036-01-01",
+  "event_id": "fed-bgbl-candidate:d0c35a8dd1fcfc8f8547",
+  "procedure_id": "324804",
+  "bgbl": {
+   "document_id": "bgbl-1-2025-349",
+   "pdf_url": "https://www.recht.bund.de/bgbl/1/2025/349/regelungstext.pdf?__blob=publicationFile&v=3",
+   "pdf_sha256": "15fc7aef651937a652a9649ca7fdbd69b4cfb55f36848ec31ccad836008e5bdb",
+   "integrity_verified": true
+  }
+ },
+ {
+  "hash": "0c59e6a3",
+  "date": "2026-09-28",
+  "lane": 1,
+  "type": "commit",
+  "actor": "GII",
+  "msg": "Amtlicher konsolidierter Stand beobachtet",
+  "acts": [
+   "BGB"
+  ],
+  "paras": [
+   "312j"
+  ],
+  "refs": [
+   "official_state_observed",
+   "not_effective_date"
+  ],
+  "merge_ref": null,
+  "url": "https://www.gesetze-im-internet.de/bgb/",
+  "targets_verified": true,
+  "target_basis": "complete_content_addressed_gii_state_pair",
+  "date_basis": "retrieval_observation_not_effective_date",
+  "verification": "exact",
+  "observed_at": "2026-09-28",
+  "state_digest": "accb5a245b13e27acc3a54b37752b8efdd73a0e0f896ea781a756cd446e8ac73",
+  "previous_state_digest": "fc5adf95eb6205e07219ea72e8e0f6ca743fe521d68c66f838e219185b36f396",
+  "checkout": {
+   "act_id": "fed_bgb",
+   "observed_at": "2026-09-28",
+   "state_digest": "accb5a245b13e27acc3a54b37752b8efdd73a0e0f896ea781a756cd446e8ac73"
+  }
+ },
+ {
+  "hash": "1f13b132",
+  "date": "2026-09-28",
+  "lane": 1,
+  "type": "commit",
+  "actor": "GII",
+  "msg": "Amtlicher konsolidierter Stand beobachtet",
+  "acts": [
+   "BGBEG"
+  ],
+  "paras": [
+   "1"
+  ],
+  "refs": [
+   "official_state_observed",
+   "not_effective_date"
+  ],
+  "merge_ref": null,
+  "url": "https://www.gesetze-im-internet.de/bgbeg/",
+  "targets_verified": true,
+  "target_basis": "complete_content_addressed_gii_state_pair",
+  "date_basis": "retrieval_observation_not_effective_date",
+  "verification": "exact",
+  "observed_at": "2026-09-28",
+  "state_digest": "5cdd5c32fba483f2997b3daca9397708291bb07cd9cd7f154ea5a8220f6b2802",
+  "previous_state_digest": "c09c1e17745ca761488c6818eea6d341eb36e711114df3301058a66e75e16ed7",
+  "checkout": {
+   "act_id": "fed_bgbeg",
+   "observed_at": "2026-09-28",
+   "state_digest": "5cdd5c32fba483f2997b3daca9397708291bb07cd9cd7f154ea5a8220f6b2802"
+  }
+ },
+ {
+  "hash": "1068d780",
+  "date": "2026-09-28",
+  "lane": 1,
+  "type": "commit",
+  "actor": "GII",
+  "msg": "Amtlicher konsolidierter Stand beobachtet",
+  "acts": [
+   "UWG 2004"
+  ],
+  "paras": [
+   "2",
+   "5",
+   "5b",
+   "5c",
+   "19",
+   "Anhang"
+  ],
+  "refs": [
+   "official_state_observed",
+   "not_effective_date"
+  ],
+  "merge_ref": null,
+  "url": "https://www.gesetze-im-internet.de/uwg_2004/",
+  "targets_verified": true,
+  "target_basis": "complete_content_addressed_gii_state_pair",
+  "date_basis": "retrieval_observation_not_effective_date",
+  "verification": "exact",
+  "observed_at": "2026-09-28",
+  "state_digest": "2109f3f87f1fe904d4fe8dd6985bbf7b36dbf9f065c2fae1e13abd5efd03ce23",
+  "previous_state_digest": "abebbcc3e2f8db8f892dfdb5b4744ae8c987466e23e1158502019831f2a8b963",
+  "checkout": {
+   "act_id": "fed_uwg_2004",
+   "observed_at": "2026-09-28",
+   "state_digest": "2109f3f87f1fe904d4fe8dd6985bbf7b36dbf9f065c2fae1e13abd5efd03ce23"
+  }
+ }
+]

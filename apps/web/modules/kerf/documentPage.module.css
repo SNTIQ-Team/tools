@@ -1,0 +1,135 @@
+/* Standalone, indexable Kerf document pages (an amending act, a court
+   decision). Same language as the home page: the page background, hairline
+   rules, Inter at a few sizes; status colours only where a state needs one.
+   Monospace is kept for real identifiers, hashes and the wording columns. */
+.page { display:flex; flex-direction:column; width:100%; max-width:80rem; min-height:100vh; margin-inline:auto; padding:7rem 1rem 5rem; color:var(--c-text-main); }
+.page[data-width=narrow] { max-width:60rem; }
+@media (min-width:640px) { .page { padding-inline:1.5rem; } }
+@media (min-width:1024px) { .page { padding-inline:2rem; } }
+
+.crumbs { display:flex; flex-wrap:wrap; align-items:center; gap:.25rem .5rem; min-width:0; margin-bottom:clamp(1.5rem,3vw,2.5rem); font-size:.8125rem; font-weight:500; color:var(--c-text-muted); }
+.crumbs a { display:inline-flex; align-items:center; min-height:1.75rem; transition:color .15s; }
+.crumbs a:hover { color:var(--c-text-main); }
+.crumbs [aria-hidden] { opacity:.5; }
+.crumbs [aria-current] { min-width:0; overflow-wrap:anywhere; color:var(--c-text-main); font-weight:600; }
+
+.article { min-width:0; }
+.kicker { display:flex; flex-wrap:wrap; align-items:baseline; gap:.15rem .9rem; margin:0 0 .75rem; font-size:.8125rem; font-weight:600; line-height:1.4; color:var(--c-text-muted); }
+.kicker [data-tone=ok] { color:var(--c-ok); }
+.kicker [data-tone=link] { color:var(--c-link); }
+.id { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.8125rem; font-weight:400; overflow-wrap:anywhere; }
+.article h1 { margin:0; max-width:24em; font-size:clamp(1.75rem,3.6vw,3rem); font-weight:300; line-height:1.05; letter-spacing:-.028em; overflow-wrap:anywhere; text-wrap:balance; }
+.lead { margin:1rem 0 0; max-width:44em; font-size:1rem; line-height:1.5; color:var(--c-text-muted); }
+
+/* Key facts: ruled columns, the value carries the weight. */
+.facts { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1.25rem clamp(1.25rem,3.4vw,3rem); margin:clamp(1.75rem,3.6vw,3rem) 0 0; }
+.facts > div { min-width:0; padding-top:.7rem; border-top:1px solid var(--c-text-main); }
+.facts dt { font-size:.8125rem; font-weight:600; color:var(--c-text-muted); }
+.facts dd { margin:.35rem 0 0; font-size:1.19rem; font-weight:600; line-height:1.3; letter-spacing:-.02em; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
+.facts dd small { display:block; margin-top:.25rem; font-size:.8125rem; font-weight:500; letter-spacing:0; color:var(--c-warn); }
+
+.actions { display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:space-between; gap:.75rem 1.5rem; margin-top:1.75rem; }
+.actionRow { display:flex; flex-wrap:wrap; gap:.5rem; min-width:0; }
+.links { display:flex; flex-wrap:wrap; align-items:center; gap:.25rem 1.4rem; min-width:0; }
+.link { display:inline-flex; align-items:center; gap:.35rem; min-height:2.5rem; max-width:100%; font-size:.94rem; font-weight:600; color:var(--c-link); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:.22em; text-decoration-color:color-mix(in srgb,currentColor 35%,transparent); overflow-wrap:anywhere; }
+.link:hover { text-decoration-color:currentColor; }
+.link svg { flex-shrink:0; }
+.alert { margin:.6rem 0 0; font-size:.875rem; color:var(--c-warn); }
+
+.section { min-width:0; margin-top:clamp(3rem,6vw,5rem); }
+.section > h2 { margin:0; padding-bottom:.75rem; border-bottom:1px solid var(--c-text-main); font-size:clamp(1.25rem,2vw,1.75rem); font-weight:350; line-height:1.12; letter-spacing:-.022em; }
+.label { margin:0 0 .35rem; font-size:.8125rem; font-weight:600; color:var(--c-text-muted); }
+.muted { color:var(--c-text-muted); }
+.note { margin:1.25rem 0 0; max-width:60em; font-size:.875rem; line-height:1.55; color:var(--c-text-muted); }
+
+/* Ruled lists */
+.rows { list-style:none; margin:0; padding:0; }
+.row { display:grid; grid-template-columns:minmax(6rem,10rem) minmax(0,1fr) auto; gap:.25rem clamp(1rem,2.4vw,2rem); align-items:baseline; padding:.9rem 0 1rem; border-bottom:1px solid var(--panel-border); }
+.row > strong { font-size:1.19rem; font-weight:500; line-height:1.15; letter-spacing:-.016em; overflow-wrap:anywhere; }
+.row p { margin:0; font-size:1rem; line-height:1.45; overflow-wrap:anywhere; }
+.row p + p { margin-top:.2rem; font-size:.875rem; color:var(--c-text-muted); }
+.row > span { font-size:.875rem; color:var(--c-text-muted); font-variant-numeric:tabular-nums; white-space:nowrap; }
+.pairs { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 clamp(1.25rem,3.4vw,3rem); }
+.pair { min-width:0; padding:.9rem 0 1rem; border-bottom:1px solid var(--panel-border); }
+.pair > strong { display:block; font-size:1rem; font-weight:600; overflow-wrap:anywhere; }
+.pair p { margin:.3rem 0 0; font-size:.8125rem; color:var(--c-text-muted); overflow-wrap:anywhere; }
+
+/* An article of the amending act and the events it produces */
+.articleBlock { min-width:0; padding:1.5rem 0 .5rem; border-bottom:1px solid var(--c-text-main); }
+.articleBlock:last-child { border-bottom:0; }
+.articleBlock > header h3 { margin:0; font-size:clamp(1.19rem,1.7vw,1.5rem); font-weight:500; line-height:1.2; letter-spacing:-.016em; overflow-wrap:anywhere; }
+.event { min-width:0; margin-top:1.25rem; padding-top:1rem; border-top:1px solid var(--panel-border); }
+.eventHead { display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:.25rem 1.5rem; }
+.eventHead h4 { margin:0; font-size:1rem; font-weight:600; line-height:1.35; overflow-wrap:anywhere; }
+.eventHead h4 b { font-weight:600; margin-right:.5rem; }
+/* Publication, entry into force, retroactivity: each state is spelled out. */
+.status { display:flex; flex-wrap:wrap; gap:.1rem 1rem; margin:0; font-size:.875rem; font-weight:600; font-variant-numeric:tabular-nums; color:var(--c-text-muted); }
+.status [data-state=in_force] { color:var(--c-ok); }
+.status [data-state=future], .status [data-state=unresolved], .status [data-state=retroactive] { color:var(--c-warn); }
+.command { min-width:0; margin-top:1rem; }
+.commandHead { display:flex; flex-wrap:wrap; align-items:baseline; gap:.1rem .9rem; margin:0; font-size:.875rem; color:var(--c-text-muted); }
+.commandHead strong { font-size:.94rem; font-weight:600; color:var(--c-text-main); }
+/* Wording columns: the rule and its heading say which side is which. */
+.wording { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem clamp(1rem,2.4vw,2rem); margin-top:.75rem; }
+.wording > section { min-width:0; padding-left:.9rem; border-left:2px solid var(--c-bad); }
+.wording > section[data-side=new] { border-left-color:var(--c-ok); }
+.wording h5 { margin:0 0 .35rem; font-size:.8125rem; font-weight:600; color:var(--c-bad); }
+.wording > section[data-side=new] h5 { color:var(--c-ok); }
+.pre { margin:0; max-height:18rem; overflow:auto; white-space:pre-wrap; overflow-wrap:anywhere; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.8125rem; line-height:1.6; color:var(--c-text-main); scrollbar-width:thin; }
+.raw { margin-top:.6rem; min-width:0; }
+.raw summary { display:inline-flex; align-items:center; gap:.4rem; min-height:2rem; cursor:pointer; font-size:.875rem; font-weight:600; color:var(--c-text-muted); }
+.raw summary:hover { color:var(--c-text-main); }
+.raw .pre { margin-top:.35rem; padding-left:.9rem; border-left:2px solid var(--panel-border); color:var(--c-text-muted); }
+.empty { margin:.75rem 0 0; font-size:.875rem; color:var(--c-warn); }
+
+.foot { margin-top:clamp(3rem,6vw,5rem); padding-top:1rem; border-top:1px solid var(--panel-border); }
+.meta { display:flex; flex-wrap:wrap; align-items:center; gap:.25rem 1.4rem; font-size:.875rem; color:var(--c-text-muted); font-variant-numeric:tabular-nums; }
+.meta span { display:inline-flex; align-items:center; gap:.35rem; }
+
+/* Court decision */
+.summary { margin-top:1.75rem; max-width:46em; }
+.summary p { margin:0; font-size:1.06rem; line-height:1.55; overflow-wrap:anywhere; }
+.effects { margin:0; }
+.effectGroup { display:grid; grid-template-columns:minmax(0,4fr) minmax(0,8fr); gap:.25rem clamp(1rem,2.4vw,2rem); padding:.9rem 0 1rem; border-bottom:1px solid var(--panel-border); }
+.effectGroup h3 { margin:0; font-size:1rem; font-weight:600; line-height:1.35; }
+.effectGroup h3[data-tone=bad] { color:var(--c-bad); }
+.effectGroup h3[data-tone=warn] { color:var(--c-warn); }
+.effectGroup h3[data-tone=ok] { color:var(--c-ok); }
+.effectGroup h3[data-tone=link] { color:var(--c-link); }
+.effectGroup h3[data-tone=muted] { color:var(--c-text-muted); font-weight:500; }
+.effectGroup ul { list-style:none; margin:0; padding:0; }
+.effectGroup li { font-size:1rem; line-height:1.45; overflow-wrap:anywhere; }
+.effectGroup li + li { margin-top:.35rem; }
+.effectGroup li b { font-weight:600; }
+.effectGroup li span { display:block; font-size:.875rem; color:var(--c-text-muted); }
+.related { list-style:none; margin:0; padding:0; }
+.related li { padding:.7rem 0 .8rem; border-bottom:1px solid var(--panel-border); font-size:1rem; line-height:1.45; overflow-wrap:anywhere; }
+.related li span { color:var(--c-text-muted); margin-right:.5rem; }
+.related a:hover { color:var(--c-link); text-decoration:underline; text-underline-offset:.22em; }
+/* A quotation from the decision: the rule marks quoted speech. */
+.quote { margin:clamp(2rem,4vw,3rem) 0 0; padding-left:1rem; border-left:2px solid var(--c-text-main); max-width:46em; font-size:1.06rem; line-height:1.55; overflow-wrap:anywhere; }
+.fulltext { margin-top:clamp(2rem,4vw,3rem); }
+.fulltext summary { display:inline-flex; align-items:center; gap:.4rem; min-height:2.5rem; cursor:pointer; font-size:.94rem; font-weight:600; color:var(--c-text-main); list-style:none; }
+.fulltext summary::-webkit-details-marker { display:none; }
+.fulltext summary svg { transition:transform .15s; }
+.fulltext[open] summary svg { transform:rotate(90deg); }
+.fulltext > div { margin-top:.75rem; max-width:46em; white-space:pre-wrap; overflow-wrap:anywhere; font-size:1rem; line-height:1.7; }
+
+@media (max-width:900px) {
+  .facts { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .effectGroup { grid-template-columns:minmax(0,1fr); }
+  .pairs { grid-template-columns:minmax(0,1fr); }
+}
+@media (max-width:640px) {
+  .page { padding-top:6rem; }
+  .row { grid-template-columns:minmax(0,1fr); }
+  .row > span { white-space:normal; }
+  .wording { grid-template-columns:minmax(0,1fr); }
+  .crumbs a { min-height:2.5rem; }
+  .raw summary { min-height:2.5rem; }
+}
+@media print {
+  .page { max-width:none; min-height:0; padding:0; }
+  .crumbs { display:none; }
+  .pre { max-height:none; overflow:visible; }
+}

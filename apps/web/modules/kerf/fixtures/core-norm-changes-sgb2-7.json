@@ -1,0 +1,720 @@
+{
+ "schema": "kerf-evidence-envelope/1",
+ "status": "ok",
+ "operation": "law_changes",
+ "request_scope": {
+  "norm": "de/bund/sgb_2/para/7",
+  "limit": "4"
+ },
+ "applied_constraints": {
+  "canonical_id": "de/bund/sgb_2/para/7",
+  "act_id": "fed_sgb_2",
+  "known_at": "latest_published_knowledge",
+  "history_schema": "kerf-norm-history/1",
+  "evaluated_on": "2026-09-28",
+  "state": "all",
+  "order": "newest_first"
+ },
+ "ignored_arguments": [],
+ "snapshot_id": null,
+ "evidence": [
+  {
+   "change_id": "chg:85a779bfafd7c4527a809d96",
+   "norm_id": "de/bund/sgb_2/para/7",
+   "norm_label": "§ 7",
+   "amending_act": {
+    "citation": "Art. 6 Nr. 1 G v. 16.8.2023 (BGBl. 2023 I Nr. 217)",
+    "document_id": "bgbl-1-2023-217",
+    "title": "Gesetz zur Weiterentwicklung der Fachkräfteeinwanderung",
+    "gazette": {
+     "name": "BGBl.",
+     "number": 217,
+     "page": null,
+     "part": "I",
+     "reference": "BGBl. 2023 I Nr. 217",
+     "year": 2023
+    },
+    "article": "6",
+    "items": [
+     "1"
+    ],
+    "url": "https://www.recht.bund.de/bgbl/1/2023/217/VO.html",
+    "procedure_id": "298214"
+   },
+   "change_type": "geändert",
+   "dates": {
+    "adopted": {
+     "basis": "recht.bund.de document metadata 'Ausfertigungsdatum' of the promulgated document",
+     "date": "2023-08-16",
+     "evidence": [
+      {
+       "field": "Ausfertigungsdatum",
+       "source": "recht.bund.de",
+       "url": "https://www.recht.bund.de/bgbl/1/2023/217/VO.html",
+       "value": "16.08.2023"
+      }
+     ],
+     "status": "official"
+    },
+    "applies_from": {
+     "date": null,
+     "status": "not_stated"
+    },
+    "in_force": {
+     "basis": "commencement clause of the amending act, resolved for the whole amending article (official_dip_article_commencement_clause)",
+     "clause": null,
+     "date": "2024-06-01",
+     "evidence": [
+      {
+       "document": "bgbl-1-2023-217",
+       "sha256": "f48f96a825e5c059b06ed9db7ead791860e00f6f4ff88d6bdfd2ee9ad4e937c0",
+       "source": "BGBl",
+       "url": "https://www.recht.bund.de/bgbl/1/2023/217/regelungstext.pdf?__blob=publicationFile&v=1"
+      },
+      {
+       "procedure": "298214",
+       "source": "DIP",
+       "url": "https://dip.bundestag.de/vorgang/298214"
+      }
+     ],
+     "status": "official_commencement_clause"
+    },
+    "promulgated": {
+     "basis": "recht.bund.de document metadata 'Veröffentlichungsdatum' (Verkündung)",
+     "date": "2023-08-18",
+     "evidence": [
+      {
+       "field": "Veröffentlichungsdatum",
+       "source": "recht.bund.de",
+       "url": "https://www.recht.bund.de/bgbl/1/2023/217/VO.html",
+       "value": "18.08.2023"
+      }
+     ],
+     "status": "official"
+    }
+   },
+   "source_role": "official_promulgation",
+   "state": "in_force",
+   "pending": false,
+   "text_effect": {
+    "after_version": 16,
+    "attribution": "bracketed_by_captures",
+    "before_version": 15,
+    "observed_from": "2024-06-01",
+    "previous_observed_until": "2024-05-29",
+    "reconstructed": false,
+    "verification": "command_wording_reflected"
+   },
+   "commands": [
+    {
+     "item": 1,
+     "new_text": "b) deren Aufenthaltsrecht sich allein aus dem Zweck der Arbeitsuche, der Ausbildungs- oder Studienplatzsuche \noder aus einer Aufenthaltserlaubnis nach § 20a des Aufenthaltsgesetzes ergibt,",
+     "old_text_constraint": null,
+     "operation": "replace",
+     "raw": "§ 7 Absatz 1 Satz 2 Nummer 2 Buchstabe b des Zweiten Buches Sozialgesetzbuch – Bürgergeld, \nGrundsicherung für Arbeitsuchende – in der Fassung der Bekanntmachung vom 13. Mai 2011 (BGBl. I S. 850, \n2094), das zuletzt durch Artikel 5 des Gesetzes vom 17. Juli 2023 (BGBl. 2023 I Nr. 191) geändert worden ist, \nwird wie folgt gefasst:\n„b) deren Aufenthaltsrecht sich allein aus dem Zweck der Arbeitsuche, der Ausbildungs- oder Studienplatzsuche \noder aus einer Aufenthaltserlaubnis nach § 20a des Aufenthaltsgesetzes ergibt,“.",
+     "ref": {
+      "absatz": "1",
+      "buchstabe": "b",
+      "nummer": "2",
+      "para": "7",
+      "satz": "2"
+     }
+    }
+   ],
+   "evidence": [
+    {
+     "document": "bgbl-1-2023-217",
+     "sha256": "f48f96a825e5c059b06ed9db7ead791860e00f6f4ff88d6bdfd2ee9ad4e937c0",
+     "source": "BGBl",
+     "url": "https://www.recht.bund.de/bgbl/1/2023/217/regelungstext.pdf?__blob=publicationFile&v=1"
+    },
+    {
+     "procedure": "298214",
+     "source": "DIP",
+     "url": "https://dip.bundestag.de/vorgang/298214"
+    }
+   ],
+   "diff_url": "/norms/de/bund/sgb_2/para/7/diff?from=de/bund/sgb_2/para/7@observed-2024-01-12#c49040703b5d&to=de/bund/sgb_2/para/7@2024-06-01#99028ed1d133"
+  },
+  {
+   "change_id": "chg:aec6e801d70b6956ad422374",
+   "norm_id": "de/bund/sgb_2/para/7",
+   "norm_label": "§ 7",
+   "amending_act": {
+    "citation": "Art. 3 Nr. 2 G v. 22.12.2023 (BGBl. 2023 I Nr. 408)",
+    "document_id": "bgbl-1-2023-408",
+    "title": "Gesetz zur Anpassung des Zwölften und des Vierzehnten Buches Sozialgesetzbuch und weiterer Gesetze",
+    "gazette": {
+     "name": "BGBl.",
+     "number": 408,
+     "page": null,
+     "part": "I",
+     "reference": "BGBl. 2023 I Nr. 408",
+     "year": 2023
+    },
+    "article": "3",
+    "items": [
+     "2.a,2.b"
+    ],
+    "url": "https://www.recht.bund.de/bgbl/1/2023/408/VO.html",
+    "procedure_id": "300142"
+   },
+   "change_type": "geändert",
+   "dates": {
+    "adopted": {
+     "basis": "recht.bund.de document metadata 'Ausfertigungsdatum' of the promulgated document",
+     "date": "2023-12-22",
+     "evidence": [
+      {
+       "field": "Ausfertigungsdatum",
+       "source": "recht.bund.de",
+       "url": "https://www.recht.bund.de/bgbl/1/2023/408/VO.html",
+       "value": "22.12.2023"
+      }
+     ],
+     "status": "official"
+    },
+    "applies_from": {
+     "date": null,
+     "status": "not_stated"
+    },
+    "in_force": {
+     "date": null,
+     "reason": "unresolved_sub_article_scope",
+     "status": "unknown"
+    },
+    "promulgated": {
+     "basis": "recht.bund.de document metadata 'Veröffentlichungsdatum' (Verkündung)",
+     "date": "2023-12-28",
+     "evidence": [
+      {
+       "field": "Veröffentlichungsdatum",
+       "source": "recht.bund.de",
+       "url": "https://www.recht.bund.de/bgbl/1/2023/408/VO.html",
+       "value": "28.12.2023"
+      }
+     ],
+     "status": "official"
+    }
+   },
+   "source_role": "official_promulgation",
+   "state": "date_unknown",
+   "pending": false,
+   "text_effect": null,
+   "commands": [
+    {
+     "item": 2,
+     "new_text": "§ 123 Satz 1 Nummer 2",
+     "old_text_constraint": "§ 123 Nummer 2",
+     "operation": "modify",
+     "raw": "§ 7 wird wie folgt geändert:\na) Absatz 4a wird wie folgt gefasst:\n„(4a) Personen, denen Leistungen zum Lebensunterhalt nach § 93 des Vierzehnten Buches zuerkannt \nworden sind, haben keinen Anspruch auf Leistungen zur Sicherung des Lebensunterhalts.“\nb) In Absatz 5 Satz 2 wird die Angabe „§ 123 Nummer 2“ durch die Wörter „§ 123 Satz 1 Nummer 2“ ersetzt.",
+     "ref": {
+      "absatz": "4a",
+      "para": "7",
+      "satz": "2"
+     }
+    }
+   ],
+   "evidence": [
+    {
+     "document": "bgbl-1-2023-408",
+     "sha256": "f23232ee73316d610f289fae25fa2b278151161b077c8d94c6fa8649464b64ad",
+     "source": "BGBl",
+     "url": "https://www.recht.bund.de/bgbl/1/2023/408/regelungstext.pdf?__blob=publicationFile&v=1"
+    },
+    {
+     "procedure": "300142",
+     "source": "DIP",
+     "url": "https://dip.bundestag.de/vorgang/300142"
+    }
+   ],
+   "diff_url": null
+  },
+  {
+   "change_id": "chg:e0e7b7cd01bdd0a175c6b0f3",
+   "norm_id": "de/bund/sgb_2/para/7",
+   "norm_label": "§ 7",
+   "amending_act": {
+    "citation": "Art. 1 Nr. 8 G (BGBl. I 2022 S. 2328)",
+    "document_id": "bgbl-1-2022-s2328",
+    "title": "Zwölftes Gesetz zur Änderung des Zweiten Buches Sozialgesetzbuch und anderer Gesetze - Einführung eines Bürgergeldes (Bürgergeld-Gesetz)",
+    "gazette": {
+     "name": "BGBl.",
+     "number": null,
+     "page": 2328,
+     "part": "I",
+     "reference": "BGBl. I 2022 S. 2328",
+     "year": 2022
+    },
+    "article": "1",
+    "items": [
+     "8"
+    ],
+    "url": "https://www.bgbl.de/xaver/bgbl/start.xav?start=%2F%2F%2A%5B%40attr_id%3D%27bgbl122s2328.pdf%27%5D&startbk=Bundesanzeiger_BGBl",
+    "procedure_id": "291526"
+   },
+   "change_type": "geändert",
+   "dates": {
+    "adopted": {
+     "date": null,
+     "reason": "no evidenced Ausfertigungsdatum in the stored promulgation document",
+     "status": "unknown"
+    },
+    "applies_from": {
+     "date": null,
+     "status": "not_stated"
+    },
+    "in_force": {
+     "date": null,
+     "reason": "unresolved_legacy_commencement_review",
+     "status": "unknown"
+    },
+    "promulgated": {
+     "basis": "BGBl issue header of the integrity-checked final PDF (matched with the DIP citation)",
+     "date": "2022-12-20",
+     "evidence": [
+      {
+       "sha256": "61bd071a488f9d8123b924f6d08e3d7c15cd265a7828f8f3cf82df553114019d",
+       "source": "BGBl",
+       "url": "https://www.bgbl.de/xaver/bgbl/text.xav?start=%2F%2F%2A%5B%40attr_id%3D%27bgbl122s2328.pdf%27%5D&bk=Bundesanzeiger_BGBl&skin=pdf"
+      }
+     ],
+     "status": "official"
+    }
+   },
+   "source_role": "official_promulgation",
+   "state": "date_unknown",
+   "pending": false,
+   "text_effect": null,
+   "commands": [
+    {
+     "item": 8,
+     "new_text": null,
+     "old_text_constraint": null,
+     "operation": "repeal",
+     "raw": "§ 7 Absatz 4a wird aufgehoben.",
+     "ref": {
+      "absatz": "4a",
+      "para": "7"
+     }
+    }
+   ],
+   "evidence": [
+    {
+     "document": "bgbl-1-2022-s2328",
+     "sha256": "61bd071a488f9d8123b924f6d08e3d7c15cd265a7828f8f3cf82df553114019d",
+     "source": "BGBl",
+     "url": "https://www.bgbl.de/xaver/bgbl/text.xav?start=%2F%2F%2A%5B%40attr_id%3D%27bgbl122s2328.pdf%27%5D&bk=Bundesanzeiger_BGBl&skin=pdf"
+    },
+    {
+     "procedure": "291526",
+     "source": "DIP",
+     "url": "https://dip.bundestag.de/vorgang/291526"
+    }
+   ],
+   "diff_url": null
+  },
+  {
+   "change_id": "chg:b22ad2f7cb76f7043c1e66e4",
+   "norm_id": "de/bund/sgb_2/para/7",
+   "norm_label": "§ 7",
+   "amending_act": {
+    "citation": "Art. 4 Nr. 2 G (BGBl. I 2020 S. 2855)",
+    "document_id": "bgbl-1-2020-s2855",
+    "title": "Gesetz zur Ermittlung der Regelbedarfe und zur Änderung des Zwölften Buches Sozialgesetzbuch sowie weiterer Gesetze",
+    "gazette": {
+     "name": "BGBl.",
+     "number": null,
+     "page": 2855,
+     "part": "I",
+     "reference": "BGBl. I 2020 S. 2855",
+     "year": 2020
+    },
+    "article": "4",
+    "items": [
+     "2.a,2.b"
+    ],
+    "url": "https://www.bgbl.de/xaver/bgbl/start.xav?start=%2F%2F%2A%5B%40attr_id%3D%27bgbl120s2855.pdf%27%5D&startbk=Bundesanzeiger_BGBl",
+    "procedure_id": "266352"
+   },
+   "change_type": "geändert",
+   "dates": {
+    "adopted": {
+     "date": null,
+     "reason": "no evidenced Ausfertigungsdatum in the stored promulgation document",
+     "status": "unknown"
+    },
+    "applies_from": {
+     "date": null,
+     "status": "not_stated"
+    },
+    "in_force": {
+     "date": null,
+     "reason": "unresolved_legacy_commencement_review",
+     "status": "unknown"
+    },
+    "promulgated": {
+     "basis": "BGBl issue header of the integrity-checked final PDF (matched with the DIP citation)",
+     "date": "2020-12-14",
+     "evidence": [
+      {
+       "sha256": "56241fc85bc699196ec8965be12240f2b829b3424d0dc6a2a908bebad620f803",
+       "source": "BGBl",
+       "url": "https://www.bgbl.de/xaver/bgbl/text.xav?start=%2F%2F%2A%5B%40attr_id%3D%27bgbl120s2855.pdf%27%5D&bk=Bundesanzeiger_BGBl&skin=pdf"
+      }
+     ],
+     "status": "official"
+    }
+   },
+   "source_role": "official_promulgation",
+   "state": "incorporated_date_unknown",
+   "pending": false,
+   "text_effect": {
+    "after_version": 13,
+    "attribution": "bracketed_promulgation_only",
+    "before_version": 12,
+    "observed_from": "2021-01-18",
+    "previous_observed_until": "2020-10-01",
+    "reconstructed": false,
+    "verification": "bracketed_by_captures"
+   },
+   "commands": [
+    {
+     "item": 2,
+     "new_text": null,
+     "old_text_constraint": null,
+     "operation": "other",
+     "raw": "§ 7 Absatz 1 Satz 2 Nummer 2 wird wie folgt ge-\nfasst:  \n„2. Ausländerinnen und Ausländer,  \na) die kein Aufenthaltsrecht haben oder  \nb) deren Aufenthaltsrecht sich allein aus dem \nZweck der Arbeitsuche ergibt,  \nund ihre Familienangehörigen,“.",
+     "ref": {
+      "absatz": "1",
+      "nummer": "2",
+      "para": "7",
+      "satz": "2"
+     }
+    }
+   ],
+   "evidence": [
+    {
+     "document": "bgbl-1-2020-s2855",
+     "sha256": "56241fc85bc699196ec8965be12240f2b829b3424d0dc6a2a908bebad620f803",
+     "source": "BGBl",
+     "url": "https://www.bgbl.de/xaver/bgbl/text.xav?start=%2F%2F%2A%5B%40attr_id%3D%27bgbl120s2855.pdf%27%5D&bk=Bundesanzeiger_BGBl&skin=pdf"
+    },
+    {
+     "procedure": "266352",
+     "source": "DIP",
+     "url": "https://dip.bundestag.de/vorgang/266352"
+    }
+   ],
+   "diff_url": "/norms/de/bund/sgb_2/para/7/diff?from=de/bund/sgb_2/para/7@observed-2020-01-31#ccb04d824cdf&to=de/bund/sgb_2/para/7@observed-2021-01-18#f57608b354d1"
+  }
+ ],
+ "warnings": [],
+ "failed_components": [],
+ "total": 9,
+ "offset": 0,
+ "limit": 4,
+ "norm": {
+  "canonical_id": "de/bund/sgb_2/para/7",
+  "sub_unit": null,
+  "label": "§ 7",
+  "title": "Leistungsberechtigte",
+  "act": {
+   "id": "fed_sgb_2",
+   "jurabk": "SGB 2",
+   "juris": "DE",
+   "title": "Sozialgesetzbuch (SGB) Zweites Buch (II) - Grundsicherung für Arbeitsuchende",
+   "source_url": "https://www.gesetze-im-internet.de/sgb_2/",
+   "permalink": null,
+   "build": "20260714",
+   "stand": null
+  },
+  "versions": 17,
+  "present_in_latest_state": false
+ },
+ "change_summary": {
+  "schema": "kerf-change-summary/1",
+  "scope": "norm",
+  "subject": "de/bund/sgb_2/para/7",
+  "as_of": "2026-09-28",
+  "last_change": {
+   "change_id": "chg:85a779bfafd7c4527a809d96",
+   "norm_id": "de/bund/sgb_2/para/7",
+   "norm_label": "§ 7",
+   "amending_act": {
+    "citation": "Art. 6 Nr. 1 G v. 16.8.2023 (BGBl. 2023 I Nr. 217)",
+    "document_id": "bgbl-1-2023-217",
+    "title": "Gesetz zur Weiterentwicklung der Fachkräfteeinwanderung",
+    "gazette": {
+     "name": "BGBl.",
+     "number": 217,
+     "page": null,
+     "part": "I",
+     "reference": "BGBl. 2023 I Nr. 217",
+     "year": 2023
+    },
+    "article": "6",
+    "items": [
+     "1"
+    ],
+    "url": "https://www.recht.bund.de/bgbl/1/2023/217/VO.html",
+    "procedure_id": "298214"
+   },
+   "change_type": "geändert",
+   "dates": {
+    "adopted": {
+     "basis": "recht.bund.de document metadata 'Ausfertigungsdatum' of the promulgated document",
+     "date": "2023-08-16",
+     "evidence": [
+      {
+       "field": "Ausfertigungsdatum",
+       "source": "recht.bund.de",
+       "url": "https://www.recht.bund.de/bgbl/1/2023/217/VO.html",
+       "value": "16.08.2023"
+      }
+     ],
+     "status": "official"
+    },
+    "applies_from": {
+     "date": null,
+     "status": "not_stated"
+    },
+    "in_force": {
+     "basis": "commencement clause of the amending act, resolved for the whole amending article (official_dip_article_commencement_clause)",
+     "clause": null,
+     "date": "2024-06-01",
+     "evidence": [
+      {
+       "document": "bgbl-1-2023-217",
+       "sha256": "f48f96a825e5c059b06ed9db7ead791860e00f6f4ff88d6bdfd2ee9ad4e937c0",
+       "source": "BGBl",
+       "url": "https://www.recht.bund.de/bgbl/1/2023/217/regelungstext.pdf?__blob=publicationFile&v=1"
+      },
+      {
+       "procedure": "298214",
+       "source": "DIP",
+       "url": "https://dip.bundestag.de/vorgang/298214"
+      }
+     ],
+     "status": "official_commencement_clause"
+    },
+    "promulgated": {
+     "basis": "recht.bund.de document metadata 'Veröffentlichungsdatum' (Verkündung)",
+     "date": "2023-08-18",
+     "evidence": [
+      {
+       "field": "Veröffentlichungsdatum",
+       "source": "recht.bund.de",
+       "url": "https://www.recht.bund.de/bgbl/1/2023/217/VO.html",
+       "value": "18.08.2023"
+      }
+     ],
+     "status": "official"
+    }
+   },
+   "source_role": "official_promulgation",
+   "state": "in_force",
+   "pending": false,
+   "text_effect": {
+    "after_version": 16,
+    "attribution": "bracketed_by_captures",
+    "before_version": 15,
+    "observed_from": "2024-06-01",
+    "previous_observed_until": "2024-05-29",
+    "reconstructed": false,
+    "verification": "command_wording_reflected"
+   }
+  },
+  "last_incorporated_undated": {
+   "change_id": "chg:aec6e801d70b6956ad422374",
+   "norm_id": "de/bund/sgb_2/para/7",
+   "norm_label": "§ 7",
+   "amending_act": {
+    "citation": "Art. 3 Nr. 2 G v. 22.12.2023 (BGBl. 2023 I Nr. 408)",
+    "document_id": "bgbl-1-2023-408",
+    "title": "Gesetz zur Anpassung des Zwölften und des Vierzehnten Buches Sozialgesetzbuch und weiterer Gesetze",
+    "gazette": {
+     "name": "BGBl.",
+     "number": 408,
+     "page": null,
+     "part": "I",
+     "reference": "BGBl. 2023 I Nr. 408",
+     "year": 2023
+    },
+    "article": "3",
+    "items": [
+     "2.a,2.b"
+    ],
+    "url": "https://www.recht.bund.de/bgbl/1/2023/408/VO.html",
+    "procedure_id": "300142"
+   },
+   "change_type": "geändert",
+   "dates": {
+    "adopted": {
+     "basis": "recht.bund.de document metadata 'Ausfertigungsdatum' of the promulgated document",
+     "date": "2023-12-22",
+     "evidence": [
+      {
+       "field": "Ausfertigungsdatum",
+       "source": "recht.bund.de",
+       "url": "https://www.recht.bund.de/bgbl/1/2023/408/VO.html",
+       "value": "22.12.2023"
+      }
+     ],
+     "status": "official"
+    },
+    "applies_from": {
+     "date": null,
+     "status": "not_stated"
+    },
+    "in_force": {
+     "date": null,
+     "reason": "unresolved_sub_article_scope",
+     "status": "unknown"
+    },
+    "promulgated": {
+     "basis": "recht.bund.de document metadata 'Veröffentlichungsdatum' (Verkündung)",
+     "date": "2023-12-28",
+     "evidence": [
+      {
+       "field": "Veröffentlichungsdatum",
+       "source": "recht.bund.de",
+       "url": "https://www.recht.bund.de/bgbl/1/2023/408/VO.html",
+       "value": "28.12.2023"
+      }
+     ],
+     "status": "official"
+    }
+   },
+   "source_role": "official_promulgation",
+   "state": "date_unknown",
+   "pending": false,
+   "text_effect": null
+  },
+  "next_pending_change": null,
+  "pending_changes": [],
+  "counts": {
+   "versions": 17,
+   "versions_by_role": {
+    "archived_capture": 16,
+    "official_consolidation": 1
+   },
+   "events": 9,
+   "amending_acts": 9,
+   "events_with_in_force": 1,
+   "events_pending": 0,
+   "events_date_unknown": 8
+  },
+  "source_role": "official_consolidation",
+  "act_stand_note": {
+   "amending_act": {
+    "article": "1a",
+    "citation_text": "Art. 1a G v. 16.4.2026 I Nr. 107",
+    "gazette_lookup": {
+     "document_id": "bgbl-1-2026-107",
+     "number": 107,
+     "page": null,
+     "part": "I",
+     "stated_instrument_date": "2026-04-16",
+     "year": 2026
+    }
+   },
+   "last_amended_by_text": "Art. 1a G v. 16.4.2026 I Nr. 107",
+   "norm_specific": false,
+   "note": "GII's act-level 'zuletzt geändert' statement; it does not say which norms that amendment touched",
+   "schema": "kerf-gii-stand-note/1",
+   "scope": "act",
+   "source": "GII Stand",
+   "text": "zuletzt geändert durch Art. 1a G v. 16.4.2026 I Nr. 107"
+  },
+  "documentation_notes": [
+   {
+    "amending_act": {
+     "article": "1b",
+     "citation_text": "Art. 1b G v. 16.4.2026 I Nr. 107",
+     "gazette_lookup": {
+      "document_id": "bgbl-1-2026-107",
+      "number": 107,
+      "page": null,
+      "part": "I",
+      "stated_instrument_date": "2026-04-16",
+      "year": 2026
+     }
+    },
+    "announced_effective_dates": [],
+    "documentation_complete": null,
+    "indirect": true,
+    "kind": "indirect_change_incorporated",
+    "schema": "kerf-gii-stand-note/1",
+    "source": "GII Stand (Hinweis)",
+    "text": "Mittelbare Änderung durch Art. 1b G v. 16.4.2026 I Nr. 107 ist berücksichtigt",
+    "text_incorporated": true,
+    "observed_at": "2026-09-28",
+    "applies_to_subject": false,
+    "change_id": null
+   }
+  ],
+  "unknown_dates": [
+   {
+    "change_id": "chg:1ca32eed4cbe2875a8188874",
+    "norm_label": "§ 7",
+    "field": "adopted",
+    "reason": "no evidenced Ausfertigungsdatum in the stored promulgation document",
+    "amending_act": "Art. 1 Nr. 2 G (BGBl. I 2006 S. 558)"
+   },
+   {
+    "change_id": "chg:1ca32eed4cbe2875a8188874",
+    "norm_label": "§ 7",
+    "field": "in_force",
+    "reason": "unresolved_legacy_commencement_review",
+    "amending_act": "Art. 1 Nr. 2 G (BGBl. I 2006 S. 558)"
+   },
+   {
+    "change_id": "chg:f70e55dc56363536d502b265",
+    "norm_label": "§ 7",
+    "field": "adopted",
+    "reason": "no evidenced Ausfertigungsdatum in the stored promulgation document",
+    "amending_act": "Art. 2 Nr. 1 G (BGBl. I 2007 S. 554)"
+   },
+   {
+    "change_id": "chg:f70e55dc56363536d502b265",
+    "norm_label": "§ 7",
+    "field": "in_force",
+    "reason": "unresolved_legacy_commencement_review",
+    "amending_act": "Art. 2 Nr. 1 G (BGBl. I 2007 S. 554)"
+   },
+   {
+    "change_id": "chg:227222968a589948ec7b7a99",
+    "norm_label": "§ 7",
+    "field": "adopted",
+    "reason": "no evidenced Ausfertigungsdatum in the stored promulgation document",
+    "amending_act": "Art. 5 Nr. 3 G (BGBl. I 2011 S. 2854)"
+   },
+   {
+    "change_id": "chg:227222968a589948ec7b7a99",
+    "norm_label": "§ 7",
+    "field": "in_force",
+    "reason": "unresolved_legacy_commencement_review",
+    "amending_act": "Art. 5 Nr. 3 G (BGBl. I 2011 S. 2854)"
+   }
+  ],
+  "unknown_dates_total": 15,
+  "completeness": {
+   "event_history": "partial",
+   "event_history_start": "2006-03-30",
+   "text_history_start": "2006-02-23",
+   "gaps": [
+    {
+     "kind": "unattributed_text_change",
+     "count": 12
+    },
+    {
+     "kind": "stand_amending_act_not_in_event_store",
+     "count": 21,
+     "scope": "act"
+    }
+   ]
+  },
+  "date_policy": "dates come only from the promulgation document (heading, issue header) and the commencement clause; an unknown date stays null and is listed in unknown_dates"
+ }
+}
