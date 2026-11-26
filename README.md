@@ -44,4 +44,4 @@ npm start
 
 The route components live in `apps/web/app/dt`. The four modules under `apps/web/modules` contain the browser clients, domain logic and translations. The `apps/web/core` directory provides the shared shell and controls.
 
-SNTIQ's software is available under Apache 2.0. The licensing guide identifies terms for original editorial material, fonts, legal texts and the official form. [Licensing](LICENSING.md)
+SNTIQ’s code in this repository is available under Apache 2.0. The licensing guide identifies terms for original editorial material, fonts, legal texts and the official form. [Licensing](LICENSING.md)

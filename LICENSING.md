@@ -1,6 +1,6 @@
 # Licenses
 
-SNTIQ licenses its software in this repository under the Apache License 2.0. SNTIQ's original documentation, annotations and other original editorial material use Creative Commons Attribution 4.0 International. Both licenses permit commercial use. [Apache 2.0](LICENSE-APACHE-2.0) · [CC BY 4.0](LICENSE-CC-BY-4.0)
+SNTIQ licenses its software in this repository under the Apache License 2.0. SNTIQ's original documentation, annotations and other editorial material in this repository use Creative Commons Attribution 4.0 International. Both licenses permit commercial use. [Apache 2.0](LICENSE-APACHE-2.0) · [CC BY 4.0](LICENSE-CC-BY-4.0)
 
 Code examples are software. Reusers of original CC BY material can credit SNTIQ Tools, link to this repository and the license, and identify changes. SNTIQ's marks identify the project. Third-party material retains its source attribution and terms.
 
