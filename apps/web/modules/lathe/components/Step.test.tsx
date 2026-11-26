@@ -12,7 +12,7 @@ import { visibleErrors } from './errorVisibility';
 
 async function render(child: React.ReactNode) {
   const i18n = createInstance();
-  await i18n.init({ lng: 'en', initImmediate: false, resources: { en: { lathe: {} } } });
+  await i18n.init({ lng: 'en', initAsync: false, resources: { en: { lathe: {} } } });
   return renderToStaticMarkup(<I18nextProvider i18n={i18n}>{child}</I18nextProvider>);
 }
 

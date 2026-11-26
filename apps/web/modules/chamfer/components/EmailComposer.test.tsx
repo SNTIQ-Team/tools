@@ -9,7 +9,7 @@ import EmailComposer from './EmailComposer';
 
 async function renderDraft(body: string) {
   const i18n = createInstance();
-  await i18n.init({ lng: 'en', initImmediate: false, resources: { en: { chamfer: {} } } });
+  await i18n.init({ lng: 'en', initAsync: false, resources: { en: { chamfer: {} } } });
   return renderToStaticMarkup(
     <I18nextProvider i18n={i18n}>
       <EmailComposer to="case+123@example.org" subject="Case & documents" body={body} />

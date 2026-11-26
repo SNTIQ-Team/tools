@@ -9,7 +9,7 @@ import { GermanDateInput } from './inputs';
 
 async function renderDate(value: string, max?: string) {
   const i18n = createInstance();
-  await i18n.init({ lng: 'en', initImmediate: false, resources: { en: { chamfer: {} } } });
+  await i18n.init({ lng: 'en', initAsync: false, resources: { en: { chamfer: {} } } });
   return renderToStaticMarkup(
     <I18nextProvider i18n={i18n}>
       <GermanDateInput id="birth" value={value} onChange={() => {}} max={max} />
