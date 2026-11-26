@@ -1,13 +1,13 @@
 # SNTIQ Tools
 
-Four browser tools share a Next.js application shell, language settings and form controls. Each module opens directly at its own route.
+Use Kerf, Taper, Chamfer, and Lathe in one web application for legal research, authority lookup, and paperwork.
 
-| Tool | Purpose | Route |
+| Tool | Purpose | Source |
 | --- | --- | --- |
-| Kerf | Read legislation, compare dated versions and follow links to decisions. | [Open Kerf](https://sntiq.com/dt/kerf) |
-| Taper | Find the authority or court responsible for a place and matter. | [Open Taper](https://sntiq.com/dt/taper) |
-| Chamfer | Prepare a formal letter, find the recipient and export the result as PDF or DOCX. | [Open Chamfer](https://sntiq.com/dt/chamfer) |
-| Lathe | Complete the German legal aid declaration and generate the filled form in the browser. | [Open Lathe](https://sntiq.com/dt/lathe) |
+| [Kerf](https://sntiq.com/dt/kerf) | Read German and EU law, compare available versions, and trace amendments and court citations to official sources. | [kerf](https://github.com/SNTIQ-Team/kerf) |
+| [Taper](https://sntiq.com/dt/taper) | Find German authorities and courts for a place and matter, with sources and appeal routes where available. | [taper](https://github.com/SNTIQ-Team/taper) |
+| [Chamfer](https://sntiq.com/dt/chamfer) | Draft letters to German authorities and courts, find the recipient, and export to PDF or DOCX. | [chamfer](https://github.com/SNTIQ-Team/chamfer) |
+| [Lathe](https://sntiq.com/dt/lathe) | Complete the German legal aid declaration (form ZP 1a) in your browser and download the filled PDF. | [lathe](https://github.com/SNTIQ-Team/lathe) |
 
 ## Run locally
 
@@ -22,7 +22,7 @@ Open [localhost:3000](http://localhost:3000). Choose a tool or open `/dt/kerf`, 
 
 ## Services
 
-Kerf and Taper query the public APIs. Chamfer posts the composed letter when the user requests a PDF or DOCX. Lathe works with the blank form and font shipped in this repository.
+Kerf and Taper query the public APIs. Downloading a PDF or DOCX from Chamfer sends the composed letter to `https://api.sntiq.com/chamfer/letter`. Lathe fills the blank form in the browser using the font bundled in this repository.
 
 | Client | Default API base | Build-time override |
 | --- | --- | --- |

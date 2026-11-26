@@ -1,0 +1,30 @@
+{
+  "en": {
+    "kerf": "Read German and EU law, compare available versions, and trace amendments and court citations to official sources.",
+    "taper": "Find German authorities and courts for a place and matter, with sources and appeal routes where available.",
+    "tools": "Use Kerf, Taper, Chamfer, and Lathe in one web application for legal research, authority lookup, and paperwork.",
+    "chamfer": "Draft letters to German authorities and courts, find the recipient, and export to PDF or DOCX.",
+    "lathe": "Complete the German legal aid declaration (form ZP 1a) in your browser and download the filled PDF."
+  },
+  "de": {
+    "kerf": "Lesen Sie deutsches Recht und EU-Recht, vergleichen Sie verfügbare Fassungen und verfolgen Sie Änderungen und Verweise auf Gerichtsentscheidungen bis zur amtlichen Quelle.",
+    "taper": "Finden Sie nach Ort und Anliegen die zuständigen deutschen Behörden und Gerichte, mit Quellen und Angaben zu möglichen Rechtsbehelfen, soweit bekannt.",
+    "tools": "Nutzen Sie Kerf, Taper, Chamfer und Lathe in einer Webanwendung für Rechtsrecherche, Behördensuche und Schriftverkehr.",
+    "chamfer": "Verfassen Sie Schreiben an deutsche Behörden und Gerichte, finden Sie den Empfänger und laden Sie das Schreiben als PDF oder DOCX herunter.",
+    "lathe": "Füllen Sie die Erklärung über die persönlichen und wirtschaftlichen Verhältnisse für die Prozesskostenhilfe (Formular ZP 1a) im Browser aus und laden Sie das fertige PDF herunter."
+  },
+  "ru": {
+    "kerf": "Читайте законы Германии и ЕС, сравнивайте доступные редакции и сверяйте поправки и ссылки на судебные решения с официальными источниками.",
+    "taper": "Найдите ведомство или суд в Германии по населённому пункту и теме обращения. Для каждого совпадения указаны источники и, где известно, порядок обжалования.",
+    "tools": "Kerf, Taper, Chamfer и Lathe собраны в одном приложении. Здесь можно изучать законы, находить ведомства и готовить документы.",
+    "chamfer": "Составьте письмо в немецкое ведомство или суд, найдите адресата и скачайте письмо в PDF или DOCX.",
+    "lathe": "Заполните в браузере немецкую декларацию о доходах и имуществе для помощи с судебными расходами (форма ZP 1a) и скачайте готовый PDF."
+  },
+  "ua": {
+    "kerf": "Читайте закони Німеччини та ЄС, порівнюйте доступні редакції та звіряйте зміни й посилання на судові рішення з офіційними джерелами.",
+    "taper": "Знайдіть відомство або суд у Німеччині за населеним пунктом і темою звернення. Для кожного збігу наведено джерела та, коли відомо, порядок оскарження.",
+    "tools": "Kerf, Taper, Chamfer і Lathe зібрано в одному застосунку. Тут можна вивчати закони, знаходити відомства й готувати документи.",
+    "chamfer": "Складіть лист до німецького відомства чи суду, знайдіть адресата й завантажте лист у PDF або DOCX.",
+    "lathe": "Заповніть у браузері німецьку декларацію про доходи й майно для отримання допомоги із судовими витратами (форма ZP 1a) та завантажте готовий PDF."
+  }
+}

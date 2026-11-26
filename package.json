@@ -2,7 +2,7 @@
   "name": "sntiq-tools",
   "private": true,
   "version": "1.0.0",
-  "description": "SNTIQ Kerf, Taper, Chamfer and Lathe",
+  "description": "Use Kerf, Taper, Chamfer, and Lathe in one web application for legal research, authority lookup, and paperwork.",
   "workspaces": [
     "packages/*",
     "apps/web"

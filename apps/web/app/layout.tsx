@@ -1,15 +1,18 @@
 import type { Metadata } from 'next';
-import { cookies, headers } from 'next/headers';
+import descriptions from '@/core/i18n/toolDescriptions.json';
+import { resolveServerLang } from '@/core/i18n/pageMeta';
 import Shell from '@/core/shell/Shell';
-import { htmlLang, LANG_COOKIE, pickLanguage } from '@/core/i18n/config';
+import { htmlLang } from '@/core/i18n/config';
 import './globals.css';
 import './tools.css';
 
-export const metadata: Metadata = { title: 'SNTIQ Tools', description: 'Tools for working with German law, public authorities, letters and legal aid.' };
+export async function generateMetadata(): Promise<Metadata> {
+  const lang = await resolveServerLang();
+  return { title: 'SNTIQ Tools', description: descriptions[lang].tools };
+}
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const [preferences, request] = await Promise.all([cookies(), headers()]);
-  const lang = pickLanguage(preferences.get(LANG_COOKIE)?.value, request.get('accept-language'));
+  const lang = await resolveServerLang();
   return <html lang={htmlLang(lang)} suppressHydrationWarning><body>
     <Shell initialLang={lang}>{children}</Shell>
   </body></html>;

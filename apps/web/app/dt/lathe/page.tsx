@@ -1,15 +1,18 @@
 import type { Metadata } from 'next';
+import descriptions from '@/core/i18n/toolDescriptions.json';
+import { resolveServerLang } from '@/core/i18n/pageMeta';
 import { preload } from 'react-dom';
 import pdfjsPackage from 'pdfjs-dist/package.json';
 import LatheModule from '@/modules/lathe/LatheModule';
 import { ldJson, moduleLd, pageMeta } from '@/core/seo';
 
-const DESCRIPTION =
-  'Assistant for the German legal aid declaration (Prozesskostenhilfe, form ZP 1a). Runs fully in your browser.';
+export async function generateMetadata(): Promise<Metadata> {
+  const lang = await resolveServerLang();
+  return pageMeta({ path: '/dt/lathe', title: 'SNTIQ Lathe | Deutschland Together', description: descriptions[lang].lathe });
+}
 
-export const metadata: Metadata = pageMeta({ path: '/dt/lathe', title: 'SNTIQ Lathe | Deutschland Together', description: DESCRIPTION });
-
-export default function LathePage() {
+export default async function LathePage() {
+  const lang = await resolveServerLang();
   // The blank form for the live preview downloads alongside the scripts
   // (fetched by PdfViewer with the same credentials mode).
   preload('/dt/lathe/forms/zp1a.pdf', { as: 'fetch', crossOrigin: 'anonymous' });
@@ -18,7 +21,7 @@ export default function LathePage() {
   preload(`/pdfjs/${pdfjsPackage.version}/pdf.worker.min.mjs`, { as: 'fetch', crossOrigin: 'anonymous' });
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(moduleLd('SNTIQ Lathe', '/dt/lathe', DESCRIPTION)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(moduleLd('SNTIQ Lathe', '/dt/lathe', descriptions[lang].lathe)) }} />
       <LatheModule />
     </>
   );
